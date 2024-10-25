@@ -150,6 +150,7 @@ body::-webkit-scrollbar {
 						align-items: center;
 						.notification-icon {
 							color: white;
+							overflow: hidden;
 						}
 						.btn-lang {
 							border-radius: 4px;

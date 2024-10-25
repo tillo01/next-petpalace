@@ -328,3 +328,21 @@ export const UNSUBSCRIBE = gql`
 		}
 	}
 `;
+export const UPDATE_NOTIFICATIONS = gql`
+	mutation UpdateNotifications($input: NotifUpdate!) {
+		updateNotifications(input: $input) {
+			_id
+			authorId
+			receiverId
+			propertyId
+			articleId
+			notificationType
+			notificationStatus
+			notificationGroup
+			notificationTitle
+			notificationDesc
+			createdAt
+			updatedAt
+		}
+	}
+`;

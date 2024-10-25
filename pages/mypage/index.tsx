@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { NextPage } from 'next';
 import { Stack } from '@mui/material';
@@ -20,6 +20,7 @@ import MemberFollowings from '../../libs/components/member/MemberFollowings';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { LIKE_TARGET_MEMBER, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
 import { Messages } from '../../libs/config';
+import { T } from '../../libs/types/common';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -88,15 +89,19 @@ const MyPage: NextPage = () => {
 	const likeMemberHandler = async (id: string, refetch: any, query: any) => {
 		try {
 			if (!id) return;
+			console.log('+++', id);
 
 			if (!user?._id) throw new Error(Messages.error2);
+			console.log('+++', user._id);
 
 			await likeTargetMember({
 				variables: {
-					input: id,
+					input: {
+						id: id,
+						memberWarning: +1,
+					},
 				},
 			});
-
 			await sweetTopSmallSuccessAlert('Success!', 800);
 
 			await refetch({ input: query });

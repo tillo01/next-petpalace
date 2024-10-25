@@ -1,0 +1,132 @@
+/** @format */
+
+import React, { useState } from 'react';
+import { Box, Button, Stack, Typography } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import Badge from '@mui/material/Badge';
+import Menu from '@mui/material/Menu';
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import { LIKE_TARGET_MEMBER } from '../../apollo/user/mutation';
+import { useMutation, useQuery } from '@apollo/client';
+import { GET_NOTIFICATIONS } from '../../apollo/user/query';
+import { T } from '../types/common';
+import { NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
+import { NotificationStatus } from '../enums/notification.enum';
+import { Direction } from '../enums/common.enum';
+
+export default function NotifIcon() {
+	/** REQUEST IF NEEDED **/
+	const [notifications, setNotifications] = useState<NotifMe[]>([]);
+
+	const [notif, setnotif] = useState<NotifInquiry>({
+		sort: 'createdAt',
+		direction: Direction.DESC,
+		limit: 10,
+	});
+
+	const {
+		loading: getNotificationsLoading,
+		data: getNotificationsData,
+		error: getNotificationsError,
+		refetch: getPropertiesRefetch,
+	} = useQuery(GET_NOTIFICATIONS, {
+		fetchPolicy: 'network-only',
+		variables: { input: notif },
+		notifyOnNetworkStatusChange: true,
+		onCompleted: (data: T) => {
+			setNotifications(Array.isArray(data?.getNotifications) ? data.getNotifications : []);
+		},
+	});
+	console.log('++', getNotificationsData);
+	console.log('Notifications:', notifications);
+	const unreadNotifications: T = notifications.filter((notif) => notif.notificationStatus === NotificationStatus.WAIT);
+
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+
+	// WE WILL COME BACK
+	/** HANDLERS **/
+	const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+		setAnchorEl(e.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
+	// WE WILL COME BACK
+	// {notifications.map((notif:NotifMe)=>{
+	// 	return(
+
+	// 	)
+
+	// })}
+
+	return (
+		<Box className={'hover-line'}>
+			<IconButton
+				aria-label="cart"
+				id="basic-button"
+				aria-controls={open ? 'basic-menu' : undefined}
+				aria-haspopup="true"
+				aria-expanded={open ? 'true' : undefined}
+				onClick={handleClick}
+			>
+				<Badge badgeContent={unreadNotifications?.length || 0} color="error">
+					<NotificationsOutlinedIcon className={'notification-icon'}></NotificationsOutlinedIcon>
+				</Badge>
+			</IconButton>
+			<Menu
+				anchorEl={anchorEl}
+				id="account-menu"
+				open={open}
+				onClose={handleClose}
+				// onClick={handleClose}
+				PaperProps={{
+					elevation: 0,
+					sx: {
+						maxHeight: '400px',
+						overflow: 'auto',
+						filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+						mt: 1.5,
+						'& .MuiAvatar-root': {
+							width: 32,
+							height: 32,
+							ml: -0.5,
+							mr: 1,
+						},
+						'&:before': {
+							content: '""',
+							display: 'block',
+							position: 'absolute',
+							top: 0,
+							right: 14,
+							width: 10,
+							height: 10,
+							bgcolor: 'background.paper',
+							transform: 'translateY(-50%) rotate(45deg)',
+							zIndex: 0,
+						},
+					},
+				}}
+				transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+			>
+				<Stack className="basket-frame">
+					<Box className="orders-main-wrapper">
+						{notifications.map((notif) => (
+							<Box key={notif._id} className="notification-item">
+								<Typography variant="body2">{notif.notificationTitle}</Typography>
+								<Typography variant="caption" color="text.secondary">
+									{notif.authorId} liked {notif.receiverId}
+								</Typography>
+								<Typography variant="caption" color="text.secondary">
+									{new Date(notif.createdAt).toLocaleString()}
+								</Typography>
+							</Box>
+						))}
+					</Box>
+				</Stack>
+			</Menu>
+		</Box>
+	);
+}

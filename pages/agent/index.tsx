@@ -45,6 +45,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	/** APOLLO REQUESTS **/
 
 	const [likeTArgetMember] = useMutation(LIKE_TARGET_MEMBER);
+
 	const {
 		loading: getAgentLoading,
 		data: getAgentData,
@@ -125,7 +126,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 					input: id,
 				},
 			});
-			sweetTopSmallSuccessAlert('success', 800);
+
 			await getAgentsRefetch({ input: searchFilter });
 		} catch (err: any) {
 			console.log('Error on likeMember', err);
