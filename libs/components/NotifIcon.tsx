@@ -6,13 +6,12 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { LIKE_TARGET_MEMBER } from '../../apollo/user/mutation';
-import { useMutation, useQuery } from '@apollo/client';
-import { GET_NOTIFICATIONS } from '../../apollo/user/query';
+import { useQuery } from '@apollo/client';
 import { T } from '../types/common';
-import { NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
-import { NotificationStatus } from '../enums/notification.enum';
+import { Noitfies, NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
 import { Direction } from '../enums/common.enum';
+import { GET_NOTIFICATIONS } from '../../apollo/user/query';
+import { NotificationStatus } from '../enums/notification.enum';
 
 export default function NotifIcon() {
 	/** REQUEST IF NEEDED **/
@@ -28,18 +27,28 @@ export default function NotifIcon() {
 		loading: getNotificationsLoading,
 		data: getNotificationsData,
 		error: getNotificationsError,
-		refetch: getPropertiesRefetch,
+		refetch: getNotificationsRefetch,
 	} = useQuery(GET_NOTIFICATIONS, {
 		fetchPolicy: 'network-only',
-		variables: { input: notif },
+		variables: {
+			input: notif,
+		},
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setNotifications(Array.isArray(data?.getNotifications) ? data.getNotifications : []);
+			setNotifications(data?.getNotifications?.list);
 		},
 	});
-	console.log('++', getNotificationsData);
-	console.log('Notifications:', notifications);
-	const unreadNotifications: T = notifications.filter((notif) => notif.notificationStatus === NotificationStatus.WAIT);
+
+	console.log('Loading:', getNotificationsLoading);
+	console.log('##:', getNotificationsError);
+	console.log('++', getNotificationsData, 'data>>>');
+
+	// console.log('Notifications:', notifications);
+	// console.log('--typeof', typeof notifications, '=>>>>');
+
+	const waitNotificationsCount = notifications.filter((notifies) => {
+		notifies.notificationStatus === NotificationStatus.WAIT;
+	});
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -54,12 +63,6 @@ export default function NotifIcon() {
 	};
 
 	// WE WILL COME BACK
-	// {notifications.map((notif:NotifMe)=>{
-	// 	return(
-
-	// 	)
-
-	// })}
 
 	return (
 		<Box className={'hover-line'}>
@@ -71,7 +74,7 @@ export default function NotifIcon() {
 				aria-expanded={open ? 'true' : undefined}
 				onClick={handleClick}
 			>
-				<Badge badgeContent={unreadNotifications?.length || 0} color="error">
+				<Badge badgeContent={notifications.length} color="error">
 					<NotificationsOutlinedIcon className={'notification-icon'}></NotificationsOutlinedIcon>
 				</Badge>
 			</IconButton>
@@ -113,7 +116,7 @@ export default function NotifIcon() {
 			>
 				<Stack className="basket-frame">
 					<Box className="orders-main-wrapper">
-						{notifications.map((notif) => (
+						{notifications.map((notif: NotifMe) => (
 							<Box key={notif._id} className="notification-item">
 								<Typography variant="body2">{notif.notificationTitle}</Typography>
 								<Typography variant="caption" color="text.secondary">

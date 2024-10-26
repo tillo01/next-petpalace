@@ -126,6 +126,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 					input: id,
 				},
 			});
+			await sweetTopSmallSuccessAlert('success', 800);
 
 			await getAgentsRefetch({ input: searchFilter });
 		} catch (err: any) {

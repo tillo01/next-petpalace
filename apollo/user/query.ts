@@ -620,16 +620,20 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 export const GET_NOTIFICATIONS = gql`
 	query GetNotifications($input: NotifInquiry!) {
 		getNotifications(input: $input) {
-			_id
-			authorId
-			receiverId
-			propertyId
-			articleId
-			notificationType
-			notificationStatus
-			notificationGroup
-			notificationTitle
-			notificationDesc
+			list {
+				_id
+				authorId
+				receiverId
+				propertyId
+				articleId
+				notificationType
+				notificationStatus
+				notificationGroup
+				notificationTitle
+				notificationDesc
+				createdAt
+				updatedAt
+			}
 		}
 	}
 `;
