@@ -233,7 +233,7 @@ const Top = () => {
 
 							<div className={'lan-box'}>
 								{user?._id && <NotifIcon />}
-								<ClearCacheButton />
+
 								<Button
 									disableRipple
 									className="btn-lang"

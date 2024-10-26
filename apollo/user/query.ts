@@ -633,6 +633,7 @@ export const GET_NOTIFICATIONS = gql`
 				notificationDesc
 				createdAt
 				updatedAt
+				authorNick
 			}
 		}
 	}

@@ -47,7 +47,7 @@ export default function NotifIcon() {
 	// console.log('--typeof', typeof notifications, '=>>>>');
 
 	const waitNotificationsCount = notifications.filter((notifies) => {
-		notifies.notificationStatus === NotificationStatus.WAIT;
+		return notifies.notificationStatus === NotificationStatus.WAIT;
 	});
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -74,7 +74,7 @@ export default function NotifIcon() {
 				aria-expanded={open ? 'true' : undefined}
 				onClick={handleClick}
 			>
-				<Badge badgeContent={notifications.length} color="error">
+				<Badge badgeContent={waitNotificationsCount.length} color="error">
 					<NotificationsOutlinedIcon className={'notification-icon'}></NotificationsOutlinedIcon>
 				</Badge>
 			</IconButton>
@@ -90,7 +90,7 @@ export default function NotifIcon() {
 						maxHeight: '400px',
 						overflow: 'auto',
 						filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-						mt: 1.5,
+						mt: 0.5,
 						'& .MuiAvatar-root': {
 							width: 32,
 							height: 32,
@@ -102,8 +102,8 @@ export default function NotifIcon() {
 							display: 'block',
 							position: 'absolute',
 							top: 0,
-							right: 14,
-							width: 10,
+							right: 10,
+							width: 5,
 							height: 10,
 							bgcolor: 'background.paper',
 							transform: 'translateY(-50%) rotate(45deg)',
@@ -116,17 +116,30 @@ export default function NotifIcon() {
 			>
 				<Stack className="basket-frame">
 					<Box className="orders-main-wrapper">
-						{notifications.map((notif: NotifMe) => (
-							<Box key={notif._id} className="notification-item">
-								<Typography variant="body2">{notif.notificationTitle}</Typography>
-								<Typography variant="caption" color="text.secondary">
-									{notif.authorId} liked {notif.receiverId}
-								</Typography>
-								<Typography variant="caption" color="text.secondary">
-									{new Date(notif.createdAt).toLocaleString()}
-								</Typography>
-							</Box>
-						))}
+						{notifications.map((notif: NotifMe) => {
+							let message;
+							if (notif.propertyId) {
+								message = `${notif.authorId} liked a property you posted`;
+							} else if (notif.articleId) {
+								message = `${notif.authorId} liked an article you posted`;
+							} else if (notif.authorId) {
+								message = `${notif.authorNick} liked your profile`;
+							} else {
+								message = `Notification from ${notif.receiverId}`;
+							}
+
+							return (
+								<Box key={notif._id} className="notification-item">
+									<Typography variant="body2">{notif.notificationTitle}</Typography>
+									<Typography variant="caption" color="text.secondary">
+										{message}
+									</Typography>
+									<Typography variant="caption" color="text.secondary">
+										{new Date(notif.createdAt).toLocaleString()}
+									</Typography>
+								</Box>
+							);
+						})}
 					</Box>
 				</Stack>
 			</Menu>
