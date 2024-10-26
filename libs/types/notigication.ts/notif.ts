@@ -7,6 +7,7 @@ export interface NotifMe {
 	receiverId: string;
 	propertyId?: string;
 	articleId?: string;
+	propertyTitle?: string;
 	authorNick: string;
 	notificationType: NotificationType;
 	notificationStatus: NotificationStatus;

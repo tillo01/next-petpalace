@@ -634,6 +634,7 @@ export const GET_NOTIFICATIONS = gql`
 				createdAt
 				updatedAt
 				authorNick
+				propertyTitle
 			}
 		}
 	}

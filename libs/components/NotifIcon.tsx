@@ -118,8 +118,8 @@ export default function NotifIcon() {
 					<Box className="orders-main-wrapper">
 						{notifications.map((notif: NotifMe) => {
 							let message;
-							if (notif.propertyId) {
-								message = `${notif.authorId} liked a property you posted`;
+							if (notif.propertyTitle) {
+								message = `${notif.authorNick} liked a property you posted ${notif.propertyTitle}`;
 							} else if (notif.articleId) {
 								message = `${notif.authorId} liked an article you posted`;
 							} else if (notif.authorId) {

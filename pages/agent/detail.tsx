@@ -209,7 +209,11 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 							{agentProperties.map((property: Property) => {
 								return (
 									<div className={'wrap-main'} key={property?._id}>
-										<PropertyBigCard property={property} key={property?._id} />
+										<PropertyBigCard
+											property={property}
+											key={property?._id}
+											likePropertyHandler={likePropertyHandler}
+										/>
 									</div>
 								);
 							})}
