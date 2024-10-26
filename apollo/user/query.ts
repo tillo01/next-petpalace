@@ -635,6 +635,7 @@ export const GET_NOTIFICATIONS = gql`
 				updatedAt
 				authorNick
 				propertyTitle
+				articleTitle
 			}
 		}
 	}

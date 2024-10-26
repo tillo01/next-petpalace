@@ -8,6 +8,7 @@ export interface NotifMe {
 	propertyId?: string;
 	articleId?: string;
 	propertyTitle?: string;
+	articleTitle?: string;
 	authorNick: string;
 	notificationType: NotificationType;
 	notificationStatus: NotificationStatus;

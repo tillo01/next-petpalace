@@ -343,6 +343,9 @@ export const UPDATE_NOTIFICATIONS = gql`
 			notificationDesc
 			createdAt
 			updatedAt
+			authorNick
+			propertyTitle
+			articleTitle
 		}
 	}
 `;

@@ -6,15 +6,20 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { useQuery } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { T } from '../types/common';
 import { Noitfies, NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
 import { Direction } from '../enums/common.enum';
 import { GET_NOTIFICATIONS } from '../../apollo/user/query';
 import { NotificationStatus } from '../enums/notification.enum';
+import { UPDATE_NOTIFICATIONS } from '../../apollo/user/mutation';
+import { NotifUpdate } from '../types/notigication.ts/notif.update';
+import { sweetErrorHandling } from '../sweetAlert';
 
 export default function NotifIcon() {
 	/** REQUEST IF NEEDED **/
+	const [updateNotifications] = useMutation(UPDATE_NOTIFICATIONS);
+
 	const [notifications, setNotifications] = useState<NotifMe[]>([]);
 
 	const [notif, setnotif] = useState<NotifInquiry>({
@@ -22,6 +27,7 @@ export default function NotifIcon() {
 		direction: Direction.DESC,
 		limit: 10,
 	});
+	const [updateNotifStatus, setUpdateNotifStatus] = useState<NotifUpdate>();
 
 	const {
 		loading: getNotificationsLoading,
@@ -49,6 +55,30 @@ export default function NotifIcon() {
 	const waitNotificationsCount = notifications.filter((notifies) => {
 		return notifies.notificationStatus === NotificationStatus.WAIT;
 	});
+
+	const updateNotifsHandler = async (notifID: string) => {
+		const updateData = { _id: notifID, notificationStatus: NotificationStatus.READ };
+		try {
+			await updateNotifications({
+				variables: {
+					input: updateData,
+				},
+			});
+			setNotifications((prevNotifications: any) => {
+				return prevNotifications.map((notification: any) => {
+					if (notification._id === notifID) {
+						return { ...notification, notificationStatus: NotificationStatus.READ };
+					}
+
+					return notification;
+				});
+			});
+
+			await getNotificationsRefetch({ input: notif });
+		} catch (err: any) {
+			sweetErrorHandling(err).then();
+		}
+	};
 
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
@@ -115,21 +145,40 @@ export default function NotifIcon() {
 				anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
 			>
 				<Stack className="basket-frame">
-					<Box className="orders-main-wrapper">
-						{notifications.map((notif: NotifMe) => {
-							let message;
-							if (notif.propertyTitle) {
-								message = `${notif.authorNick} liked a property you posted ${notif.propertyTitle}`;
-							} else if (notif.articleId) {
-								message = `${notif.authorId} liked an article you posted`;
-							} else if (notif.authorId) {
-								message = `${notif.authorNick} liked your profile`;
-							} else {
-								message = `Notification from ${notif.receiverId}`;
-							}
+					{notifications.map((notif: NotifMe) => {
+						let message;
+						if (notif.propertyTitle) {
+							message = `${notif.authorNick} liked a property you posted ${notif.propertyTitle}`;
+						} else if (notif.articleTitle) {
+							message = `${notif.authorNick} liked an article you posted ${notif.articleTitle}`;
+						} else if (notif.authorId) {
+							message = `${notif.authorNick} liked your profile`;
+						} else {
+							message = `Notification from ${notif.receiverId}`;
+						}
 
-							return (
-								<Box key={notif._id} className="notification-item">
+						return (
+							<Box
+								key={notif._id} // Use notification ID as the key
+								className="orders-main-wrapper"
+								onClick={() => updateNotifsHandler(notif._id)} // Pass the specific ID to update
+								style={{
+									cursor: 'pointer',
+									padding: '8px',
+									backgroundColor: notif.notificationStatus === NotificationStatus.WAIT ? '#f0f0f0' : '#ffffff', // Gray for unread, white for read
+								}}
+							>
+								<span
+									style={{
+										width: '10px',
+										height: '10px',
+										borderRadius: '50%',
+										backgroundColor: notif.notificationStatus === 'READ' ? 'lightgray' : 'green',
+										display: 'inline-block',
+										marginRight: '8px',
+									}}
+								/>
+								<Box className="notification-item">
 									<Typography variant="body2">{notif.notificationTitle}</Typography>
 									<Typography variant="caption" color="text.secondary">
 										{message}
@@ -138,9 +187,9 @@ export default function NotifIcon() {
 										{new Date(notif.createdAt).toLocaleString()}
 									</Typography>
 								</Box>
-							);
-						})}
-					</Box>
+							</Box>
+						);
+					})}
 				</Stack>
 			</Menu>
 		</Box>
