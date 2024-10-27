@@ -148,6 +148,11 @@ export default function NotifIcon() {
 					{notifications.map((notif: NotifMe) => {
 						let messageContent;
 
+						const limitCharacters = (text: any, charLimit: any) => {
+							if (!text) return '';
+							return text.length > charLimit ? text.slice(0, charLimit) + '...' : text;
+						};
+
 						if (notif.notificationType === NotificationType.FOLLOW) {
 							messageContent = (
 								<>
@@ -181,6 +186,8 @@ export default function NotifIcon() {
 								target = <>on your profile</>;
 							}
 
+							const shortenedCommentContent = limitCharacters(notif.commentContent, 10);
+
 							messageContent = (
 								<>
 									<Typography component="span" fontWeight="bold">
@@ -188,7 +195,7 @@ export default function NotifIcon() {
 									</Typography>{' '}
 									commented {target}:{' '}
 									<Typography component="span" fontWeight="bold">
-										{notif.commentContent}
+										{shortenedCommentContent}
 									</Typography>
 								</>
 							);
