@@ -11,7 +11,7 @@ import { T } from '../types/common';
 import { Noitfies, NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
 import { Direction } from '../enums/common.enum';
 import { GET_NOTIFICATIONS } from '../../apollo/user/query';
-import { NotificationStatus } from '../enums/notification.enum';
+import { NotificationStatus, NotificationType } from '../enums/notification.enum';
 import { UPDATE_NOTIFICATIONS } from '../../apollo/user/mutation';
 import { NotifUpdate } from '../types/notigication.ts/notif.update';
 import { sweetErrorHandling } from '../sweetAlert';
@@ -148,7 +148,16 @@ export default function NotifIcon() {
 					{notifications.map((notif: NotifMe) => {
 						let messageContent;
 
-						if (notif.commentContent) {
+						if (notif.notificationType === NotificationType.FOLLOW) {
+							messageContent = (
+								<>
+									<Typography component="span" fontWeight="bold">
+										{notif.authorNick}
+									</Typography>{' '}
+									followed you
+								</>
+							);
+						} else if (notif.commentContent) {
 							let target;
 							if (notif.articleTitle) {
 								target = (
@@ -217,7 +226,6 @@ export default function NotifIcon() {
 								</>
 							);
 						} else {
-							// Fallback message
 							messageContent = <>Notification from {notif.receiverId}</>;
 						}
 
