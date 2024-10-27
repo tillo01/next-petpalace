@@ -25,7 +25,7 @@ export default function NotifIcon() {
 	const [notif, setnotif] = useState<NotifInquiry>({
 		sort: 'createdAt',
 		direction: Direction.DESC,
-		limit: 10,
+		limit: 1000,
 	});
 	const [updateNotifStatus, setUpdateNotifStatus] = useState<NotifUpdate>();
 
@@ -147,11 +147,13 @@ export default function NotifIcon() {
 				<Stack className="basket-frame">
 					{notifications.map((notif: NotifMe) => {
 						let message;
-						if (notif.propertyTitle) {
-							message = `${notif.authorNick} liked a property you posted ${notif.propertyTitle}`;
+						if (notif.commentContent) {
+							message = `${notif.authorNick} commented on your post: ${notif.commentContent}`;
+						} else if (notif.propertyTitle) {
+							message = `${notif.authorNick} liked a property you posted: ${notif.propertyTitle}`;
 						} else if (notif.articleTitle) {
-							message = `${notif.authorNick} liked an article you posted ${notif.articleTitle}`;
-						} else if (notif.authorId) {
+							message = `${notif.authorNick} liked an article you posted: ${notif.articleTitle}`;
+						} else if (notif.authorNick) {
 							message = `${notif.authorNick} liked your profile`;
 						} else {
 							message = `Notification from ${notif.receiverId}`;

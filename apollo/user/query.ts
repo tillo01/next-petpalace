@@ -636,6 +636,8 @@ export const GET_NOTIFICATIONS = gql`
 				authorNick
 				propertyTitle
 				articleTitle
+				commentContent
+				commentRefId
 			}
 		}
 	}

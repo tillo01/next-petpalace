@@ -9,6 +9,8 @@ export interface NotifMe {
 	articleId?: string;
 	propertyTitle?: string;
 	articleTitle?: string;
+	commentContent: string;
+	commentRefId?: string;
 	authorNick: string;
 	notificationType: NotificationType;
 	notificationStatus: NotificationStatus;
