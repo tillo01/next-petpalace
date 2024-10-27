@@ -146,28 +146,90 @@ export default function NotifIcon() {
 			>
 				<Stack className="basket-frame">
 					{notifications.map((notif: NotifMe) => {
-						let message;
+						let messageContent;
+
 						if (notif.commentContent) {
-							message = `${notif.authorNick} commented on your post: ${notif.commentContent}`;
+							let target;
+							if (notif.articleTitle) {
+								target = (
+									<>
+										on your article:{' '}
+										<Typography component="span" fontWeight="bold">
+											{notif.articleTitle}
+										</Typography>
+									</>
+								);
+							} else if (notif.propertyTitle) {
+								target = (
+									<>
+										on your property:{' '}
+										<Typography component="span" fontWeight="bold">
+											{notif.propertyTitle}
+										</Typography>
+									</>
+								);
+							} else {
+								target = <>on your profile</>;
+							}
+
+							messageContent = (
+								<>
+									<Typography component="span" fontWeight="bold">
+										{notif.authorNick}
+									</Typography>{' '}
+									commented {target}:{' '}
+									<Typography component="span" fontWeight="bold">
+										{notif.commentContent}
+									</Typography>
+								</>
+							);
 						} else if (notif.propertyTitle) {
-							message = `${notif.authorNick} liked a property you posted: ${notif.propertyTitle}`;
+							messageContent = (
+								<>
+									<Typography component="span" fontWeight="bold">
+										{notif.authorNick}
+									</Typography>{' '}
+									liked a property you posted:{' '}
+									<Typography component="span" fontWeight="bold">
+										{notif.propertyTitle}
+									</Typography>
+								</>
+							);
 						} else if (notif.articleTitle) {
-							message = `${notif.authorNick} liked an article you posted: ${notif.articleTitle}`;
+							messageContent = (
+								<>
+									<Typography component="span" fontWeight="bold">
+										{notif.authorNick}
+									</Typography>{' '}
+									liked an article you posted:{' '}
+									<Typography component="span" fontWeight="bold">
+										{notif.articleTitle}
+									</Typography>
+								</>
+							);
 						} else if (notif.authorNick) {
-							message = `${notif.authorNick} liked your profile`;
+							messageContent = (
+								<>
+									<Typography component="span" fontWeight="bold">
+										{notif.authorNick}
+									</Typography>{' '}
+									liked your profile
+								</>
+							);
 						} else {
-							message = `Notification from ${notif.receiverId}`;
+							// Fallback message
+							messageContent = <>Notification from {notif.receiverId}</>;
 						}
 
 						return (
 							<Box
-								key={notif._id} // Use notification ID as the key
+								key={notif._id}
 								className="orders-main-wrapper"
-								onClick={() => updateNotifsHandler(notif._id)} // Pass the specific ID to update
+								onClick={() => updateNotifsHandler(notif._id)}
 								style={{
 									cursor: 'pointer',
 									padding: '8px',
-									backgroundColor: notif.notificationStatus === NotificationStatus.WAIT ? '#f0f0f0' : '#ffffff', // Gray for unread, white for read
+									backgroundColor: notif.notificationStatus === NotificationStatus.WAIT ? '#f0f0f0' : '#ffffff',
 								}}
 							>
 								<span
@@ -183,7 +245,7 @@ export default function NotifIcon() {
 								<Box className="notification-item">
 									<Typography variant="body2">{notif.notificationTitle}</Typography>
 									<Typography variant="caption" color="text.secondary">
-										{message}
+										{messageContent}
 									</Typography>
 									<Typography variant="caption" color="text.secondary">
 										{new Date(notif.createdAt).toLocaleString()}
