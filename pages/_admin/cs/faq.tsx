@@ -13,9 +13,13 @@ import TablePagination from '@mui/material/TablePagination';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { FaqArticlesPanelList } from '../../../libs/components/admin/cs/FaqList';
+import { useRouter } from 'next/router';
+
+/** Bu adminpage faq-top center **/
 
 const FaqArticles: NextPage = (props: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
+	const router = useRouter();
 
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
@@ -26,12 +30,7 @@ const FaqArticles: NextPage = (props: any) => {
 		<Box component={'div'} className={'content'}>
 			<Box component={'div'} className={'title flex_space'}>
 				<Typography variant={'h2'}>FAQ Management</Typography>
-				<Button
-					className="btn_add"
-					variant={'contained'}
-					size={'medium'}
-					// onClick={() => router.push(`/_admin/cs/faq_create`)}
-				>
+				<Button className="btn_add" variant={'contained'} size={'medium'} onClick={() => router.push(`/_admin/cs/add`)}>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
 					ADD
 				</Button>

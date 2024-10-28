@@ -349,3 +349,39 @@ export const UPDATE_NOTIFICATIONS = gql`
 		}
 	}
 `;
+
+export const CREATE_FAQ_QUESTIONS = gql`
+	mutation CreateFaqQuestions($input: FAQsInput!) {
+		createFaqQuestions(input: $input) {
+			_id
+			noticeCategory
+			noticeStatus
+			noticeType
+			noticeViews
+			noticeTitle
+			noticeContent
+			memberId
+			createdAt
+			deletedAt
+			updatedAt
+		}
+	}
+`;
+
+export const UPDATE_FAQ_QUESTIONSBYADMIN = gql`
+	mutation UpdateFaqsQuestionsByAdmin($input: FAQUpdate!) {
+		updateFaqsQuestionsByAdmin(input: $input) {
+			_id
+			noticeCategory
+			noticeStatus
+			noticeType
+			noticeViews
+			noticeTitle
+			noticeContent
+			memberId
+			createdAt
+			deletedAt
+			updatedAt
+		}
+	}
+`;

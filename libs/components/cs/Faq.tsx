@@ -18,6 +18,8 @@ const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters
 		},
 	}),
 );
+/** Bu userpagedagi faq center **/
+
 const AccordionSummary = styled((props: AccordionSummaryProps) => (
 	<MuiAccordionSummary expandIcon={<KeyboardArrowDownRoundedIcon sx={{ fontSize: '1.4rem' }} />} {...props} />
 ))(({ theme }) => ({
@@ -38,7 +40,7 @@ const Faq = () => {
 
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
-	
+
 	/** HANDLERS **/
 	const changeCategoryHandler = (category: string) => {
 		setCategory(category);

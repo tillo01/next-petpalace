@@ -642,3 +642,67 @@ export const GET_NOTIFICATIONS = gql`
 		}
 	}
 `;
+
+export const GETALL_FAQ_QUESTIONSBYADMIN = gql`
+	query GetAllFaqQuestionsByAdmin($input: FAQInquiry!) {
+		getAllFaqQuestionsByAdmin(input: $input) {
+			list {
+				_id
+				noticeCategory
+				noticeStatus
+				noticeType
+				noticeViews
+				noticeTitle
+				noticeContent
+				memberId
+				createdAt
+				deletedAt
+				updatedAt
+			}
+			faqmetaCounter {
+				total
+			}
+		}
+	}
+`;
+
+export const GET_FAQ_QUESTIONS = gql`
+	query GetFaqQuestion($input: String!) {
+		getFaqQuestion(answerId: $input) {
+			_id
+			noticeCategory
+			noticeStatus
+			noticeType
+			noticeTitle
+			noticeViews
+			noticeContent
+			memberId
+			createdAt
+			deletedAt
+			updatedAt
+		}
+	}
+`;
+
+export const GETALL_FAQ_QUESTIONS = gql`
+	query GetAllFaqQuestions($input: FAQInquiry!) {
+		getAllFaqQuestions(input: $input) {
+			list {
+				_id
+				noticeCategory
+				noticeStatus
+				noticeType
+				noticeTitle
+				noticeViews
+				noticeContent
+				memberId
+				createdAt
+				deletedAt
+				updatedAt
+			}
+			faqmetaCounter {
+				total
+			}
+		}
+	}
+`;

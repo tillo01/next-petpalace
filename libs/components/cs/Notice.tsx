@@ -4,6 +4,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 
 const Notice = () => {
 	const device = useDeviceDetect();
+	/** Bu userpagedagi notice center **/
 
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/

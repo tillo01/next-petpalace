@@ -19,6 +19,8 @@ const AdminMenuList = (props: any) => {
 	const [clickMenu, setClickMenu] = useState<any>([]);
 	const [clickSubMenu, setClickSubMenu] = useState('');
 
+	/** Bu adminpage admin-page-left center **/
+
 	const {
 		router: { pathname },
 	} = props;

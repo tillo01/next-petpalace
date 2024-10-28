@@ -13,25 +13,23 @@ import TablePagination from '@mui/material/TablePagination';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { NoticeList } from '../../../libs/components/admin/cs/NoticeList';
+import { useRouter } from 'next/router';
 
 const AdminNotice: NextPage = (props: any) => {
 	const [anchorEl, setAnchorEl] = useState<[] | HTMLElement[]>([]);
 
+	/** Bu adminpage notice-top center **/
+
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
 	/** HANDLERS **/
-
+	const router = useRouter();
 	return (
 		// @ts-ignore
 		<Box component={'div'} className={'content'}>
 			<Box component={'div'} className={'title flex_space'}>
 				<Typography variant={'h2'}>Notice Management</Typography>
-				<Button
-					className="btn_add"
-					variant={'contained'}
-					size={'medium'}
-					// onClick={() => router.push(`/_admin/cs/faq_create`)}
-				>
+				<Button className="btn_add" variant={'contained'} size={'medium'} onClick={() => router.push(`/_admin/cs/add`)}>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
 					ADD
 				</Button>

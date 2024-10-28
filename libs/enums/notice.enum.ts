@@ -9,3 +9,12 @@ export enum NoticeStatus {
 	ACTIVE = 'ACTIVE',
 	DELETE = 'DELETE',
 }
+
+export enum NoticeType {
+	PROPERTY = 'PROPERTY',
+	PAYMENT = 'PAYMENT',
+	FORBUYERS = 'FORBUYERS',
+	FORAGENTS = 'FORAGENTS',
+	COMMUNITY = 'COMMUNITY',
+	OTHER = 'OTHER',
+}

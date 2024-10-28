@@ -25,6 +25,8 @@ import { NotePencil } from 'phosphor-react';
 
 type Order = 'asc' | 'desc';
 
+/** Bu adminpage notice-bottom center **/
+
 interface Data {
 	category: string;
 	title: string;
