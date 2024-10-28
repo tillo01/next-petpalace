@@ -1,6 +1,6 @@
 export enum NoticeCategory {
 	FAQ = 'FAQ',
-	TERMS = 'TERMS',
+	NOTICE = 'NOTICE',
 	INQUIRY = 'INQUIRY',
 }
 

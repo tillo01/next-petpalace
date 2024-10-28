@@ -18,7 +18,7 @@ const FAQTeditor = () => {
 	const editorRef = useRef<Editor>(null),
 		token = getJwtToken(),
 		router = useRouter();
-	const [noticeCategory, setNoticeCategory] = useState<NoticeCategory>(NoticeCategory.TERMS);
+	const [noticeCategory, setNoticeCategory] = useState<NoticeCategory>(NoticeCategory.NOTICE);
 	const [noticeStatus, setNoticeStatus] = useState<NoticeStatus>(NoticeStatus.HOLD);
 	const [noticeType, setNoticeType] = useState<NoticeType>(NoticeType.PROPERTY);
 
@@ -101,7 +101,7 @@ const FAQTeditor = () => {
 							<MenuItem value={NoticeCategory.FAQ}>
 								<span>FAQ</span>
 							</MenuItem>
-							<MenuItem value={NoticeCategory.TERMS}>TERMS</MenuItem>
+							<MenuItem value={NoticeCategory.NOTICE}>NOTICE</MenuItem>
 						</Select>
 					</FormControl>
 				</Box>

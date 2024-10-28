@@ -666,7 +666,7 @@ export const GETALL_FAQ_QUESTIONSBYADMIN = gql`
 	}
 `;
 
-export const GET_FAQ_QUESTIONS = gql`
+export const GET_FAQ_QUESTION = gql`
 	query GetFaqQuestion($input: String!) {
 		getFaqQuestion(answerId: $input) {
 			_id
