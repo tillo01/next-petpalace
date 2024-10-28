@@ -24,6 +24,7 @@ const AdminNotice: NextPage = (props: any) => {
 	/** LIFECYCLES **/
 	/** HANDLERS **/
 	const router = useRouter();
+	<img src="/img/logo/logoText.svg" alt="" />;
 	return (
 		// @ts-ignore
 		<Box component={'div'} className={'content'}>

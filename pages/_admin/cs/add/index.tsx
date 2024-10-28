@@ -1,13 +1,18 @@
 import React from 'react';
 import { NextPage } from 'next';
-import { Stack, Typography } from '@mui/material';
+import { Avatar, Box, Button, Paper, Stack, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
 import useDeviceDetect from '../../../../libs/hooks/useDeviceDetect';
-import TuiEditor from './FAQTeditor';
-import FAQTeditor from './FAQTeditor';
+import { userVar } from '../../../../apollo/store';
+const FAQTeditor = dynamic(() => import('./FAQTeditor'), { ssr: false });
+
+import { useReactiveVar } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 const WriteFAQ: NextPage = () => {
 	const device = useDeviceDetect();
+	const user = useReactiveVar(userVar);
+	const router = useRouter();
 
 	if (device === 'mobile') {
 		return <>ARTICLE PAGE MOBILE</>;
@@ -15,7 +20,42 @@ const WriteFAQ: NextPage = () => {
 		return (
 			<div id="write-article-page">
 				<Stack className="main-title-box">
-					<Stack className="right-box">
+					<Stack style={{ width: '70px', height: '70px', marginLeft: '65px' }} className={'logo-box'}>
+						<img src={'/img/logo/logoText.svg'} alt={'logo'} />
+					</Stack>
+					<Paper
+						elevation={1}
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							padding: 2,
+							marginTop: 2,
+							borderRadius: 2,
+							backgroundColor: '#f9f9f9',
+							width: 'fit-content',
+						}}
+					>
+						<Avatar
+							src={
+								user?.memberImage
+									? `${process.env.REACT_APP_API_URL}/${user?.memberImage}`
+									: '/img/profile/defaultUser.svg'
+							}
+							sx={{ width: 48, height: 48, marginRight: 2 }}
+						/>
+						<Box>
+							<Typography variant="subtitle1" fontWeight="bold">
+								{user?.memberNick || 'Admin'}
+							</Typography>
+							<Typography variant="body2" color="textSecondary">
+								{user?.memberPhone || '+010345663333'}
+							</Typography>
+							<Button variant="contained" color="primary" onClick={() => router.push(`/_admin/`)}>
+								Clicl to Admin Page
+							</Button>
+						</Box>
+					</Paper>
+					<Stack flexDirection={'column'} alignItems={'center'} className="right-box">
 						<Typography className="main-title">Write FAQ</Typography>
 						<Typography className="sub-title">Write about Frequently Asked Questions</Typography>
 					</Stack>

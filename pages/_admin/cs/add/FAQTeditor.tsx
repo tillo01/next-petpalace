@@ -175,13 +175,12 @@ const FAQTeditor = () => {
 				initialValue={'Type here'}
 				placeholder={'Type here'}
 				previewStyle={'vertical'}
-				height={'640px'}
+				height={'200px'}
 				// @ts-ignore
 				initialEditType={'WYSIWYG'}
 				toolbarItems={[
 					['heading', 'bold', 'italic', 'strike'],
-					['image', 'table', 'link'],
-					['ul', 'ol', 'task'],
+					['ul', 'ol'],
 				]}
 				ref={editorRef}
 				events={{
@@ -193,7 +192,7 @@ const FAQTeditor = () => {
 				<Button
 					variant="contained"
 					color="primary"
-					style={{ margin: '30px', width: '250px', height: '45px' }}
+					style={{ margin: '20px', width: '200px', height: '45px' }}
 					onClick={handleRegisterButton}
 				>
 					Register
