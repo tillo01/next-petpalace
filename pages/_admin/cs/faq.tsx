@@ -22,7 +22,7 @@ import { T } from '../../../libs/types/common';
 import { REMOVE_FAQ_QUESTIONBYADMIN, UPDATE_FAQ_QUESTIONSBYADMIN } from '../../../apollo/user/mutation';
 import { NoticeCategory, NoticeStatus, NoticeType } from '../../../libs/enums/notice.enum';
 import { FAQUpdate } from '../../../libs/types/faq/faq.update';
-import { sweetConfirmAlert, sweetErrorHandling } from '../../../libs/sweetAlert';
+import { sweetConfirmAlert, sweetErrorHandling, sweetTopSuccessAlert } from '../../../libs/sweetAlert';
 
 /** Bu adminpage faq-top center **/
 
@@ -92,56 +92,26 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	const menuIconCloseHandler = () => {
 		setAnchorEl([]);
 	};
-	const tabChangeHandler = async (event: any, newValue: string) => {
+	const faqtTabChangeHandler = async (event: any, newValue: string) => {
 		setValue(newValue);
+		setSearchText('');
 
 		setQuestionsInquiry({ ...questionsInquiry, page: 1, sort: 'createdAt' });
 
 		switch (newValue) {
-			case 'ACTIVE':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
+			case 'HOLD':
+				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
 				break;
 			case 'DELETE':
 				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.DELETE } });
 				break;
-			case 'HOLD':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
-
+			case 'ACTIVE':
+				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
 				break;
 			default:
 				delete questionsInquiry?.search?.noticeStatus;
 				setQuestionsInquiry({ ...questionsInquiry });
 				break;
-		}
-	};
-
-	const textHandler = useCallback((value: string) => {
-		try {
-			setSearchType(value);
-		} catch (err: any) {
-			console.log('textHandler: ', err.message);
-		}
-	}, []);
-
-	const searchTypeHandler = async (newValue: string): Promise<void> => {
-		try {
-			setSearchType(newValue);
-			if (newValue !== 'ALL') {
-				setQuestionsInquiry({
-					...questionsInquiry,
-					page: 1,
-					sort: 'createdAt',
-					search: {
-						...questionsInquiry.search,
-						categoryList: newValue as NoticeCategory,
-					},
-				});
-			} else {
-				delete questionsInquiry?.search.categoryList;
-				setQuestionsInquiry({ ...questionsInquiry });
-			}
-		} catch (err) {
-			console.log('Erron on searchTypeHandler', err);
 		}
 	};
 	const updateQuestionsHandler = async (updateData: FAQUpdate) => {
@@ -156,8 +126,54 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 			getAllFaqQuestionsByAdminRefetch({
 				input: questionsInquiry,
 			});
+			sweetTopSuccessAlert('Success');
 		} catch (err) {
 			console.log('Error on updateQuestionsHandler', err);
+			sweetErrorHandling(err).then();
+		}
+	};
+
+	const textHandler = useCallback((value: string) => {
+		try {
+			setSearchText(value);
+		} catch (err: any) {
+			console.log('textHandler: ', err.message);
+		}
+	}, []);
+
+	const searchTypeHandler = async (newValue: string) => {
+		try {
+			setSearchType(newValue);
+			if (newValue !== 'ALL') {
+				setQuestionsInquiry({
+					...questionsInquiry,
+					page: 1,
+					sort: 'createdAt',
+					search: {
+						...questionsInquiry.search,
+						noticeType: newValue as NoticeType,
+					},
+				});
+			} else {
+				delete questionsInquiry?.search.noticeType;
+				setQuestionsInquiry({ ...questionsInquiry });
+			}
+		} catch (err) {
+			console.log('Erron on searchTypeHandler', err);
+		}
+	};
+
+	const searchTextHandler = () => {
+		try {
+			setQuestionsInquiry({
+				...questionsInquiry,
+				search: {
+					...questionsInquiry.search,
+					text: searchText,
+				},
+			});
+		} catch (err: any) {
+			console.log('searchTextHandler: ', err.message);
 		}
 	};
 
@@ -191,32 +207,32 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 			</Box>
 			<Box component={'div'} className={'table-wrap'}>
 				<Box component={'div'} sx={{ width: '100%', typography: 'body1' }}>
-					<TabContext value={'value'}>
+					<TabContext value={value}>
 						<Box component={'div'}>
 							<List className={'tab-menu'}>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'all')}
-									value="all"
+									onClick={(e: any) => faqtTabChangeHandler(e, 'ALL')}
+									value="ALL"
 									className={value === 'ALL' ? 'li on' : 'li'}
 								>
 									All
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'ACTIVE')}
+									onClick={(e: any) => faqtTabChangeHandler(e, 'ACTIVE')}
 									value="ACTIVE"
 									className={value === 'ACTIVE' ? 'li on' : 'li'}
 								>
 									Active
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'HOLD')}
+									onClick={(e: any) => faqtTabChangeHandler(e, 'HOLD')}
 									value="HOLD"
 									className={value === 'HOLD' ? 'li on' : 'li'}
 								>
 									Hold
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'DELETE')}
+									onClick={(e: any) => faqtTabChangeHandler(e, 'DELETE')}
 									value="DELETE"
 									className={value === 'DELETE' ? 'li on' : 'li'}
 								>
@@ -225,40 +241,59 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 							</List>
 							<Divider />
 							<Stack className={'search-area'} sx={{ m: '24px' }}>
-								<Select sx={{ width: '160px', mr: '20px' }} value={'searchCategory'}>
-									<MenuItem value={'mb_nick'}>ALl</MenuItem>
-									<MenuItem value={'mb_id'}>ACTIVE</MenuItem>
-									<MenuItem value={'mb_id'}>HOLD</MenuItem>
-									<MenuItem value={'mb_id'}>HOLD</MenuItem>
+								<Select sx={{ width: '160px', mr: '20px' }} value={searchType}>
+									<MenuItem value={'ALL'} onClick={() => searchTypeHandler('ALL')}>
+										ALL
+									</MenuItem>
+									<MenuItem value={'PROPERTY'} onClick={() => searchTypeHandler('PROPERTY')}>
+										PROPERTY
+									</MenuItem>
+									<MenuItem value={'FORBUYERS'} onClick={() => searchTypeHandler('FORBUYERS')}>
+										FORBUYERS
+									</MenuItem>
+									<MenuItem value={'PAYMENT'} onClick={() => searchTypeHandler('PAYMENT')}>
+										PAYMENT
+									</MenuItem>
+									<MenuItem value={'FORAGENTS'} onClick={() => searchTypeHandler('FORAGENTS')}>
+										FORAGENTS
+									</MenuItem>
+									<MenuItem value={'COMMUNITY'} onClick={() => searchTypeHandler('COMMUNITY')}>
+										COMMUNITY
+									</MenuItem>
+									<MenuItem value={'OTHER'} onClick={() => searchTypeHandler('OTHER')}>
+										OTHER
+									</MenuItem>
 								</Select>
 
 								<OutlinedInput
-									value={'searchInput'}
-									onChange={(e) => textHandler(e.target.value)}
+									value={searchText}
+									onChange={(e: any) => textHandler(e.target.value)}
 									sx={{ width: '100%' }}
 									className={'search'}
-									placeholder="Search user name"
+									placeholder="Search questions title"
 									onKeyDown={(event: any) => {
-										if (event.key == 'Enter') searchTypeHandler(event.target.value).then();
+										if (event.key == 'Enter') searchTextHandler();
 									}}
 									endAdornment={
 										<>
-											{true && <CancelRoundedIcon onClick={() => {}} />}
-											<InputAdornment
-												position="end"
-												onClick={async () => {
-													setSearchText('');
-													setQuestionsInquiry({
-														...questionsInquiry,
-														search: {
+											{searchText && (
+												<CancelRoundedIcon
+													style={{ cursor: 'pointer' }}
+													onClick={async () => {
+														setSearchText('');
+														setQuestionsInquiry({
 															...questionsInquiry,
-
-															text: '',
-														},
-													});
-												}}
-											>
-												<img src="/img/icons/search_icon.png" alt={'searchIcon'} />
+															search: {
+																...questionsInquiry.search,
+																text: '',
+															},
+														});
+														await getAllFaqQuestionsByAdminRefetch({ input: questionsInquiry });
+													}}
+												/>
+											)}
+											<InputAdornment onClick={() => searchTextHandler()} position="end">
+												<img src="/img/icons/search_icon.png" alt="searchIcon" />
 											</InputAdornment>
 										</>
 									}
@@ -280,7 +315,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 						/>
 
 						<TablePagination
-							rowsPerPageOptions={[1, 5, 10, 20, 40, 60]}
+							rowsPerPageOptions={[3, 5, 10, 20, 40, 60]}
 							component="div"
 							count={questionsTotal}
 							rowsPerPage={questionsInquiry?.limit}
