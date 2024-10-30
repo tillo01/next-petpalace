@@ -7,7 +7,7 @@ export interface FAQ {
 	noticeType: NoticeType;
 	noticeTitle: string;
 	noticeContent: string;
-	noticeViews: number;
+	noticeViews?: number;
 	memberId: string;
 	createdAt: Date;
 	deletedAt?: Date;

@@ -63,6 +63,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	}, [questionsInquiry]);
 
 	/** HANDLERS **/
+
 	const changePagehandler = async (event: unknown, newPage: number) => {
 		questionsInquiry.page = newPage + 1;
 		getAllFaqQuestionsByAdminRefetch({
@@ -243,23 +244,26 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 							<Divider />
 						</Box>
 						<FaqArticlesPanelList
-							dense={dense}
+							// dense={dense}
 							// membersData={membersData}
 							// searchMembers={searchMembers}
 							anchorEl={anchorEl}
-							// handleMenuIconClick={handleMenuIconClick}
-							// handleMenuIconClose={handleMenuIconClose}
+							handleMenuIconClick={menuIconClickHandler}
+							handleMenuIconClose={menuIconCloseHandler}
+							questions={questions}
 							// generateMentorTypeHandle={generateMentorTypeHandle}
 						/>
 
 						<TablePagination
 							rowsPerPageOptions={[20, 40, 60]}
 							component="div"
-							count={4}
-							rowsPerPage={10}
-							page={1}
-							onPageChange={() => {}}
-							onRowsPerPageChange={() => {}}
+							count={questionsTotal}
+							rowsPerPage={questionsInquiry?.limit}
+							page={questionsInquiry?.page - 1}
+							onPageChange={() => {
+								changePagehandler;
+							}}
+							onRowsPerPageChange={changeRowsPerPageHandler}
 						/>
 					</TabContext>
 				</Box>
