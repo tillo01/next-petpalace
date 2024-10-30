@@ -19,9 +19,10 @@ import { useMutation, useQuery } from '@apollo/client';
 import { FAQInquiry } from '../../../libs/types/faq/faq.input';
 import { FAQ } from '../../../libs/types/faq/faq';
 import { T } from '../../../libs/types/common';
-import { UPDATE_FAQ_QUESTIONSBYADMIN } from '../../../apollo/user/mutation';
+import { REMOVE_FAQ_QUESTIONBYADMIN, UPDATE_FAQ_QUESTIONSBYADMIN } from '../../../apollo/user/mutation';
 import { NoticeCategory, NoticeStatus, NoticeType } from '../../../libs/enums/notice.enum';
 import { FAQUpdate } from '../../../libs/types/faq/faq.update';
+import { sweetConfirmAlert, sweetErrorHandling } from '../../../libs/sweetAlert';
 
 /** Bu adminpage faq-top center **/
 
@@ -37,6 +38,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [searchText, setSearchText] = useState('');
 	const [searchType, setSearchType] = useState('ALL');
 	const [updateFaqsQuestionsByAdmin] = useMutation(UPDATE_FAQ_QUESTIONSBYADMIN);
+	const [removeQuestionsByAdmin] = useMutation(REMOVE_FAQ_QUESTIONBYADMIN);
 
 	/** APOLLO REQUESTS **/
 	const {
@@ -50,7 +52,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setQuestions(data?.getAllFaqQuestionsByAdmin?.list);
-			setQuestionsTotal(data?.getAllFaqQuestionsByAdmin?.metaCounter[0]?.total ?? 0);
+			setQuestionsTotal(data?.getAllFaqQuestionsByAdmin?.faqmetaCounter[0]?.total ?? 0);
 		},
 	});
 
@@ -104,6 +106,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 				break;
 			case 'HOLD':
 				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
+
 				break;
 			default:
 				delete questionsInquiry?.search?.noticeStatus;
@@ -146,7 +149,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 			console.log('+updateData', updateData);
 			await updateFaqsQuestionsByAdmin({
 				variables: {
-					iinput: updateData,
+					input: updateData,
 				},
 			});
 			menuIconCloseHandler();
@@ -155,6 +158,24 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 			});
 		} catch (err) {
 			console.log('Error on updateQuestionsHandler', err);
+		}
+	};
+
+	const removeFaqQuestionHandler = async (id: string) => {
+		try {
+			if (await sweetConfirmAlert('Are you sure to delete question')) {
+				await removeQuestionsByAdmin({
+					variables: {
+						input: id,
+					},
+				});
+			}
+			getAllFaqQuestionsByAdminRefetch({
+				input: questionsInquiry,
+			});
+		} catch (err) {
+			console.log('Error on removeFaqQuestion ', err);
+			sweetErrorHandling(err).then();
 		}
 	};
 
@@ -176,37 +197,39 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 								<ListItem
 									onClick={(e: any) => tabChangeHandler(e, 'all')}
 									value="all"
-									className={'all' === 'all' ? 'li on' : 'li'}
+									className={value === 'ALL' ? 'li on' : 'li'}
 								>
-									All (0)
+									All
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'active')}
-									value="active"
-									className={'all' === 'all' ? 'li on' : 'li'}
+									onClick={(e: any) => tabChangeHandler(e, 'ACTIVE')}
+									value="ACTIVE"
+									className={value === 'ACTIVE' ? 'li on' : 'li'}
 								>
-									Active (0)
+									Active
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'blocked')}
-									value="blocked"
-									className={'all' === 'all' ? 'li on' : 'li'}
+									onClick={(e: any) => tabChangeHandler(e, 'HOLD')}
+									value="HOLD"
+									className={value === 'HOLD' ? 'li on' : 'li'}
 								>
-									Blocked (0)
+									Hold
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => tabChangeHandler(e, 'deleted')}
-									value="deleted"
-									className={'all' === 'all' ? 'li on' : 'li'}
+									onClick={(e: any) => tabChangeHandler(e, 'DELETE')}
+									value="DELETE"
+									className={value === 'DELETE' ? 'li on' : 'li'}
 								>
-									Deleted (0)
+									Deleted
 								</ListItem>
 							</List>
 							<Divider />
 							<Stack className={'search-area'} sx={{ m: '24px' }}>
 								<Select sx={{ width: '160px', mr: '20px' }} value={'searchCategory'}>
-									<MenuItem value={'mb_nick'}>mb_nick</MenuItem>
-									<MenuItem value={'mb_id'}>mb_id</MenuItem>
+									<MenuItem value={'mb_nick'}>ALl</MenuItem>
+									<MenuItem value={'mb_id'}>ACTIVE</MenuItem>
+									<MenuItem value={'mb_id'}>HOLD</MenuItem>
+									<MenuItem value={'mb_id'}>HOLD</MenuItem>
 								</Select>
 
 								<OutlinedInput
@@ -250,19 +273,19 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 							anchorEl={anchorEl}
 							handleMenuIconClick={menuIconClickHandler}
 							handleMenuIconClose={menuIconCloseHandler}
+							removeFaqQuestionHandler={removeFaqQuestionHandler}
+							updateQuestionsHandler={updateQuestionsHandler}
 							questions={questions}
 							// generateMentorTypeHandle={generateMentorTypeHandle}
 						/>
 
 						<TablePagination
-							rowsPerPageOptions={[20, 40, 60]}
+							rowsPerPageOptions={[1, 5, 10, 20, 40, 60]}
 							component="div"
 							count={questionsTotal}
 							rowsPerPage={questionsInquiry?.limit}
 							page={questionsInquiry?.page - 1}
-							onPageChange={() => {
-								changePagehandler;
-							}}
+							onPageChange={changePagehandler}
 							onRowsPerPageChange={changeRowsPerPageHandler}
 						/>
 					</TabContext>

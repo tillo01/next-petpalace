@@ -385,3 +385,21 @@ export const UPDATE_FAQ_QUESTIONSBYADMIN = gql`
 		}
 	}
 `;
+
+export const REMOVE_FAQ_QUESTIONBYADMIN = gql`
+	mutation RemoveQuestionsByAdmin($input: String!) {
+		removeQuestionsByAdmin(questionId: $input) {
+			_id
+			noticeCategory
+			noticeStatus
+			noticeType
+			noticeTitle
+			noticeViews
+			noticeContent
+			memberId
+			createdAt
+			deletedAt
+			updatedAt
+		}
+	}
+`;

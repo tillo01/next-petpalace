@@ -31,6 +31,8 @@ import OpenInBrowserRoundedIcon from '@mui/icons-material/OpenInBrowserRounded';
 import Moment from 'react-moment';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { REACT_APP_API_URL } from '../../../config';
+import DeleteIcon from '@mui/icons-material/Delete';
+
 interface Data {
 	category: string;
 	title: string;
@@ -74,12 +76,25 @@ const headCells: readonly HeadCell[] = [
 		disablePadding: false,
 		label: 'TITLE',
 	},
+	{
+		id: 'title',
+		numeric: true,
+		disablePadding: false,
+		label: 'NOTICE TYPE',
+	},
 
 	{
 		id: 'writer',
 		numeric: true,
 		disablePadding: false,
 		label: 'WRITER',
+	},
+
+	{
+		id: 'date',
+		numeric: true,
+		disablePadding: false,
+		label: 'NOTICE VIEWS',
 	},
 	{
 		id: 'date',
@@ -133,6 +148,8 @@ interface FaqArticlesPanelListType {
 	handleMenuIconClick?: any;
 	handleMenuIconClose?: any;
 	generateMentorTypeHandle?: any;
+	removeFaqQuestionHandler: any;
+	updateQuestionsHandler: any;
 }
 
 export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
@@ -145,6 +162,8 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 		handleMenuIconClick,
 		handleMenuIconClose,
 		generateMentorTypeHandle,
+		removeFaqQuestionHandler,
+		updateQuestionsHandler,
 	} = props;
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
@@ -167,7 +186,7 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 								</TableCell>
 							</TableRow>
 						)}
-						return (
+
 						{questions.length !== 0 &&
 							questions.map((question: FAQ, index: number) => (
 								<TableRow hover key={question._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
@@ -200,19 +219,19 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 									<TableCell align="left">
 										<Moment format={'DD.MM.YY HH:mm'}>{question?.createdAt}</Moment>
 									</TableCell>
-									{/* <TableCell align="center">
+									<TableCell align="center">
 										{question.noticeStatus === NoticeStatus.DELETE ? (
 											<Button
 												variant="outlined"
 												sx={{ p: '3px', border: 'none', ':hover': { border: '1px solid #000000' } }}
-												onClick={() => remoques(article._id)}
+												onClick={() => removeFaqQuestionHandler(question._id)}
 											>
 												<DeleteIcon fontSize="small" />
 											</Button>
 										) : (
 											<>
-												<Button onClick={(e: any) => menuIconClickHandler(e, index)} className={'badge success'}>
-													{article.articleStatus}
+												<Button onClick={(e: any) => handleMenuIconClick(e, index)} className={'badge success'}>
+													{question.noticeStatus}
 												</Button>
 
 												<Menu
@@ -222,15 +241,15 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 													}}
 													anchorEl={anchorEl[index]}
 													open={Boolean(anchorEl[index])}
-													onClose={menuIconCloseHandler}
+													onClose={handleMenuIconClose}
 													TransitionComponent={Fade}
 													sx={{ p: 1 }}
 												>
-													{Object.values(BoardArticleStatus)
-														.filter((ele) => ele !== article.articleStatus)
+													{Object.values(NoticeStatus)
+														.filter((ele) => ele !== question.noticeStatus)
 														.map((status: string) => (
 															<MenuItem
-																onClick={() => updateArticleHandler({ _id: article._id, articleStatus: status })}
+																onClick={() => updateQuestionsHandler({ _id: question._id, noticeStatus: status })}
 																key={status}
 															>
 																<Typography variant={'subtitle1'} component={'span'}>
@@ -241,10 +260,9 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 												</Menu>
 											</>
 										)}
-									</TableCell> */}
+									</TableCell>
 								</TableRow>
 							))}
-						);
 					</TableBody>
 				</Table>
 			</TableContainer>
