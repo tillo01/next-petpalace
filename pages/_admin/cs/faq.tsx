@@ -92,6 +92,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	const menuIconCloseHandler = () => {
 		setAnchorEl([]);
 	};
+
 	const faqtTabChangeHandler = async (event: any, newValue: string) => {
 		setValue(newValue);
 		setSearchText('');
