@@ -105,7 +105,10 @@ export default function NotifIcon() {
 				onClick={handleClick}
 			>
 				<Badge badgeContent={waitNotificationsCount.length} color="error">
-					<NotificationsOutlinedIcon className={'notification-icon'}></NotificationsOutlinedIcon>
+					<NotificationsOutlinedIcon
+						className={'notification-icon'}
+						style={{ color: 'gray' }}
+					></NotificationsOutlinedIcon>
 				</Badge>
 			</IconButton>
 			<Menu

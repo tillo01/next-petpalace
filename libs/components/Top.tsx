@@ -18,7 +18,10 @@ import { userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
 import NotifIcon from './NotifIcon';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import ClearCacheButton from './apollo';
+import HeaderFilter from './homepage/HeaderFilter';
+import Advanced from './Advanced';
 
 const Top = () => {
 	const device = useDeviceDetect();
@@ -148,16 +151,16 @@ const Top = () => {
 					<div>{t('Home')}</div>
 				</Link>
 				<Link href={'/property'}>
-					<div>{t('Properties')}</div>
+					<div>{t('Pets')}</div>
 				</Link>
 				<Link href={'/agent'}>
-					<div> {t('Agents')} </div>
+					<div> {t('Sellers')} </div>
 				</Link>
 				<Link href={'/community?articleCategory=FREE'}>
 					<div> {t('Community')} </div>
 				</Link>
 				<Link href={'/cs'}>
-					<div> {t('CS')} </div>
+					<div> {t('CS')}</div>
 				</Link>
 			</Stack>
 		);
@@ -168,18 +171,22 @@ const Top = () => {
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
-								<img src="/img/logo/logoWhite.svg" alt="" />
+								<img src="/img/logo/petPalace.png" alt="" />
 							</Link>
 						</Box>
+						<Box component={'div'} className={'search-list'}>
+							<Advanced />
+						</Box>
+
 						<Box component={'div'} className={'router-box'}>
 							<Link href={'/'}>
 								<div>{t('Home')}</div>
 							</Link>
 							<Link href={'/property'}>
-								<div>{t('Properties')}</div>
+								<div>{t('Pets')}</div>
 							</Link>
 							<Link href={'/agent'}>
-								<div> {t('Agents')} </div>
+								<div> {t('Sellers')} </div>
 							</Link>
 							<Link href={'/community?articleCategory=FREE'}>
 								<div> {t('Community')} </div>
@@ -190,7 +197,9 @@ const Top = () => {
 								</Link>
 							)}
 							<Link href={'/cs'}>
-								<div> {t('CS')} </div>
+								<div>
+									<SupportAgentIcon style={{ color: '#7ed957', fontSize: '30px' }} />
+								</div>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'user-box'}>
@@ -230,7 +239,7 @@ const Top = () => {
 									</div>
 								</Link>
 							)}
-
+							{/* <ClearCacheButton /> */}
 							<div className={'lan-box'}>
 								{user?._id && <NotifIcon />}
 
