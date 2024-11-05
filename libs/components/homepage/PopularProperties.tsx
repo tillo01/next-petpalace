@@ -74,45 +74,26 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Popular properties</span>
-							<p>Popularity is based on views</p>
+							<span>Our Cutiest Collection</span>
+							<p>Based on being most cutiest</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
 								<Link href={'/property'}>
-									<span>See All Categories</span>
+									<span>All one </span>
 								</Link>
-								<img src="/img/icons/rightup.svg" alt="" />
+								<img src="/img/icons/grid.png" alt="" />
 							</div>
 						</Box>
 					</Stack>
 					<Stack className={'card-box'}>
-						<Swiper
-							className={'popular-property-swiper'}
-							slidesPerView={'auto'}
-							spaceBetween={25}
-							modules={[Autoplay, Navigation, Pagination]}
-							navigation={{
-								nextEl: '.swiper-popular-next',
-								prevEl: '.swiper-popular-prev',
-							}}
-							pagination={{
-								el: '.swiper-popular-pagination',
-							}}
-						>
-							{popularProperties.map((property: Property) => {
-								return (
-									<SwiperSlide key={property._id} className={'popular-property-slide'}>
-										<PopularPropertyCard property={property} />
-									</SwiperSlide>
-								);
-							})}
-						</Swiper>
-					</Stack>
-					<Stack className={'pagination-box'}>
-						<WestIcon className={'swiper-popular-prev'} />
-						<div className={'swiper-popular-pagination'}></div>
-						<EastIcon className={'swiper-popular-next'} />
+						{popularProperties.map((property: Property) => {
+							return (
+								<Stack key={property._id} className={'popular-property-slide'}>
+									<PopularPropertyCard property={property} />
+								</Stack>
+							);
+						})}
 					</Stack>
 				</Stack>
 			</Stack>
@@ -123,7 +104,7 @@ const PopularProperties = (props: PopularPropertiesProps) => {
 PopularProperties.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 7,
+		limit: 3,
 		sort: 'propertyViews',
 		direction: 'DESC',
 		search: {},

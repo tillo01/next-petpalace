@@ -12,6 +12,7 @@ import { GET_PROPERTIES } from '../../../apollo/user/query';
 import { useMutation, useQuery } from '@apollo/client';
 import { T } from '../../types/common';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Message } from '../../enums/common.enum';
 import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
 
@@ -69,7 +70,8 @@ const TopProperties = (props: TopPropertiesProps) => {
 					<Stack className={'card-box'}>
 						<Swiper
 							className={'top-property-swiper'}
-							slidesPerView={'auto'}
+							slidesPerView={1}
+							loop={true}
 							centeredSlides={true}
 							spaceBetween={15}
 							modules={[Autoplay]}
@@ -95,19 +97,24 @@ const TopProperties = (props: TopPropertiesProps) => {
 							<span>Top properties</span>
 							<p>Check out our Top Properties</p>
 						</Box>
-						<Box component={'div'} className={'right'}>
+						{/* <Box component={'div'} className={'right'}>
 							<div className={'pagination-box'}>
 								<WestIcon className={'swiper-top-prev'} />
 								<div className={'swiper-top-pagination'}></div>
 								<EastIcon className={'swiper-top-next'} />
 							</div>
-						</Box>
+						</Box> */}
 					</Stack>
 					<Stack className={'card-box'}>
+						<Box component={'div'} className={'switch-btn swiper-top-prev'}>
+							<ArrowBackIosNewIcon />
+						</Box>
 						<Swiper
 							className={'top-property-swiper'}
 							slidesPerView={'auto'}
-							spaceBetween={15}
+							spaceBetween={1}
+							centeredSlides={true}
+							loop={true}
 							modules={[Autoplay, Navigation, Pagination]}
 							navigation={{
 								nextEl: '.swiper-top-next',
@@ -125,6 +132,9 @@ const TopProperties = (props: TopPropertiesProps) => {
 								);
 							})}
 						</Swiper>
+						<Box component={'div'} className={'switch-btn swiper-top-next'}>
+							<ArrowBackIosNewIcon />
+						</Box>
 					</Stack>
 				</Stack>
 			</Stack>

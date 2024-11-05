@@ -93,8 +93,6 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					) : (
 						''
 					)}
-
-					<div className={'price'}>${property.propertyPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
 					<strong
@@ -108,15 +106,15 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 					<p className={'desc'}>{property.propertyAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+							<img src="/img/icons/weight.png" alt="" />
 							<span>{property?.propertyBeds} bed</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
+							<img src="/img/icons/height.png" alt="" />
 							<span>{property?.propertyRooms} rooms</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
+							<img src="/img/icons/age.png" alt="" />
 							<span>{property?.propertySquare} m2</span>
 						</div>
 					</div>
@@ -130,6 +128,7 @@ const PopularPropertyCard = (props: PopularPropertyCardProps) => {
 							<Typography className="view-cnt">{property?.propertyViews}</Typography>
 						</div>
 					</div>
+					<div className={'price'}>${property.propertyPrice}</div>
 				</Box>
 			</Stack>
 		);

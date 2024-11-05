@@ -136,7 +136,7 @@ const Chat = () => {
 		<Stack className="chatting">
 			{openButton ? (
 				<button className="chat-button" onClick={handleOpenChat}>
-					{open ? <CloseFullscreenIcon /> : <MarkChatUnreadIcon />}
+					{open ? <CloseFullscreenIcon /> : <MarkChatUnreadIcon sx={{ color: 'green' }} />}
 				</button>
 			) : null}
 			<Stack className={`chat-frame ${open ? 'open' : ''}`}>
@@ -148,7 +148,7 @@ const Chat = () => {
 					<ScrollableFeed>
 						<Stack className={'chat-main'}>
 							<Box flexDirection={'row'} style={{ display: 'flex' }} sx={{ m: '10px 0px' }} component={'div'}>
-								<div className={'welcome'}>Welcome to Live chat!</div>
+								<div className={'welcome'}>Welcome to Real Time Chat!</div>
 							</Box>
 							{messagesList.map((ele: MessagePayload, index) => {
 								const { text, memberData } = ele;

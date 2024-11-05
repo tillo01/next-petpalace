@@ -296,7 +296,7 @@ const Advanced = (props: HeaderFilterProps) => {
 								<CloseIcon />
 							</div>
 							<div className={'top'}>
-								<span>Find your home</span>
+								<span>Effortless Pet Search</span>
 								<div className={'search-input-box'}>
 									<img src="/img/icons/search.svg" alt="" />
 									<input
@@ -346,8 +346,8 @@ const Advanced = (props: HeaderFilterProps) => {
 													inputProps={{ 'aria-label': 'Without label' }}
 												>
 													<MenuItem value={'all'}>All Options</MenuItem>
-													<MenuItem value={'propertyBarter'}>Barter</MenuItem>
-													<MenuItem value={'propertyRent'}>Rent</MenuItem>
+													<MenuItem value={'propertyBarter'}>Buy</MenuItem>
+													<MenuItem value={'propertyRent'}>Adoption</MenuItem>
 												</Select>
 											</FormControl>
 										</div>
@@ -355,7 +355,7 @@ const Advanced = (props: HeaderFilterProps) => {
 								</div>
 								<div className={'row-box'} style={{ marginTop: '44px' }}>
 									<div className={'box'}>
-										<span>Year Built</span>
+										<span>Year Born</span>
 										<div className={'inside space-between align-center'}>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
@@ -394,7 +394,7 @@ const Advanced = (props: HeaderFilterProps) => {
 										</div>
 									</div>
 									<div className={'box'}>
-										<span>square meter</span>
+										<span>Weight</span>
 										<div className={'inside space-between align-center'}>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
