@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Typography, Box } from '@mui/material';
+import { Stack, Typography, Box, Avatar } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
@@ -11,6 +11,8 @@ import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { sweetErrorHandling } from '../../sweetAlert';
+import router from 'next/router';
 
 interface PropertyCardType {
 	property: Property;
@@ -27,6 +29,14 @@ const PropertyCard = (props: PropertyCardType) => {
 		? `${REACT_APP_API_URL}/${property?.propertyImages[0]}`
 		: '/img/banner/header1.svg';
 
+	const redirectToMemberPageHandler = async (memberId: string) => {
+		try {
+			if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
+			else await router.push(`/member?memberId=${memberId}`);
+		} catch (error) {
+			await sweetErrorHandling(error);
+		}
+	};
 	if (device === 'mobile') {
 		return <div>PROPERTY CARD</div>;
 	} else {
@@ -71,13 +81,16 @@ const PropertyCard = (props: PropertyCardType) => {
 					</Stack>
 					<Stack className="options">
 						<Stack className="option">
-							<img src="/img/icons/bed.svg" alt="" /> <Typography>{property.propertyBeds} bed</Typography>
+							<img src="/img/icons/weight.png" alt="" />
+							<Typography>{property.propertyBeds} bed</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/room.svg" alt="" /> <Typography>{property.propertyRooms} room</Typography>
+							<img src="/img/icons/height.png" alt="" />
+							<Typography>{property.propertyRooms} room</Typography>
 						</Stack>
 						<Stack className="option">
-							<img src="/img/icons/expand.svg" alt="" /> <Typography>{property.propertySquare} m2</Typography>
+							<img src="/img/icons/age.png" alt="" />
+							<Typography>{property.propertySquare} m2</Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>
@@ -115,6 +128,22 @@ const PropertyCard = (props: PropertyCardType) => {
 							</Stack>
 						)}
 					</Stack>
+					<div className="seller-nick">
+						<p>
+							<Avatar
+								className="little-member"
+								onClick={() => redirectToMemberPageHandler(property?.memberData?._id as string)}
+								src={
+									property?.memberData?.memberImage
+										? `${process.env.REACT_APP_API_URL}/${property?.memberData.memberImage}`
+										: '/img/profile/defaultUser.svg'
+								}
+								sx={{ width: 48, height: 48, marginRight: 2 }}
+							/>
+						</p>
+
+						<p>{property?.memberData?.memberNick ?? 'Agent'}</p>
+					</div>
 				</Stack>
 			</Stack>
 		);

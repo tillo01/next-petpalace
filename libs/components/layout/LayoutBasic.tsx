@@ -29,39 +29,39 @@ const withLayoutBasic = (Component: any) => {
 
 			switch (router.pathname) {
 				case '/property':
-					title = 'Property Search';
-					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/properties.png';
+					title = 'Adorable Pets';
+					desc = 'Search the most adorable doggy and catty!';
+					bgImage = '/img/banner/petsPage.webp';
 					break;
 				case '/agent':
 					title = 'Agents';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/agents.webp';
+					bgImage = '/img/banner/dog.webp';
 					break;
 				case '/agent/detail':
 					title = 'Agent Page';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/otherPage.webp';
 					break;
 				case '/mypage':
 					title = 'my page';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header1.svg';
+					bgImage = '/img/banner/myPage.webp';
 					break;
 				case '/community':
 					title = 'Community';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/communityPage.webp';
 					break;
 				case '/community/detail':
 					title = 'Community Detail';
 					desc = 'Home / For Rent';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/communityPage.webp';
 					break;
 				case '/cs':
 					title = 'CS';
 					desc = 'We are glad to see you again!';
-					bgImage = '/img/banner/header2.svg';
+					bgImage = '/img/banner/dog.webp';
 					break;
 				case '/account/join':
 					title = 'Login/Signup';

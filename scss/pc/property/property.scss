@@ -6,7 +6,7 @@
 			.right {
 				position: absolute;
 				right: 0;
-				top: 3%;
+				top: 1%;
 				display: flex;
 				flex-direction: row;
 				align-items: center;
@@ -27,18 +27,24 @@
 			.property-page {
 				position: relative;
 				width: 100%;
-				flex-direction: row;
+				flex-direction: column;
+				align-items: center;
 				gap: 25px;
 				padding-top: 96px;
 				.filter-config {
-					width: 339px;
+					width: 1250px;
 					height: auto;
+
 					.filter-main {
 						width: 100%;
 						padding: 30px 24px;
 						border-radius: 12px;
-						background: #fff;
+						background: linear-gradient(135deg, #c4c4c4, #9cd98283, #7ed95745);
+
 						box-shadow: 0 1px 4px 0 rgba(24, 26, 32, 0.07);
+						display: flex;
+						flex-direction: row;
+						align-items: center;
 						.find-your-home {
 							position: relative;
 							width: 100%;
@@ -71,6 +77,7 @@
 								font-style: normal;
 								font-weight: 600;
 								line-height: normal;
+								margin-left: 25px;
 							}
 							.input-box {
 								position: relative;
@@ -81,7 +88,7 @@
 									cursor: pointer;
 								}
 								.search-input {
-									width: 100%;
+									width: 250px;
 									height: 53px;
 									border-radius: 8px;
 									border: 1px solid #ddd;
@@ -107,6 +114,7 @@
 									height: 15px;
 									border-radius: 12px;
 									margin-right: 10px;
+									margin-left: 25px;
 									svg {
 										width: 19px;
 									}
@@ -141,7 +149,7 @@
 								position: absolute;
 								width: 15px;
 								height: 8px;
-								color: #ddd;
+								color: #7ed957;
 								right: 13px;
 								top: 52px;
 							}
@@ -213,12 +221,15 @@
 						flex-wrap: wrap;
 						gap: 23px;
 						.card-config {
-							width: 296px;
-							height: 413px;
+							width: auto;
+							height: auto;
+							display: flex;
+							flex-direction: row;
 							margin-bottom: 7px;
 							border-radius: 12px;
 							background: #fff;
 							box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+
 							.top {
 								position: relative;
 								width: 100%;
@@ -227,10 +238,10 @@
 									height: 100%;
 								}
 								img {
-									width: 100%;
-									height: 100%;
+									width: 210px;
+									height: 253px;
 									object-fit: cover;
-									border-radius: 12px 12px 0 0;
+									border-radius: 12px 0px 0px 0px;
 								}
 								.top-badge {
 									position: absolute;
@@ -243,7 +254,7 @@
 									align-items: center;
 									border-radius: 6px;
 									padding: 6px 20px;
-									background: #eb6753;
+									background: #7ed957;
 									color: #fff;
 									text-align: center;
 									text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -264,7 +275,7 @@
 									align-items: center;
 									border-radius: 6px;
 									border: 1px solid rgba(255, 255, 255, 0.5);
-									background: #fff;
+									background: #7ed957;
 									p {
 										color: #181a20;
 										font-family: $font;
@@ -276,9 +287,16 @@
 								}
 							}
 							.bottom {
-								width: 100%;
-								height: 173px;
-								padding: 20px 16px 10px 16px;
+								width: 213px;
+								height: auto;
+								padding: 20px 16px 10px 10px;
+								background: linear-gradient(135deg, #d3d3d3, #ffffff);
+								.seller-nick {
+									display: flex;
+									flex-direction: column;
+									align-items: center;
+									cursor: pointer;
+								}
 								.name-address {
 									width: 100%;
 									height: 48px;
@@ -321,8 +339,13 @@
 										flex-direction: row;
 										gap: 5px;
 										align-items: center;
+										img {
+											width: 17px;
+											height: 17px;
+											filter: brightness(0) invert(1);
+										}
 										p {
-											color: #181a20;
+											color: #7ed957;
 											font-family: $font;
 											font-size: 13px;
 											font-style: normal;
@@ -334,7 +357,7 @@
 								.divider {
 									width: 100%;
 									height: 1px;
-									background: #ddd;
+									background: rgba(128, 128, 128, 0.682);
 									margin-bottom: 17px;
 								}
 								.type-buttons {
@@ -388,7 +411,7 @@
 						}
 						.total-result {
 							p {
-								color: #181a20;
+								color: gray;
 								text-align: center;
 								font-family: $font;
 								font-size: 24px;

@@ -134,7 +134,7 @@ TopProperties.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 8,
-		sort: 'propertyRank',
+		sort: 'createdAt',
 		direction: 'DESC',
 		search: {},
 	},

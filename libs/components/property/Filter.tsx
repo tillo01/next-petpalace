@@ -232,7 +232,7 @@ const Filter = (props: FilterType) => {
 	const propertyRoomSelectHandler = useCallback(
 		async (number: Number) => {
 			try {
-				if (number != 0) {
+				if (number !== 0) {
 					if (searchFilter?.search?.roomsList?.includes(number)) {
 						await router.push(
 							`/property?input=${JSON.stringify({
@@ -267,6 +267,7 @@ const Filter = (props: FilterType) => {
 				} else {
 					delete searchFilter?.search.roomsList;
 					setSearchFilter({ ...searchFilter });
+
 					await router.push(
 						`/property?input=${JSON.stringify({
 							...searchFilter,
@@ -598,133 +599,135 @@ const Filter = (props: FilterType) => {
 						</Stack>
 					))}
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Rooms</Typography>
-					<Stack className="button-group">
-						<Button
-							sx={{
-								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.roomsList ? '2px solid #181A20' : '1px solid #b9b9b9',
-							}}
-							onClick={() => propertyRoomSelectHandler(0)}
-						>
-							Any
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(1) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(1)}
-						>
-							1
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(2) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(2)}
-						>
-							2
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(3) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(3)}
-						>
-							3
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.roomsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-								borderRight: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-							}}
-							onClick={() => propertyRoomSelectHandler(4)}
-						>
-							4
-						</Button>
-						<Button
-							sx={{
-								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.roomsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-							}}
-							onClick={() => propertyRoomSelectHandler(5)}
-						>
-							5+
-						</Button>
+				<Stack className={''}>
+					<Stack className={'find-your-home'} mb={'30px'}>
+						<Typography className={'title'}>Rooms</Typography>
+						<Stack className="button-group">
+							<Button
+								sx={{
+									borderRadius: '12px 0 0 12px',
+									border: !searchFilter?.search?.roomsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+								}}
+								onClick={() => propertyRoomSelectHandler(0)}
+							>
+								Any
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.roomsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.roomsList?.includes(1) ? undefined : 'none',
+								}}
+								onClick={() => propertyRoomSelectHandler(1)}
+							>
+								1
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.roomsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.roomsList?.includes(2) ? undefined : 'none',
+								}}
+								onClick={() => propertyRoomSelectHandler(2)}
+							>
+								2
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.roomsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.roomsList?.includes(3) ? undefined : 'none',
+								}}
+								onClick={() => propertyRoomSelectHandler(3)}
+							>
+								3
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.roomsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
+									borderRight: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
+								}}
+								onClick={() => propertyRoomSelectHandler(4)}
+							>
+								4
+							</Button>
+							<Button
+								sx={{
+									borderRadius: '0 12px 12px 0',
+									border: searchFilter?.search?.roomsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+								}}
+								onClick={() => propertyRoomSelectHandler(5)}
+							>
+								5+
+							</Button>
+						</Stack>
 					</Stack>
-				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Bedrooms</Typography>
-					<Stack className="button-group">
-						<Button
-							sx={{
-								borderRadius: '12px 0 0 12px',
-								border: !searchFilter?.search?.bedsList ? '2px solid #181A20' : '1px solid #b9b9b9',
-							}}
-							onClick={() => propertyBedSelectHandler(0)}
-						>
-							Any
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(1) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(1)}
-						>
-							1
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(2) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(2)}
-						>
-							2
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(3) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(3)}
-						>
-							3
-						</Button>
-						<Button
-							sx={{
-								borderRadius: 0,
-								border: searchFilter?.search?.bedsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(4) ? undefined : 'none',
-								// borderRight: false ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(4)}
-						>
-							4
-						</Button>
-						<Button
-							sx={{
-								borderRadius: '0 12px 12px 0',
-								border: searchFilter?.search?.bedsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								borderLeft: searchFilter?.search?.bedsList?.includes(5) ? undefined : 'none',
-							}}
-							onClick={() => propertyBedSelectHandler(5)}
-						>
-							5+
-						</Button>
+					<Stack className={'find-your-home'} mb={'30px'}>
+						<Typography className={'title'}>Bedrooms</Typography>
+						<Stack className="button-group">
+							<Button
+								sx={{
+									borderRadius: '12px 0 0 12px',
+									border: !searchFilter?.search?.bedsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+								}}
+								onClick={() => propertyBedSelectHandler(0)}
+							>
+								Any
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.bedsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.bedsList?.includes(1) ? undefined : 'none',
+								}}
+								onClick={() => propertyBedSelectHandler(1)}
+							>
+								1
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.bedsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.bedsList?.includes(2) ? undefined : 'none',
+								}}
+								onClick={() => propertyBedSelectHandler(2)}
+							>
+								2
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.bedsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.bedsList?.includes(3) ? undefined : 'none',
+								}}
+								onClick={() => propertyBedSelectHandler(3)}
+							>
+								3
+							</Button>
+							<Button
+								sx={{
+									borderRadius: 0,
+									border: searchFilter?.search?.bedsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.bedsList?.includes(4) ? undefined : 'none',
+									// borderRight: false ? undefined : 'none',
+								}}
+								onClick={() => propertyBedSelectHandler(4)}
+							>
+								4
+							</Button>
+							<Button
+								sx={{
+									borderRadius: '0 12px 12px 0',
+									border: searchFilter?.search?.bedsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.bedsList?.includes(5) ? undefined : 'none',
+								}}
+								onClick={() => propertyBedSelectHandler(5)}
+							>
+								5+
+							</Button>
+						</Stack>
 					</Stack>
 				</Stack>
 				<Stack className={'find-your-home'} mb={'30px'}>
@@ -733,11 +736,11 @@ const Filter = (props: FilterType) => {
 						<Checkbox
 							id={'Barter'}
 							className="property-checkbox"
-							color="default"
 							size="small"
 							value={'propertyBarter'}
 							checked={(searchFilter?.search?.options || []).includes('propertyBarter')}
 							onChange={propertyOptionSelectHandler}
+							color="success"
 						/>
 						<label htmlFor={'Barter'} style={{ cursor: 'pointer' }}>
 							<Typography className="propert-type">Barter</Typography>
@@ -747,90 +750,94 @@ const Filter = (props: FilterType) => {
 						<Checkbox
 							id={'Rent'}
 							className="property-checkbox"
-							color="default"
 							size="small"
 							value={'propertyRent'}
 							checked={(searchFilter?.search?.options || []).includes('propertyRent')}
 							onChange={propertyOptionSelectHandler}
+							color={'default'}
 						/>
 						<label htmlFor={'Rent'} style={{ cursor: 'pointer' }}>
 							<Typography className="propert-type">Rent</Typography>
 						</label>
 					</Stack>
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Square meter</Typography>
-					<Stack className="square-year-input">
-						<FormControl>
-							<InputLabel id="demo-simple-select-label">Min</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.start ?? 0}
-								label="Min"
-								onChange={(e: any) => propertySquareHandler(e, 'start')}
-								MenuProps={MenuProps}
-							>
-								{propertySquare.map((square: number) => (
-									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-										key={square}
-									>
-										{square}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
-						<div className="central-divider"></div>
-						<FormControl>
-							<InputLabel id="demo-simple-select-label">Max</InputLabel>
-							<Select
-								labelId="demo-simple-select-label"
-								id="demo-simple-select"
-								value={searchFilter?.search?.squaresRange?.end ?? 500}
-								label="Max"
-								onChange={(e: any) => propertySquareHandler(e, 'end')}
-								MenuProps={MenuProps}
-							>
-								{propertySquare.map((square: number) => (
-									<MenuItem
-										value={square}
-										disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-										key={square}
-									>
-										{square}
-									</MenuItem>
-								))}
-							</Select>
-						</FormControl>
+				<Stack className={''}>
+					<Stack className={'find-your-home'} mb={'30px'}>
+						<Typography className={'title'}>Square meter</Typography>
+						<Stack className="square-year-input">
+							<FormControl>
+								<InputLabel id="demo-simple-select-label">Min</InputLabel>
+								<Select
+									labelId="demo-simple-select-label"
+									id="demo-simple-select"
+									color="success"
+									value={searchFilter?.search?.squaresRange?.start ?? 0}
+									label="Min"
+									onChange={(e: any) => propertySquareHandler(e, 'start')}
+									MenuProps={MenuProps}
+								>
+									{propertySquare.map((square: number) => (
+										<MenuItem
+											value={square}
+											disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
+											key={square}
+										>
+											{square}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+							<div className="central-divider"></div>
+							<FormControl>
+								<InputLabel id="demo-simple-select-label">Max</InputLabel>
+								<Select
+									labelId="demo-simple-select-label"
+									id="demo-simple-select"
+									color="success"
+									value={searchFilter?.search?.squaresRange?.end ?? 500}
+									label="Max"
+									onChange={(e: any) => propertySquareHandler(e, 'end')}
+									MenuProps={MenuProps}
+								>
+									{propertySquare.map((square: number) => (
+										<MenuItem
+											value={square}
+											disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
+											key={square}
+										>
+											{square}
+										</MenuItem>
+									))}
+								</Select>
+							</FormControl>
+						</Stack>
 					</Stack>
-				</Stack>
-				<Stack className={'find-your-home'}>
-					<Typography className={'title'}>Price Range</Typography>
-					<Stack className="square-year-input">
-						<input
-							type="number"
-							placeholder="$ min"
-							min={0}
-							value={searchFilter?.search?.pricesRange?.start ?? 0}
-							onChange={(e: any) => {
-								if (e.target.value >= 0) {
-									propertyPriceHandler(e.target.value, 'start');
-								}
-							}}
-						/>
-						<div className="central-divider"></div>
-						<input
-							type="number"
-							placeholder="$ max"
-							value={searchFilter?.search?.pricesRange?.end ?? 0}
-							onChange={(e: any) => {
-								if (e.target.value >= 0) {
-									propertyPriceHandler(e.target.value, 'end');
-								}
-							}}
-						/>
+					<Stack className={'find-your-home'}>
+						<Typography className={'title'}>Price Range</Typography>
+						<Stack className="square-year-input">
+							<input
+								type="number"
+								placeholder="$ min"
+								min={0}
+								value={searchFilter?.search?.pricesRange?.start ?? 0}
+								onChange={(e: any) => {
+									if (e.target.value >= 0) {
+										propertyPriceHandler(e.target.value, 'start');
+									}
+								}}
+							/>
+							<div className="central-divider"></div>
+							<input
+								type="number"
+								placeholder="$ max"
+								value={searchFilter?.search?.pricesRange?.end ?? 0}
+								onChange={(e: any) => {
+									if (e.target.value >= 0) {
+										propertyPriceHandler(e.target.value, 'end');
+									}
+								}}
+							/>
+						</Stack>
 					</Stack>
 				</Stack>
 			</Stack>

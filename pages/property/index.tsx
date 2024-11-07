@@ -81,7 +81,9 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
 	}, [router]);
 
-	useEffect(() => {}, [searchFilter]);
+	useEffect(() => {
+		getPropertiesRefetch();
+	}, [searchFilter]);
 
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
@@ -191,8 +193,8 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 											page={currentPage}
 											count={Math.ceil(total / searchFilter.limit)}
 											onChange={handlePaginationChange}
-											shape="circular"
-											color="primary"
+											shape={'circular'}
+											color={'success'}
 										/>
 									</Stack>
 								)}
@@ -200,7 +202,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 								{properties.length !== 0 && (
 									<Stack className="total-result">
 										<Typography>
-											Total {total} propert{total > 1 ? 'ies' : 'y'} available
+											Total {total} pet{total > 1 ? 's' : 't'} in the stock
 										</Typography>
 									</Stack>
 								)}

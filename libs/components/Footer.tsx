@@ -129,7 +129,7 @@ const Footer = () => {
 					</Stack>
 				</Stack>
 				<Stack className={'second'}>
-					<span>© PetPalace - All rights reserved. PetPalace {moment().format('MMMM Do YYYY, h:mm:ss a')}</span>
+					<span>© PetPalace - All rights reserved. PetPalace {moment().year()}</span>
 					<span>Privacy · Terms · Sitemap</span>
 				</Stack>
 			</Stack>
