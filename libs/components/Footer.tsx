@@ -3,7 +3,7 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import useDeviceDetect from '../hooks/useDeviceDetect';
-import { Stack, Box } from '@mui/material';
+import { Stack, Box, Link } from '@mui/material';
 import moment from 'moment';
 
 const Footer = () => {
@@ -15,10 +15,12 @@ const Footer = () => {
 				<Stack className={'main'}>
 					<Stack className={'left'}>
 						<Box component={'div'} className={'footer-box'}>
-							<img src="/img/logo/logoWhite.svg" alt="" className={'logo'} />
+							<Link href={'/'}>
+								<img src="/img/logo/petPalace.png" alt="" />
+							</Link>
 						</Box>
 						<Box component={'div'} className={'footer-box'}>
-							<span>total free customer care</span>
+							<span>Call center</span>
 							<p>+82 10 4867 2909</p>
 						</Box>
 						<Box component={'div'} className={'footer-box'}>
@@ -73,24 +75,23 @@ const Footer = () => {
 				<Stack className={'main'}>
 					<Stack className={'left'}>
 						<Box component={'div'} className={'footer-box'}>
-							<img src="/img/logo/logoWhite.svg" alt="" className={'logo'} />
+							<img src="/img/logo/petPalace.png" alt="" />
 						</Box>
 						<Box component={'div'} className={'footer-box'}>
-							<span>total free customer care</span>
-							<p>+82 10 4867 2909</p>
+							<span>Call center</span>
+							<p>+82 01034522456</p>
 						</Box>
 						<Box component={'div'} className={'footer-box'}>
-							<span>nee live</span>
+							<span>pet care</span>
 							<p>+82 10 4867 2909</p>
-							<span>Support?</span>
 						</Box>
 						<Box component={'div'} className={'footer-box'}>
 							<p>follow us on social media</p>
 							<div className={'media-box'}>
+								<TwitterIcon />
 								<FacebookOutlinedIcon />
 								<TelegramIcon />
 								<InstagramIcon />
-								<TwitterIcon />
 							</div>
 						</Box>
 					</Stack>
@@ -104,9 +105,9 @@ const Footer = () => {
 						</Box>
 						<Box component={'div'} className={'bottom'}>
 							<div>
-								<strong>Popular Search</strong>
-								<span>Property for Rent</span>
-								<span>Property Low to hide</span>
+								<strong> Search</strong>
+								<span>Pets for Adoption</span>
+								<span>Pets for Own</span>
 							</div>
 							<div>
 								<strong>Quick Links</strong>
@@ -119,7 +120,7 @@ const Footer = () => {
 							</div>
 							<div>
 								<strong>Discover</strong>
-								<span>Seoul</span>
+								<span>Busan</span>
 								<span>Gyeongido</span>
 								<span>Busan</span>
 								<span>Jejudo</span>
@@ -128,7 +129,7 @@ const Footer = () => {
 					</Stack>
 				</Stack>
 				<Stack className={'second'}>
-					<span>© Nestar - All rights reserved. Nestar {moment().year()}</span>
+					<span>© PetPalace - All rights reserved. PetPalace {moment().format('MMMM Do YYYY, h:mm:ss a')}</span>
 					<span>Privacy · Terms · Sitemap</span>
 				</Stack>
 			</Stack>

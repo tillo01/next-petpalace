@@ -94,16 +94,9 @@ const TopProperties = (props: TopPropertiesProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Top properties</span>
-							<p>Check out our Top Properties</p>
+							<span>Our Besties</span>
+							<p>Check one more time</p>
 						</Box>
-						{/* <Box component={'div'} className={'right'}>
-							<div className={'pagination-box'}>
-								<WestIcon className={'swiper-top-prev'} />
-								<div className={'swiper-top-pagination'}></div>
-								<EastIcon className={'swiper-top-next'} />
-							</div>
-						</Box> */}
 					</Stack>
 					<Stack className={'card-box'}>
 						<Box component={'div'} className={'switch-btn swiper-top-prev'}>
@@ -113,15 +106,10 @@ const TopProperties = (props: TopPropertiesProps) => {
 							className={'top-property-swiper'}
 							slidesPerView={'auto'}
 							spaceBetween={1}
-							centeredSlides={true}
-							loop={true}
 							modules={[Autoplay, Navigation, Pagination]}
 							navigation={{
 								nextEl: '.swiper-top-next',
 								prevEl: '.swiper-top-prev',
-							}}
-							pagination={{
-								el: '.swiper-top-pagination',
 							}}
 						>
 							{topProperties.map((property: Property) => {

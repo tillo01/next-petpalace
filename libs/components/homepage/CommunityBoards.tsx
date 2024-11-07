@@ -27,7 +27,7 @@ const CommunityBoards = () => {
 		refetch: getNewsArticleRefetch,
 	} = useQuery(GET_BOARD_ARTICLES, {
 		fetchPolicy: 'network-only',
-		variables: { input: { ...searchCommunity, limit: 6, search: { articleCategory: BoardArticleCategory.NEWS } } },
+		variables: { input: { ...searchCommunity, limit: 3, search: { articleCategory: BoardArticleCategory.NEWS } } },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setNewsArticles(data?.getBoardArticles?.list);
@@ -55,7 +55,10 @@ const CommunityBoards = () => {
 			<Stack className={'community-board'}>
 				<Stack className={'container'}>
 					<Stack>
-						<Typography variant={'h1'}>COMMUNITY BOARD HIGHLIGHTS</Typography>
+						<Typography variant={'h1'} style={{ color: '#7ed957' }}>
+							Recommended Articles
+						</Typography>
+						<p>Read</p>
 					</Stack>
 					<Stack className="community-main">
 						<Stack className={'community-left'}>

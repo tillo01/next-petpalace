@@ -43,7 +43,7 @@ const TopAgents = (props: TopAgentsProps) => {
 			<Stack className={'top-agents'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Top Agents</span>
+						<span>Our Sellers</span>
 					</Stack>
 					<Stack className={'wrapper'}>
 						<Swiper
@@ -71,12 +71,12 @@ const TopAgents = (props: TopAgentsProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Top Agents</span>
-							<p>Our Top Agents always ready to serve you</p>
+							<span>Our Sellers</span>
+							<p>The owner of our cutiests</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
-								<span>See All Agents</span>
+								<span>Check all Sellers</span>
 								<img src="/img/icons/rightup.svg" alt="" />
 							</div>
 						</Box>

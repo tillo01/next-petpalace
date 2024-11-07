@@ -35,12 +35,11 @@ const Home: NextPage = () => {
 		return (
 			<Stack className={'home-page'}>
 				<Service />
-				<TrendProperties />
 				<PopularProperties />
+				<TrendProperties />
+				<TopAgents />
 				<Advertisement />
 				<TopProperties />
-				<TopAgents />
-				<Events />
 				<CommunityBoards />
 			</Stack>
 		);

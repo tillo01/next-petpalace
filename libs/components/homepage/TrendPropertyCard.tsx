@@ -7,15 +7,10 @@ import { Property } from '../../types/property/property';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { REACT_APP_API_URL } from '../../config';
 import { useRouter } from 'next/router';
-import { useQuery, useReactiveVar } from '@apollo/client';
+import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
-import { GET_MEMBER } from '../../../apollo/user/query';
-import { T } from '../../types/common';
 import { Member } from '../../types/member/member';
 import { sweetErrorHandling } from '../../sweetAlert';
-import ScaleIcon from '@mui/icons-material/Scale';
-import HeightIcon from '@mui/icons-material/Height';
-import Filter4Icon from '@mui/icons-material/Filter4';
 
 interface TrendPropertyCardProps {
 	property: Property;

@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import Menu from '@mui/material/Menu';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
-import { useMutation, useQuery } from '@apollo/client';
+import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { T } from '../types/common';
 import { Noitfies, NotifInquiry, NotifMe } from '../types/notigication.ts/notif';
 import { Direction } from '../enums/common.enum';
@@ -15,6 +15,8 @@ import { NotificationStatus, NotificationType } from '../enums/notification.enum
 import { UPDATE_NOTIFICATIONS } from '../../apollo/user/mutation';
 import { NotifUpdate } from '../types/notigication.ts/notif.update';
 import { sweetErrorHandling } from '../sweetAlert';
+import { Avatar } from '@mui/material';
+import { userVar } from '../../apollo/store';
 
 export default function NotifIcon() {
 	/** REQUEST IF NEEDED **/
@@ -28,6 +30,7 @@ export default function NotifIcon() {
 		limit: 1000,
 	});
 	const [updateNotifStatus, setUpdateNotifStatus] = useState<NotifUpdate>();
+	const user = useReactiveVar(userVar);
 
 	const {
 		loading: getNotificationsLoading,

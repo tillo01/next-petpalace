@@ -124,6 +124,7 @@
 			flex-direction: row;
 			.container {
 				flex-direction: column;
+
 				.card-box {
 					position: relative;
 					margin-top: 64px;
@@ -303,6 +304,7 @@
 		}
 		.popular-properties {
 			padding: 132px 0px 94px;
+			margin-top: 70px;
 			width: 100%;
 			height: 816px;
 			display: flex;
@@ -527,7 +529,7 @@
 						align-items: center;
 						justify-content: center;
 						border-radius: 50%;
-						background: #ffffff;
+						background: #7ed957;
 						filter: drop-shadow(0px 10px 35px rgba(5, 16, 54, 0.1));
 						cursor: pointer;
 						svg {
@@ -552,7 +554,7 @@
 					}
 					.top-card-box {
 						position: relative;
-						width: 400px;
+						width: 390px;
 						height: 310px;
 						display: flex;
 						flex-direction: row;
@@ -584,7 +586,7 @@
 							}
 						}
 						.info {
-							padding: 20px 15px 0px;
+							padding: 20px 10px 0px;
 							display: flex;
 							flex-direction: column;
 							box-sizing: border-box;
@@ -699,6 +701,7 @@
 			display: flex;
 			flex-direction: row;
 			background: #f6f6f6;
+
 			.container {
 				position: relative;
 				flex-direction: column;
@@ -710,6 +713,7 @@
 					flex-direction: row;
 					align-items: center;
 					justify-content: space-between;
+
 					.switch-btn {
 						width: 53px;
 						height: 53px;
@@ -745,16 +749,45 @@
 							}
 						}
 						.top-agent-card {
-							width: 205px;
-							height: 280px;
+							width: 365px;
+							height: 250px;
 							display: flex;
-							flex-direction: column;
+							flex-direction: row;
+							align-items: center;
+							background: linear-gradient(
+								135deg,
+								rgba(255, 255, 255, 0.5),
+								rgba(192, 192, 192, 0.8),
+								rgba(255, 255, 255, 0.5)
+							);
+							border-radius: 12px;
+							border: 2px solid #7ed957;
+
 							img {
 								width: 209px;
 								height: 209px;
-								border-radius: 50%;
+								border-radius: 0% 50% 50% 0%;
 								cursor: pointer;
 								object-fit: cover;
+							}
+							.top-seller-name {
+								display: flex;
+								flex-direction: column;
+							}
+							.top-seller-info {
+								display: flex;
+								flex-direction: row;
+								gap: 10px;
+								padding: 10px 10px 10px 10px;
+								color: #fff;
+							}
+							.top-seller-graph {
+								display: flex;
+								flex-direction: row;
+								justify-content: space-around;
+								font-style: italic;
+								padding: 0px 5px 0px 5px;
+								color: #7ed957;
 							}
 							strong {
 								margin-top: 20px;
@@ -874,17 +907,19 @@
 			position: relative;
 			padding: 124px 0px 61px;
 			width: 100%;
-			height: 860px;
+			height: auto;
 			display: flex;
 			flex-direction: row;
+			background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(192, 192, 192, 0.8), rgba(255, 255, 255, 0.5));
+
 			.container {
-				flex-direction: column;
+				flex-direction: row;
 				align-items: center;
 				.community-main {
 					width: 100%;
 					margin-top: 60px;
 					display: flex;
-					flex-direction: row;
+					flex-direction: column;
 					justify-content: space-between;
 					.center-line {
 						height: 90%;
@@ -896,7 +931,7 @@
 						height: 30px;
 						display: flex;
 						flex-direction: row;
-						justify-content: flex-end;
+						justify-content: flex-start;
 						align-items: center;
 						span {
 							font-family: $font;
@@ -917,11 +952,12 @@
 						width: 642px;
 						height: auto;
 						display: flex;
-						flex-direction: column;
+						flex-direction: row;
 						.card-wrap {
 							display: flex;
 							flex-direction: row;
 							flex-wrap: wrap;
+							align-items: center;
 							.vertical-card {
 								margin-right: 12px;
 								margin-bottom: 18px;
@@ -930,11 +966,11 @@
 								flex-direction: column;
 								cursor: pointer;
 								.community-img {
-									width: 100%;
-									height: 141px;
+									width: 300px;
+									height: 200px;
 									background-size: cover;
 									background-repeat: round;
-									border-radius: 5px;
+									border-radius: 30px;
 									div {
 										width: 32px;
 										height: 32px;
@@ -985,9 +1021,9 @@
 							cursor: pointer;
 							margin-bottom: 34px;
 							img {
-								width: 180px;
-								height: 111px;
-								border-radius: 7px;
+								width: 300px;
+								height: 200px;
+								border-radius: 30px;
 							}
 							div {
 								margin-left: 25px;
