@@ -1,5 +1,5 @@
 import React from 'react';
-import { Stack, Box, Divider, Typography } from '@mui/material';
+import { Stack, Box, Divider, Typography, Avatar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -11,6 +11,7 @@ import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { T } from '../../types/common';
+import { sweetErrorHandling } from '../../sweetAlert';
 
 interface PropertyBigCardProps {
 	property: Property;
@@ -27,6 +28,14 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 	const goPropertyDetatilPage = (propertyId: string) => {
 		router.push(`/property/detail?id=${propertyId}`);
 	};
+	const redirectToMemberPageHandler = async (memberId: string) => {
+		try {
+			if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
+			else await router.push(`/member?memberId=${memberId}`);
+		} catch (error) {
+			await sweetErrorHandling(error);
+		}
+	};
 
 	if (device === 'mobile') {
 		return <div>APARTMEND BIG CARD</div>;
@@ -38,11 +47,13 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 					className={'card-img'}
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages?.[0]})` }}
 				>
-					{property?.propertyRank && property?.propertyRank >= topPropertyRank && (
+					{property?.propertyRank && property?.propertyRank >= topPropertyRank ? (
 						<div className={'status'}>
 							<img src="/img/icons/electricity.svg" alt="" />
 							<span>top</span>
 						</div>
+					) : (
+						''
 					)}
 
 					<div className={'price'}>${formatterStr(property?.propertyPrice)}</div>
@@ -90,6 +101,22 @@ const PropertyBigCard = (props: PropertyBigCardProps) => {
 							</IconButton>
 							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
 						</div>
+					</div>
+					<div className="seller-nick">
+						<p>
+							<Avatar
+								className="little-member"
+								onClick={() => redirectToMemberPageHandler(property?.memberData?._id as string)}
+								src={
+									property?.memberData?.memberImage
+										? `${process.env.REACT_APP_API_URL}/${property?.memberData.memberImage}`
+										: '/img/profile/defaultUser.svg'
+								}
+								sx={{ width: 48, height: 48, marginRight: 2 }}
+							/>
+						</p>
+
+						<p>{property?.memberData?.memberNick ?? 'Agent'}</p>
 					</div>
 				</Box>
 			</Stack>

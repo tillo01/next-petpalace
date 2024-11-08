@@ -317,8 +317,11 @@
 										}
 									}
 									.address {
-										width: 100%;
+										width: 140px;
 										overflow: hidden;
+										text-overflow: ellipsis;
+										white-space: nowrap;
+										line-height: normal;
 										p {
 											color: #717171;
 											font-family: $font;

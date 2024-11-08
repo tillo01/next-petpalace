@@ -194,6 +194,7 @@ const PropertyList: NextPage = ({ initialInput, ...props }: any) => {
 											count={Math.ceil(total / searchFilter.limit)}
 											onChange={handlePaginationChange}
 											shape={'circular'}
+											// @ts-ignore
 											color={'success'}
 										/>
 									</Stack>
