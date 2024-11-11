@@ -1,7 +1,6 @@
 export enum PetType {
-	APARTMENT = 'APARTMENT',
-	VILLA = 'VILLA',
-	HOUSE = 'HOUSE',
+	DOG = 'DOG',
+	CAT = 'CAT',
 }
 
 export enum PetStatus {

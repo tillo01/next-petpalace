@@ -5,12 +5,12 @@ import CommunityBoards from '../libs/components/homepage/CommunityBoards';
 import PopularPets from '../libs/components/homepage/PopularPets';
 import TopSellers from '../libs/components/homepage/TopSellers';
 import Events from '../libs/components/homepage/Events';
-import TrendPets from '../libs/components/homepage/TrendPets';
 import TopPets from '../libs/components/homepage/TopPets';
 import { Stack } from '@mui/material';
 import Advertisement from '../libs/components/homepage/Advertisement';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Service from '../libs/components/homepage/Service';
+import TrendPets from '../libs/components/homepage/TrendPets';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {

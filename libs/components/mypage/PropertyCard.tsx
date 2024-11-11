@@ -15,10 +15,11 @@ interface PetCardProps {
 	deletePetHandler?: any;
 	memberPage?: boolean;
 	updatePetHandler?: any;
+	likePetHandler?: any;
 }
 
 export const PetCard = (props: PetCardProps) => {
-	const { pet, deletePetHandler, memberPage, updatePetHandler } = props;
+	const { pet, deletePetHandler, memberPage, updatePetHandler, likePetHandler } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);

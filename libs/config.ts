@@ -10,7 +10,7 @@ for (let i = 1970; i <= thisYear; i++) {
 	petYears.push(String(i));
 }
 
-export const petWeight = [0, 25, 50, 75, 100, 125, 150, 200, 300, 500];
+export const petWeight = [0, 1, 1.5, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 11];
 
 export const Messages = {
 	error1: 'Something went wrong!',
