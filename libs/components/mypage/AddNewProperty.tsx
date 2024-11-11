@@ -2,61 +2,61 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PetLocation, PetType } from '../../enums/property.enum';
-import { REACT_APP_API_URL, propertySquare } from '../../config';
-import { PropertyInput } from '../../types/property/property.input';
+import { PetLocation, PetType } from '../../enums/pet.enum';
+import { REACT_APP_API_URL, petWeight } from '../../config';
+import { PetInput } from '../../types/pet/pet.input';
 import axios from 'axios';
 import { getJwtToken } from '../../auth';
 import { sweetErrorHandling, sweetMixinErrorAlert, sweetMixinSuccessAlert } from '../../sweetAlert';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
-import { CREATE_PROPERTY, UPDATE_PROPERTY } from '../../../apollo/user/mutation';
-import { GET_PROPERTY } from '../../../apollo/user/query';
+import { CREATE_PET, UPDATE_PET } from '../../../apollo/user/mutation';
+import { GET_PET } from '../../../apollo/user/query';
 import { T } from '../../types/common';
 
-const AddProperty = ({ initialValues, ...props }: any) => {
+const AddPet = ({ initialValues, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const inputRef = useRef<any>(null);
-	const [insertPropertyData, setInsertPropertyData] = useState<PropertyInput>(initialValues);
-	const [propertyType, setPetType] = useState<PetType[]>(Object.values(PetType));
-	const [propertyLocation, setPetLocation] = useState<PetLocation[]>(Object.values(PetLocation));
+	const [insertPetData, setInsertPetData] = useState<PetInput>(initialValues);
+	const [petType, setPetType] = useState<PetType[]>(Object.values(PetType));
+	const [petLocation, setPetLocation] = useState<PetLocation[]>(Object.values(PetLocation));
 	const token = getJwtToken();
 	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
 
-	const [createPoperty] = useMutation(CREATE_PROPERTY);
-	const [updateProperty] = useMutation(UPDATE_PROPERTY);
+	const [createPoperty] = useMutation(CREATE_PET);
+	const [updatePet] = useMutation(UPDATE_PET);
 
 	const {
-		loading: getPropertyLoading,
-		data: getPropertyData,
-		error: getPropertyError,
-		refetch: getPropertyRefetch,
-	} = useQuery(GET_PROPERTY, {
+		loading: getPetLoading,
+		data: getPetData,
+		error: getPetError,
+		refetch: getPetRefetch,
+	} = useQuery(GET_PET, {
 		fetchPolicy: 'network-only',
-		variables: { input: router.query.propertyId },
+		variables: { input: router.query.petId },
 	});
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		setInsertPropertyData({
-			...insertPropertyData,
-			propertyTitle: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyTitle : '',
-			propertyPrice: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyPrice : 0,
-			propertyType: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyType : '',
-			propertyLocation: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyLocation : '',
-			propertyAddress: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyAddress : '',
-			propertyBarter: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBarter : false,
-			propertyRent: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRent : false,
-			propertyRooms: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyRooms : 0,
-			propertyBeds: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyBeds : 0,
-			propertySquare: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertySquare : 0,
-			propertyDesc: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyDesc : '',
-			propertyImages: getPropertyData?.getProperty ? getPropertyData?.getProperty?.propertyImages : [],
+		setInsertPetData({
+			...insertPetData,
+			petTitle: getPetData?.getPet ? getPetData?.getPet?.petTitle : '',
+			petPrice: getPetData?.getPet ? getPetData?.getPet?.petPrice : 0,
+			petType: getPetData?.getPet ? getPetData?.getPet?.petType : '',
+			petLocation: getPetData?.getPet ? getPetData?.getPet?.petLocation : '',
+			petAddress: getPetData?.getPet ? getPetData?.getPet?.petAddress : '',
+			petSell: getPetData?.getPet ? getPetData?.getPet?.petSell : false,
+			petAdoption: getPetData?.getPet ? getPetData?.getPet?.petAdoption : false,
+			petAges: getPetData?.getPet ? getPetData?.getPet?.petAges : 0,
+			petHeight: getPetData?.getPet ? getPetData?.getPet?.petHeight : 0,
+			petWeight: getPetData?.getPet ? getPetData?.getPet?.petWeight : 0,
+			petDesc: getPetData?.getPet ? getPetData?.getPet?.petDesc : '',
+			petImages: getPetData?.getPet ? getPetData?.getPet?.petImages : [],
 		});
-	}, [getPropertyLoading, getPropertyData]);
+	}, [getPetLoading, getPetData]);
 
 	/** HANDLERS **/
 	async function uploadImages() {
@@ -75,7 +75,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 				  }`,
 					variables: {
 						files: [null, null, null, null, null],
-						target: 'property',
+						target: 'pet',
 					},
 				}),
 			);
@@ -104,7 +104,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 			const responseImages = response.data.data.imagesUploader;
 
 			console.log('+responseImages: ', responseImages);
-			setInsertPropertyData({ ...insertPropertyData, propertyImages: responseImages });
+			setInsertPetData({ ...insertPetData, petImages: responseImages });
 		} catch (err: any) {
 			console.log('err: ', err.message);
 			await sweetMixinErrorAlert(err.message);
@@ -113,76 +113,76 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 
 	const doDisabledCheck = () => {
 		if (
-			insertPropertyData.propertyTitle === '' ||
-			insertPropertyData.propertyPrice === 0 || // @ts-ignore
-			insertPropertyData.propertyType === '' || // @ts-ignore
-			insertPropertyData.propertyLocation === '' || // @ts-ignore
-			insertPropertyData.propertyAddress === '' || // @ts-ignore
-			insertPropertyData.propertyBarter === '' || // @ts-ignore
-			insertPropertyData.propertyRent === '' ||
-			insertPropertyData.propertyRooms === 0 ||
-			insertPropertyData.propertyBeds === 0 ||
-			insertPropertyData.propertySquare === 0 ||
-			insertPropertyData.propertyDesc === '' ||
-			insertPropertyData.propertyImages.length === 0
+			insertPetData.petTitle === '' ||
+			insertPetData.petPrice === 0 || // @ts-ignore
+			insertPetData.petType === '' || // @ts-ignore
+			insertPetData.petLocation === '' || // @ts-ignore
+			insertPetData.petAddress === '' || // @ts-ignore
+			insertPetData.petSell === '' || // @ts-ignore
+			insertPetData.petAdoption === '' ||
+			insertPetData.petAges === 0 ||
+			insertPetData.petHeight === 0 ||
+			insertPetData.petWeight === 0 ||
+			insertPetData.petDesc === '' ||
+			insertPetData.petImages.length === 0
 		) {
 			return true;
 		}
 	};
 
-	const insertPropertyHandler = useCallback(async () => {
+	const insertPetHandler = useCallback(async () => {
 		try {
 			const result = await createPoperty({
 				variables: {
-					input: insertPropertyData,
+					input: insertPetData,
 				},
 			});
-			await sweetMixinSuccessAlert('This property has been created successfully');
+			await sweetMixinSuccessAlert('This pet has been created successfully');
 			await router.push({
 				pathname: '/mypage',
 				query: {
-					category: 'myProperties',
+					category: 'myPets',
 				},
 			});
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
-	}, [insertPropertyData]);
+	}, [insertPetData]);
 
-	const updatePropertyHandler = useCallback(async () => {
+	const updatePetHandler = useCallback(async () => {
 		try {
 			// @ts-ignore
-			insertPropertyData._id = getPropertyData?.getProperty?._id;
-			const result = await updateProperty({
+			insertPetData._id = getPetData?.getPet?._id;
+			const result = await updatePet({
 				variables: {
-					input: insertPropertyData,
+					input: insertPetData,
 				},
 			});
-			await sweetMixinSuccessAlert('This property has been updated successfully');
+			await sweetMixinSuccessAlert('This pet has been updated successfully');
 			await router.push({
 				pathname: 'mypage',
 				query: {
-					category: 'myProperties',
+					category: 'myPets',
 				},
 			});
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
-	}, [insertPropertyData]);
+	}, [insertPetData]);
 
-	if (user?.memberType !== 'AGENT') {
+	if (user?.memberType !== 'SELLER') {
 		router.back();
 	}
 
-	console.log('+insertPropertyData', insertPropertyData);
+	console.log('+insertPetData', insertPetData);
 
 	if (device === 'mobile') {
-		return <div>ADD NEW PROPERTY MOBILE PAGE</div>;
+		return <div>ADD NEW PET MOBILE PAGE</div>;
 	} else {
 		return (
-			<div id="add-property-page">
+			<div id="add-pet-page">
 				<Stack className="main-title-box">
-					<Typography className="main-title">Add New Property</Typography>
+					<Typography className="main-title">Add New Pet</Typography>
 					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
 
@@ -195,10 +195,8 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									type="text"
 									className="description-input"
 									placeholder={'Title'}
-									value={insertPropertyData.propertyTitle}
-									onChange={({ target: { value } }) =>
-										setInsertPropertyData({ ...insertPropertyData, propertyTitle: value })
-									}
+									value={insertPetData.petTitle}
+									onChange={({ target: { value } }) => setInsertPetData({ ...insertPetData, petTitle: value })}
 								/>
 							</Stack>
 
@@ -209,9 +207,9 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 										type="number"
 										className="description-input"
 										placeholder={'Price'}
-										value={insertPropertyData.propertyPrice}
+										value={insertPetData.petPrice}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyPrice: parseInt(value) })
+											setInsertPetData({ ...insertPetData, petPrice: parseInt(value) })
 										}
 									/>
 								</Stack>
@@ -219,18 +217,18 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Select Type</Typography>
 									<select
 										className={'select-description'}
-										defaultValue={insertPropertyData.propertyType || 'select'}
-										value={insertPropertyData.propertyType || 'select'}
+										defaultValue={insertPetData.petType || 'select'}
+										value={insertPetData.petType || 'select'}
 										onChange={({ target: { value } }) =>
 											// @ts-ignore
-											setInsertPropertyData({ ...insertPropertyData, propertyType: value })
+											setInsertPetData({ ...insertPetData, petType: value })
 										}
 									>
 										<>
 											<option selected={true} disabled={true} value={'select'}>
 												Select
 											</option>
-											{propertyType.map((type: any) => (
+											{petType.map((type: any) => (
 												<option value={`${type}`} key={type}>
 													{type}
 												</option>
@@ -247,18 +245,18 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Select Location</Typography>
 									<select
 										className={'select-description'}
-										defaultValue={insertPropertyData.propertyLocation || 'select'}
-										value={insertPropertyData.propertyLocation || 'select'}
+										defaultValue={insertPetData.petLocation || 'select'}
+										value={insertPetData.petLocation || 'select'}
 										onChange={({ target: { value } }) =>
 											// @ts-ignore
-											setInsertPropertyData({ ...insertPropertyData, propertyLocation: value })
+											setInsertPetData({ ...insertPetData, petLocation: value })
 										}
 									>
 										<>
 											<option selected={true} disabled={true} value={'select'}>
 												Select
 											</option>
-											{propertyLocation.map((location: any) => (
+											{petLocation.map((location: any) => (
 												<option value={`${location}`} key={location}>
 													{location}
 												</option>
@@ -274,10 +272,8 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 										type="text"
 										className="description-input"
 										placeholder={'Address'}
-										value={insertPropertyData.propertyAddress}
-										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyAddress: value })
-										}
+										value={insertPetData.petAddress}
+										onChange={({ target: { value } }) => setInsertPetData({ ...insertPetData, petAddress: value })}
 									/>
 								</Stack>
 							</Stack>
@@ -287,10 +283,10 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Barter</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertyBarter ? 'yes' : 'no'}
-										defaultValue={insertPropertyData.propertyBarter ? 'yes' : 'no'}
+										value={insertPetData.petSell ? 'yes' : 'no'}
+										defaultValue={insertPetData.petSell ? 'yes' : 'no'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyBarter: value === 'yes' })
+											setInsertPetData({ ...insertPetData, petSell: value === 'yes' })
 										}
 									>
 										<option disabled={true} selected={true}>
@@ -306,10 +302,10 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Rent</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertyRent ? 'yes' : 'no'}
-										defaultValue={insertPropertyData.propertyRent ? 'yes' : 'no'}
+										value={insertPetData.petAdoption ? 'yes' : 'no'}
+										defaultValue={insertPetData.petAdoption ? 'yes' : 'no'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyRent: value === 'yes' })
+											setInsertPetData({ ...insertPetData, petAdoption: value === 'yes' })
 										}
 									>
 										<option disabled={true} selected={true}>
@@ -328,10 +324,10 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Rooms</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertyRooms || 'select'}
-										defaultValue={insertPropertyData.propertyRooms || 'select'}
+										value={insertPetData.petAges || 'select'}
+										defaultValue={insertPetData.petAges || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyRooms: parseInt(value) })
+											setInsertPetData({ ...insertPetData, petAges: parseInt(value) })
 										}
 									>
 										<option disabled={true} selected={true} value={'select'}>
@@ -348,10 +344,10 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Bed</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertyBeds || 'select'}
-										defaultValue={insertPropertyData.propertyBeds || 'select'}
+										value={insertPetData.petHeight || 'select'}
+										defaultValue={insertPetData.petHeight || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertyBeds: parseInt(value) })
+											setInsertPetData({ ...insertPetData, petHeight: parseInt(value) })
 										}
 									>
 										<option disabled={true} selected={true} value={'select'}>
@@ -368,16 +364,16 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 									<Typography className="title">Square</Typography>
 									<select
 										className={'select-description'}
-										value={insertPropertyData.propertySquare || 'select'}
-										defaultValue={insertPropertyData.propertySquare || 'select'}
+										value={insertPetData.petWeight || 'select'}
+										defaultValue={insertPetData.petWeight || 'select'}
 										onChange={({ target: { value } }) =>
-											setInsertPropertyData({ ...insertPropertyData, propertySquare: parseInt(value) })
+											setInsertPetData({ ...insertPetData, petWeight: parseInt(value) })
 										}
 									>
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{propertySquare.map((square: number) => {
+										{petWeight.map((square: number) => {
 											if (square !== 0) {
 												return <option value={`${square}`}>{square}</option>;
 											}
@@ -388,22 +384,20 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 								</Stack>
 							</Stack>
 
-							<Typography className="property-title">Property Description</Typography>
+							<Typography className="pet-title">Pet Description</Typography>
 							<Stack className="config-column">
 								<Typography className="title">Description</Typography>
 								<textarea
 									name=""
 									id=""
 									className="description-text"
-									value={insertPropertyData.propertyDesc}
-									onChange={({ target: { value } }) =>
-										setInsertPropertyData({ ...insertPropertyData, propertyDesc: value })
-									}
+									value={insertPetData.petDesc}
+									onChange={({ target: { value } }) => setInsertPetData({ ...insertPetData, petDesc: value })}
 								></textarea>
 							</Stack>
 						</Stack>
 
-						<Typography className="upload-title">Upload photos of your property</Typography>
+						<Typography className="upload-title">Upload photos of your pet</Typography>
 						<Stack className="images-box">
 							<Stack className="upload-box">
 								<svg xmlns="http://www.w3.org/2000/svg" width="121" height="120" viewBox="0 0 121 120" fill="none">
@@ -482,7 +476,7 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 								</Button>
 							</Stack>
 							<Stack className="gallery-box">
-								{insertPropertyData?.propertyImages.map((image: string) => {
+								{insertPetData?.petImages.map((image: string) => {
 									const imagePath: string = `${REACT_APP_API_URL}/${image}`;
 									return (
 										<Stack className="image-box">
@@ -494,12 +488,12 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 						</Stack>
 
 						<Stack className="buttons-row">
-							{router.query.propertyId ? (
-								<Button className="next-button" disabled={doDisabledCheck()} onClick={updatePropertyHandler}>
+							{router.query.petId ? (
+								<Button className="next-button" disabled={doDisabledCheck()} onClick={updatePetHandler}>
 									<Typography className="next-button-text">Save</Typography>
 								</Button>
 							) : (
-								<Button className="next-button" disabled={doDisabledCheck()} onClick={insertPropertyHandler}>
+								<Button className="next-button" disabled={doDisabledCheck()} onClick={insertPetHandler}>
 									<Typography className="next-button-text">Save</Typography>
 								</Button>
 							)}
@@ -511,21 +505,21 @@ const AddProperty = ({ initialValues, ...props }: any) => {
 	}
 };
 
-AddProperty.defaultProps = {
+AddPet.defaultProps = {
 	initialValues: {
-		propertyTitle: '',
-		propertyPrice: 0,
-		propertyType: '',
-		propertyLocation: '',
-		propertyAddress: '',
-		propertyBarter: false,
-		propertyRent: false,
-		propertyRooms: 0,
-		propertyBeds: 0,
-		propertySquare: 0,
-		propertyDesc: '',
-		propertyImages: [],
+		petTitle: '',
+		petPrice: 0,
+		petType: '',
+		petLocation: '',
+		petAddress: '',
+		petSell: false,
+		petAdoption: false,
+		petAges: 0,
+		petHeight: 0,
+		petWeight: 0,
+		petDesc: '',
+		petImages: [],
 	},
 };
 
-export default AddProperty;
+export default AddPet;

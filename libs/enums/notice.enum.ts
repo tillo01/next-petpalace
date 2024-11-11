@@ -11,10 +11,10 @@ export enum NoticeStatus {
 }
 
 export enum NoticeType {
-	PROPERTY = 'PROPERTY',
+	PET = 'PET',
 	PAYMENT = 'PAYMENT',
 	FORBUYERS = 'FORBUYERS',
-	FORAGENTS = 'FORAGENTS',
+	FORSELLERS = 'FORSELLERS',
 	COMMUNITY = 'COMMUNITY',
 	OTHER = 'OTHER',
 }

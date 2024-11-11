@@ -35,7 +35,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
 const Faq = () => {
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [category, setCategory] = useState<string>('property');
+	const [category, setCategory] = useState<string>('pet');
 	const [expanded, setExpanded] = useState<string | false>('panel1');
 
 	/** APOLLO REQUESTS **/
@@ -51,21 +51,21 @@ const Faq = () => {
 	};
 
 	const data: any = {
-		property: [
+		pet: [
 			{
 				id: '00f5a45ed8897f8090116a01',
-				subject: 'Are the properties displayed on the site reliable?',
-				content: 'of course we only have verified properties',
+				subject: 'Are the pets displayed on the site reliable?',
+				content: 'of course we only have verified pets',
 			},
 			{
 				id: '00f5a45ed8897f8090116a22',
-				subject: 'What types of properties do you offer?',
+				subject: 'What types of pets do you offer?',
 				content: 'We offer single-family homes, condos, townhouses, apartments, and penthouses',
 			},
 			{
 				id: '00f5a45ed8897f8090116a21',
-				subject: 'How can I search for properties on your website?',
-				content: 'Simply use our search bar to enter location, price range, bedrooms/bathrooms, and property type.',
+				subject: 'How can I search for pets on your website?',
+				content: 'Simply use our search bar to enter location, price range, bedrooms/bathrooms, and pet type.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a23',
@@ -74,7 +74,7 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a24',
-				subject: 'What should I consider when buying a property?',
+				subject: 'What should I consider when buying a pet?',
 				content: 'Location, condition, size, amenities, and future development plans.',
 			},
 			{
@@ -84,22 +84,22 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a29',
-				subject: 'What happens if I encounter issues with the property after purchase?',
+				subject: 'What happens if I encounter issues with the pet after purchase?',
 				content: 'We offer post-purchase support to address any concerns promptly.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a28',
-				subject: 'Do you offer properties in specific neighborhoods?',
+				subject: 'Do you offer pets in specific neighborhoods?',
 				content: 'Yes, we have listings in various neighborhoods based on your preferences.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a27',
-				subject: 'Can I sell my property through your website?',
-				content: 'Absolutely, we provide services for selling properties as well.',
+				subject: 'Can I sell my pet through your website?',
+				content: 'Absolutely, we provide services for selling pets as well.',
 			},
 			{
 				id: '00f5a45ed8897f8090116b99',
-				subject: 'What if I need help understanding legal aspects of property purchase?',
+				subject: 'What if I need help understanding legal aspects of pet purchase?',
 				content: 'Our team can provide basic guidance and recommend legal professionals if needed.',
 			},
 		],
@@ -107,7 +107,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a02',
 				subject: 'How can I make the payment?',
-				content: 'you make the payment through an agent!',
+				content: 'you make the payment through an seller!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a91',
@@ -117,7 +117,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a92',
 				subject: 'Is there an option for installment payments?',
-				content: 'Yes, we offer installment payment plans for certain properties. Please inquire for more details.',
+				content: 'Yes, we offer installment payment plans for certain pets. Please inquire for more details.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a93',
@@ -164,17 +164,17 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a03',
 				subject: 'What should buyers pay attention to?',
-				content: 'Buyers should check and decide whether the property they want to buy or rent is actually suitable!',
+				content: 'Buyers should check and decide whether the pet they want to buy or rent is actually suitable!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a85',
-				subject: 'How can I determine if a property is within my budget?',
+				subject: 'How can I determine if a pet is within my budget?',
 				content:
-					'Calculate your budget by considering your income, down payment, and potential mortgage payments. Our agents can assist you within your budget.',
+					'Calculate your budget by considering your income, down payment, and potential mortgage payments. Our sellers can assist you within your budget.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a84',
-				subject: 'What documents do I need to provide when purchasing a property?',
+				subject: 'What documents do I need to provide when purchasing a pet?',
 				content:
 					"You'll typically need identification, proof of income, bank statements, and any necessary loan documentation. Our team will guide you through.",
 			},
@@ -186,62 +186,62 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a82',
-				subject: 'Can I negotiate the price of a property?',
+				subject: 'Can I negotiate the price of a pet?',
 				content:
-					'Yes, you can negotiate the price of a property. Our agents will assist you in making competitive offers and negotiating terms with the seller.',
+					'Yes, you can negotiate the price of a pet. Our sellers will assist you in making competitive offers and negotiating terms with the seller.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a81',
-				subject: 'What are some red flags to watch out for when viewing properties?',
+				subject: 'What are some red flags to watch out for when viewing pets?',
 				content:
 					'Watch out for signs of structural damage, water damage, mold, outdated systems, and undesirable neighborhood conditions.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a80',
-				subject: 'Do you provide assistance with property inspections?',
+				subject: 'Do you provide assistance with pet inspections?',
 				content:
-					'Yes, we can recommend reputable inspectors and accompany you during property inspections to identify any potential issues.',
+					'Yes, we can recommend reputable inspectors and accompany you during pet inspections to identify any potential issues.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a79',
-				subject: 'How long does it typically take to find the right property?',
+				subject: 'How long does it typically take to find the right pet?',
 				content:
-					'The timeframe varies depending on your preferences and market conditions. Our agents will work diligently to find the right property as quickly as possible.',
+					'The timeframe varies depending on your preferences and market conditions. Our sellers will work diligently to find the right pet as quickly as possible.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a78',
-				subject: 'What are the advantages of using a real estate agent when buying a property?',
+				subject: 'What are the advantages of using a real estate seller when buying a pet?',
 				content:
-					'Real estate agents provide expertise, negotiation skills, and guidance throughout the buying process, ultimately saving you time and hassle.',
+					'Real estate sellers provide expertise, negotiation skills, and guidance throughout the buying process, ultimately saving you time and hassle.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a77',
-				subject: 'What happens if I change my mind about a property after making an offer?',
+				subject: 'What happens if I change my mind about a pet after making an offer?',
 				content:
 					'Depending on the terms of the offer and the stage of the transaction, you may have options to withdraw your offer.',
 			},
 		],
 
-		agents: [
+		sellers: [
 			{
 				id: '00f5a45ed8897f8090116a04',
-				subject: 'What do I need to do if I want to become an agent?',
+				subject: 'What do I need to do if I want to become an seller?',
 				content:
-					'If you really decide to become an agent, you should read our terms and conditions and contact the admin!',
+					'If you really decide to become an seller, you should read our terms and conditions and contact the admin!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a62',
-				subject: 'What qualifications do I need to become a real estate agent?',
+				subject: 'What qualifications do I need to become a real estate seller?',
 				content: 'Complete pre-licensing course, pass licensing exam, meet state requirements.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a63',
-				subject: 'How do I find clients as a new real estate agent?',
+				subject: 'How do I find clients as a new real estate seller?',
 				content: 'Build network, use online/offline marketing, join reputable brokerage.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a64',
-				subject: 'What are some effective marketing strategies for selling properties?',
+				subject: 'What are some effective marketing strategies for selling pets?',
 				content: 'Use social media, online platforms, networking events, and direct mail.',
 			},
 			{
@@ -262,7 +262,7 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a68',
-				subject: 'What tools and technologies should I utilize as a real estate agent?',
+				subject: 'What tools and technologies should I utilize as a real estate seller?',
 				content: 'Use CRM software, virtual tours, digital marketing tools, and mobile apps.',
 			},
 			{
@@ -304,7 +304,7 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a56',
-				subject: 'Do members receive discounts on property listings or services?',
+				subject: 'Do members receive discounts on pet listings or services?',
 				content: 'Membership discounts are not part of our current offerings.',
 			},
 			{
@@ -442,12 +442,12 @@ const Faq = () => {
 			<Stack className={'faq-content'}>
 				<Box className={'categories'} component={'div'}>
 					<div
-						className={category === 'property' ? 'active' : ''}
+						className={category === 'pet' ? 'active' : ''}
 						onClick={() => {
-							changeCategoryHandler('property');
+							changeCategoryHandler('pet');
 						}}
 					>
-						Property
+						Pet
 					</div>
 					<div
 						className={category === 'payment' ? 'active' : ''}
@@ -466,12 +466,12 @@ const Faq = () => {
 						Foy Buyers
 					</div>
 					<div
-						className={category === 'agents' ? 'active' : ''}
+						className={category === 'sellers' ? 'active' : ''}
 						onClick={() => {
-							changeCategoryHandler('agents');
+							changeCategoryHandler('sellers');
 						}}
 					>
-						For Agents
+						For Sellers
 					</div>
 					<div
 						className={category === 'membership' ? 'active' : ''}

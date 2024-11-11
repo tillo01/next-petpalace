@@ -19,7 +19,7 @@ const Notice = () => {
 		},
 		{
 			no: 2,
-			title: "It's absolutely free to upload and trade properties",
+			title: "It's absolutely free to upload and trade pets",
 			date: '31.03.2024',
 		},
 	];

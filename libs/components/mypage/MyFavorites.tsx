@@ -2,23 +2,23 @@ import React, { useState } from 'react';
 import { NextPage } from 'next';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Pagination, Stack, Typography } from '@mui/material';
-import PropertyCard from '../property/PropertyCard';
-import { Property } from '../../types/property/property';
+import PetCard from '../pet/PetCard';
+import { Pet } from '../../types/pet/pet';
 import { T } from '../../types/common';
 import { useMutation, useQuery } from '@apollo/client';
-import { LIKE_TARGET_PROPERTY } from '../../../apollo/user/mutation';
+import { LIKE_TARGET_PET } from '../../../apollo/user/mutation';
 import { GET_FAVORITES } from '../../../apollo/user/query';
 import { Messages } from '../../config';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 
 const MyFavorites: NextPage = () => {
 	const device = useDeviceDetect();
-	const [myFavorites, setMyFavorites] = useState<Property[]>([]);
+	const [myFavorites, setMyFavorites] = useState<Pet[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const [searchFavorites, setSearchFavorites] = useState<T>({ page: 1, limit: 6 });
 
 	/** APOLLO REQUESTS **/
-	const [likeTargetProperty] = useMutation(LIKE_TARGET_PROPERTY);
+	const [likeTargetPet] = useMutation(LIKE_TARGET_PET);
 
 	const {
 		loading: getFavoritesLoading,
@@ -39,18 +39,18 @@ const MyFavorites: NextPage = () => {
 	const paginationHandler = (e: T, value: number) => {
 		setSearchFavorites({ ...searchFavorites, page: value });
 	};
-	const likePropertyHandler = async (user: T, id: number) => {
+	const likePetHandler = async (user: T, id: number) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
 
-			await likeTargetProperty({ variables: { input: id } });
+			await likeTargetPet({ variables: { input: id } });
 
 			await getFavoritesRefetch({ input: searchFavorites });
 
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
-			console.log('Erron on likePropertyHandler', err);
+			console.log('Erron on likePetHandler', err);
 			sweetMixinErrorAlert(err.message).then();
 		}
 	};
@@ -68,8 +68,8 @@ const MyFavorites: NextPage = () => {
 				</Stack>
 				<Stack className="favorites-list-box">
 					{myFavorites?.length ? (
-						myFavorites?.map((property: Property) => {
-							return <PropertyCard likePropertyHandler={likePropertyHandler} property={property} myFavorites={true} />;
+						myFavorites?.map((pet: Pet) => {
+							return <PetCard likePetHandler={likePetHandler} pet={pet} myFavorites={true} />;
 						})
 					) : (
 						<div className={'no-data'}>

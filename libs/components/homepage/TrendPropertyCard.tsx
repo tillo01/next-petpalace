@@ -3,7 +3,7 @@ import { Stack, Box, Divider, Typography, Avatar } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Property } from '../../types/property/property';
+import { Pet } from '../../types/pet/pet';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import { REACT_APP_API_URL } from '../../config';
 import { useRouter } from 'next/router';
@@ -12,23 +12,23 @@ import { userVar } from '../../../apollo/store';
 import { Member } from '../../types/member/member';
 import { sweetErrorHandling } from '../../sweetAlert';
 
-interface TrendPropertyCardProps {
-	property: Property;
-	likePropertyHandler: any;
+interface TrendPetCardProps {
+	pet: Pet;
+	likePetHandler: any;
 }
 
-const TrendPropertyCard = (props: TrendPropertyCardProps) => {
-	const { property, likePropertyHandler } = props;
+const TrendPetCard = (props: TrendPetCardProps) => {
+	const { pet, likePetHandler } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
-	const [agentId, setAgentId] = useState<string | null>(null);
-	const [agent, setAgent] = useState<Member | null>(null);
+	const [sellerId, setAgentId] = useState<string | null>(null);
+	const [seller, setAgent] = useState<Member | null>(null);
 
 	/** HANDLERS **/
-	const pushDetailHandler = async (propertyId: string) => {
-		console.log('ID', propertyId);
-		await router.push({ pathname: '/property/detail', query: { id: propertyId } });
+	const pushDetailHandler = async (petId: string) => {
+		console.log('ID', petId);
+		await router.push({ pathname: '/pet/detail', query: { id: petId } });
 	};
 	const redirectToMemberPageHandler = async (memberId: string) => {
 		try {
@@ -41,60 +41,59 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 
 	if (device === 'mobile') {
 		return (
-			<Stack className="trend-card-box" key={property._id}>
+			<Stack className="trend-card-box" key={pet._id}>
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
+					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${pet?.petImages[0]})` }}
 					onClick={() => {
-						pushDetailHandler(property._id);
+						pushDetailHandler(pet._id);
 					}}
 				>
-					<div>${property.propertyPrice}</div>
+					<div>${pet.petPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
 					<strong
 						onClick={() => {
-							pushDetailHandler(property._id);
+							pushDetailHandler(pet._id);
 						}}
 						className={'title'}
 					>
-						{property.propertyTitle}
+						{pet.petTitle}
 					</strong>
-					<p className={'desc'}>{property.propertyDesc ?? 'no description'}</p>
+					<p className={'desc'}>{pet.petDesc ?? 'no description'}</p>
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/bed.svg" alt="" />
-							<span>{property.propertyBeds} bed</span>
+							<span>{pet.petHeight} bed</span>
 						</div>
 						<div>
 							<img src="/img/icons/room.svg" alt="" />
-							<span>{property.propertyRooms} rooms</span>
+							<span>{pet.petAges} rooms</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{property.propertySquare} m2</span>
+							<span>{pet.petWeight} m2</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
 						<p>
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
+							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />
 							</IconButton>
-							<Typography className="view-cnt">{property?.propertyViews}</Typography>
-							<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
-								{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
+							<Typography className="view-cnt">{pet?.petViews}</Typography>
+							<IconButton color={'default'} onClick={() => likePetHandler(user, pet?._id)}>
+								{pet?.meLiked && pet?.meLiked[0]?.myFavorite ? (
 									<FavoriteIcon style={{ color: 'red' }} />
 								) : (
 									<FavoriteIcon />
 								)}
 							</IconButton>
-							<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+							<Typography className="view-cnt">{pet?.petLikes}</Typography>
 						</div>
 					</div>
 				</Box>
@@ -102,47 +101,47 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 		);
 	} else {
 		return (
-			<Stack className="trend-card-box" key={property._id}>
+			<Stack className="trend-card-box" key={pet._id}>
 				<Box
 					component={'div'}
 					className={'card-img'}
-					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${property?.propertyImages[0]})` }}
+					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${pet?.petImages[0]})` }}
 					onClick={() => {
-						pushDetailHandler(property._id);
+						pushDetailHandler(pet._id);
 					}}
 				></Box>
 				<Stack className="name-price">
-					<strong className={'title'}>{property.propertyTitle}</strong>
+					<strong className={'title'}>{pet.petTitle}</strong>
 					<Box className="like-btn">
-						<IconButton color={'default'} onClick={() => likePropertyHandler(user, property?._id)}>
-							{property?.meLiked && property?.meLiked[0]?.myFavorite ? (
+						<IconButton color={'default'} onClick={() => likePetHandler(user, pet?._id)}>
+							{pet?.meLiked && pet?.meLiked[0]?.myFavorite ? (
 								<FavoriteIcon style={{ color: 'red' }} />
 							) : (
 								<FavoriteIcon />
 							)}
 						</IconButton>
-						<Typography className="view-cnt">{property?.propertyLikes}</Typography>
+						<Typography className="view-cnt">{pet?.petLikes}</Typography>
 						<IconButton color={'default'}>
 							<RemoveRedEyeIcon />
 						</IconButton>
-						<Typography className="view-cnt">{property?.propertyViews}</Typography>
+						<Typography className="view-cnt">{pet?.petViews}</Typography>
 					</Box>
 				</Stack>
 				<Box component={'div'} className={'info'}>
-					<p className={'desc'}>{property.propertyDesc ?? 'no description'}</p>
+					<p className={'desc'}>{pet.petDesc ?? 'no description'}</p>
 
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{property.propertyBeds} weight</span>
+							<span>{pet.petHeight} weight</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{property.propertyRooms} height</span>
+							<span>{pet.petAges} height</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
-							<span>{property.propertySquare} age</span>
+							<span>{pet.petWeight} age</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -150,24 +149,23 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 						<p>
 							<Avatar
 								className="little-member"
-								onClick={() => redirectToMemberPageHandler(property?.memberData?._id as string)}
+								onClick={() => redirectToMemberPageHandler(pet?.memberData?._id as string)}
 								src={
-									property?.memberData?.memberImage
-										? `${process.env.REACT_APP_API_URL}/${property?.memberData.memberImage}`
+									pet?.memberData?.memberImage
+										? `${process.env.REACT_APP_API_URL}/${pet?.memberData.memberImage}`
 										: '/img/profile/defaultUser.svg'
 								}
 								sx={{ width: 48, height: 48, marginRight: 2 }}
 							/>
-							<p>{property?.memberData?.memberNick ?? 'Agent'}</p>
+							<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
 						</p>
 						<p>
-							{property.propertyRent ? 'Rent' : ''} {property.propertyRent && property.propertyBarter && '/'}{' '}
-							{property.propertyBarter ? 'Barter' : ''}
+							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
 						</p>
 
 						<div className="view-like-box">
-							<Typography className="property-price">
-								<div>${property.propertyPrice}</div>
+							<Typography className="pet-price">
+								<div>${pet.petPrice}</div>
 							</Typography>
 						</div>
 					</div>
@@ -177,4 +175,4 @@ const TrendPropertyCard = (props: TrendPropertyCardProps) => {
 	}
 };
 
-export default TrendPropertyCard;
+export default TrendPetCard;

@@ -28,17 +28,17 @@ const withLayoutBasic = (Component: any) => {
 				bgImage = '';
 
 			switch (router.pathname) {
-				case '/property':
+				case '/pet':
 					title = 'Adorable Pets';
 					desc = 'Search the most adorable doggy and catty!';
 					bgImage = '/img/banner/petsPage.webp';
 					break;
-				case '/agent':
-					title = 'Agents';
+				case '/seller':
+					title = 'Sellers';
 					desc = 'Home / For Rent';
 					bgImage = '/img/banner/dog.webp';
 					break;
-				case '/agent/detail':
+				case '/seller/detail':
 					title = 'Agent Page';
 					desc = 'Home / For Rent';
 					bgImage = '/img/banner/otherPage.webp';

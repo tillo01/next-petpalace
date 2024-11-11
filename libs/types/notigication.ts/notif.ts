@@ -5,9 +5,9 @@ export interface NotifMe {
 	_id: string;
 	authorId: string;
 	receiverId: string;
-	propertyId?: string;
+	petId?: string;
 	articleId?: string;
-	propertyTitle?: string;
+	petTitle?: string;
 	articleTitle?: string;
 	commentContent: string;
 	commentRefId?: string;

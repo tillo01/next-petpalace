@@ -20,7 +20,7 @@ export const GET_ALL_MEMBERS_BY_ADMIN = gql`
 				memberDesc
 				memberWarnings
 				memberBlocks
-				memberProperties
+				memberPets
 				memberRank
 				memberArticles
 				memberPoints
@@ -39,7 +39,7 @@ export const GET_ALL_MEMBERS_BY_ADMIN = gql`
 `;
 
 /**************************
- *        PROPERTY        *
+ *        PET        *
  *************************/
 
 export const GET_ALL_PETS_BY_ADMIN = gql`
@@ -110,7 +110,7 @@ export const GET_ALL_BOARD_ARTICLES_BY_ADMIN = gql`
 					memberDesc
 					memberWarnings
 					memberBlocks
-					memberProperties
+					memberPets
 					memberRank
 					memberPoints
 					memberLikes
@@ -157,7 +157,7 @@ export const GET_COMMENTS = gql`
 					memberDesc
 					memberWarnings
 					memberBlocks
-					memberProperties
+					memberPets
 					memberRank
 					memberPoints
 					memberLikes

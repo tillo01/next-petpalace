@@ -116,7 +116,7 @@
 				}
 			}
 		}
-		.trend-properties {
+		.trend-pets {
 			padding: 108px 0px 76px;
 			width: 100%;
 			height: 697px;
@@ -137,12 +137,12 @@
 						justify-content: center;
 						align-items: center;
 					}
-					.trend-property-swiper {
+					.trend-pet-swiper {
 						width: 100%;
 						height: 420px;
 						display: flex;
 						flex-direction: row;
-						.trend-property-slide {
+						.trend-pet-slide {
 							width: auto;
 							height: auto;
 							display: flex;
@@ -282,7 +282,7 @@
 									flex-direction: row;
 									gap: 7px;
 									align-items: center;
-									.property-price {
+									.pet-price {
 										color: #ee2708;
 										font-weight: 600;
 										font-size: 16px;
@@ -303,7 +303,7 @@
 				}
 			}
 		}
-		.popular-properties {
+		.popular-pets {
 			padding: 132px 0px 94px;
 			margin-top: 70px;
 			width: 100%;
@@ -509,7 +509,7 @@
 			box-shadow: -3px 0px 20px 14px #34343480;
 			background-size: contain;
 		}
-		.top-properties {
+		.top-pets {
 			padding: 108px 0px 76px;
 			width: 100%;
 			height: 697px;
@@ -542,12 +542,12 @@
 							transform: rotate(180deg);
 						}
 					}
-					.top-property-swiper {
+					.top-pet-swiper {
 						width: 100%;
 						height: 400px;
 						display: flex;
 						flex-direction: row;
-						.top-property-slide {
+						.top-pet-slide {
 							width: auto;
 							height: auto;
 							display: flex;
@@ -694,7 +694,7 @@
 				}
 			}
 		}
-		.top-agents {
+		.top-sellers {
 			position: relative;
 			padding: 153px 0px 135px;
 			width: 100%;
@@ -729,7 +729,7 @@
 							width: 14px;
 							height: 14px;
 						}
-						&.swiper-agents-next {
+						&.swiper-sellers-next {
 							transform: rotate(180deg);
 						}
 					}
@@ -738,18 +738,18 @@
 						height: 280px;
 						display: flex;
 						flex-direction: row;
-						.top-agents-swiper {
+						.top-sellers-swiper {
 							width: 99.7%;
 							height: 280px;
 							display: flex;
 							flex-direction: row;
-							.top-agents-slide {
+							.top-sellers-slide {
 								width: auto;
 								height: auto;
 								display: flex;
 							}
 						}
-						.top-agent-card {
+						.top-seller-card {
 							width: 365px;
 							height: 250px;
 							display: flex;

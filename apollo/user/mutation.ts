@@ -19,7 +19,7 @@ export const SIGN_UP = gql`
 			memberDesc
 			memberWarnings
 			memberBlocks
-			memberProperties
+			memberPets
 			memberRank
 			memberArticles
 			memberPoints
@@ -48,7 +48,7 @@ export const LOGIN = gql`
 			memberDesc
 			memberWarnings
 			memberBlocks
-			memberProperties
+			memberPets
 			memberRank
 			memberPoints
 			memberLikes
@@ -74,7 +74,7 @@ export const UPDATE_MEMBER = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberProperties
+			memberPets
 			memberRank
 			memberArticles
 			memberPoints
@@ -105,7 +105,7 @@ export const LIKE_TARGET_MEMBER = gql`
 			memberDesc
 			memberWarnings
 			memberBlocks
-			memberProperties
+			memberPets
 			memberRank
 			memberPoints
 			memberLikes
@@ -119,7 +119,7 @@ export const LIKE_TARGET_MEMBER = gql`
 `;
 
 /**************************
- *        PROPERTY        *
+ *        PET        *
  *************************/
 
 export const CREATE_PET = gql`
@@ -404,7 +404,7 @@ export const UPDATE_NOTIFICATIONS = gql`
 			_id
 			authorId
 			receiverId
-			propertyId
+			petId
 			articleId
 			notificationType
 			notificationStatus
@@ -414,7 +414,7 @@ export const UPDATE_NOTIFICATIONS = gql`
 			createdAt
 			updatedAt
 			authorNick
-			propertyTitle
+			petTitle
 			articleTitle
 		}
 	}

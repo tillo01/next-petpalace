@@ -2,43 +2,43 @@ import React, { useState } from 'react';
 import { NextPage } from 'next';
 import { Pagination, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyCard } from './PropertyCard';
+import { PetCard } from './PetCard';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
-import { Property } from '../../types/property/property';
-import { AgentPropertiesInquiry } from '../../types/property/property.input';
+import { Pet } from '../../types/pet/pet';
+import { AgentPetsInquiry } from '../../types/pet/pet.input';
 import { T } from '../../types/common';
-import { PetStatus } from '../../enums/property.enum';
+import { PetStatus } from '../../enums/pet.enum';
 import { userVar } from '../../../apollo/store';
 import { useRouter } from 'next/router';
-import { UPDATE_PROPERTY } from '../../../apollo/user/mutation';
-import { GET_AGENT_PROPERTIES } from '../../../apollo/user/query';
+import { UPDATE_PET } from '../../../apollo/user/mutation';
+import { GET_SELLER_PETS } from '../../../apollo/user/query';
 import { sweetConfirmAlert, sweetErrorHandling } from '../../sweetAlert';
 
-const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
+const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
-	const [searchFilter, setSearchFilter] = useState<AgentPropertiesInquiry>(initialInput);
-	const [agentProperties, setAgentProperties] = useState<Property[]>([]);
+	const [searchFilter, setSearchFilter] = useState<AgentPetsInquiry>(initialInput);
+	const [sellerPets, setAgentPets] = useState<Pet[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const user = useReactiveVar(userVar);
 	const router = useRouter();
 
 	/** APOLLO REQUESTS **/
 
-	const [updateProperty] = useMutation(UPDATE_PROPERTY);
+	const [updatePet] = useMutation(UPDATE_PET);
 	const {
-		loading: getAgentProperties,
-		data: getAgentPropertiesData,
-		error: getAgentPropertiesError,
+		loading: getAgentPets,
+		data: getAgentPetsData,
+		error: getAgentPetsError,
 		refetch: getAgentPropertieRefetch,
-	} = useQuery(GET_AGENT_PROPERTIES, {
+	} = useQuery(GET_SELLER_PETS, {
 		fetchPolicy: 'network-only',
 		variables: {
 			input: searchFilter,
 		},
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentProperties(data?.getAgentProperties?.list);
-			setTotal(data?.setAgentProperties?.metaCounter[0]?.total ?? 0);
+			setAgentPets(data?.getAgentPets?.list);
+			setTotal(data?.setAgentPets?.metaCounter[0]?.total ?? 0);
 		},
 	});
 
@@ -48,17 +48,17 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 	};
 
 	const changeStatusHandler = (value: PetStatus) => {
-		setSearchFilter({ ...searchFilter, search: { propertyStatus: value } });
+		setSearchFilter({ ...searchFilter, search: { petStatus: value } });
 	};
 	// DELETE HANDLER
-	const deletePropertyHandler = async (id: string) => {
+	const deletePetHandler = async (id: string) => {
 		try {
-			if (await sweetConfirmAlert('Are you sure to delete this property')) {
-				await updateProperty({
+			if (await sweetConfirmAlert('Are you sure to delete this pet')) {
+				await updatePet({
 					variables: {
 						input: {
 							_id: id,
-							propertyStatus: 'DELETE',
+							petStatus: 'DELETE',
 						},
 					},
 				});
@@ -70,14 +70,14 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 		}
 	};
 
-	const updatePropertyHandler = async (status: string, id: string) => {
+	const updatePetHandler = async (status: string, id: string) => {
 		try {
 			if (await sweetConfirmAlert(`Are you sure to change ${status} status`)) {
-				await updateProperty({
+				await updatePet({
 					variables: {
 						input: {
 							_id: id,
-							propertyStatus: status,
+							petStatus: status,
 						},
 					},
 				});
@@ -88,32 +88,32 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 		}
 	};
 
-	if (user?.memberType !== 'AGENT') {
+	if (user?.memberType !== 'SELLER') {
 		router.back();
 	}
 
 	if (device === 'mobile') {
-		return <div>NESTAR PROPERTIES MOBILE</div>;
+		return <div>NESTAR PETS MOBILE</div>;
 	} else {
 		return (
-			<div id="my-property-page">
+			<div id="my-pet-page">
 				<Stack className="main-title-box">
 					<Stack className="right-box">
-						<Typography className="main-title">My Properties</Typography>
+						<Typography className="main-title">My Pets</Typography>
 						<Typography className="sub-title">We are glad to see you again!</Typography>
 					</Stack>
 				</Stack>
-				<Stack className="property-list-box">
+				<Stack className="pet-list-box">
 					<Stack className="tab-name-box">
 						<Typography
 							onClick={() => changeStatusHandler(PetStatus.ACTIVE)}
-							className={searchFilter.search.propertyStatus === 'ACTIVE' ? 'active-tab-name' : 'tab-name'}
+							className={searchFilter.search.petStatus === 'ACTIVE' ? 'active-tab-name' : 'tab-name'}
 						>
 							On Sale
 						</Typography>
 						<Typography
 							onClick={() => changeStatusHandler(PetStatus.SOLD)}
-							className={searchFilter.search.propertyStatus === 'SOLD' ? 'active-tab-name' : 'tab-name'}
+							className={searchFilter.search.petStatus === 'SOLD' ? 'active-tab-name' : 'tab-name'}
 						>
 							On Sold
 						</Typography>
@@ -124,29 +124,21 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 							<Typography className="title-text">Date Published</Typography>
 							<Typography className="title-text">Status</Typography>
 							<Typography className="title-text">View</Typography>
-							{searchFilter.search.propertyStatus === 'ACTIVE' && (
-								<Typography className="title-text">Action</Typography>
-							)}
+							{searchFilter.search.petStatus === 'ACTIVE' && <Typography className="title-text">Action</Typography>}
 						</Stack>
 
-						{agentProperties?.length === 0 ? (
+						{sellerPets?.length === 0 ? (
 							<div className={'no-data'}>
 								<img src="/img/icons/icoAlert.svg" alt="" />
-								<p>No Property found!</p>
+								<p>No Pet found!</p>
 							</div>
 						) : (
-							agentProperties.map((property: Property) => {
-								return (
-									<PropertyCard
-										property={property}
-										deletePropertyHandler={deletePropertyHandler}
-										updatePropertyHandler={updatePropertyHandler}
-									/>
-								);
+							sellerPets.map((pet: Pet) => {
+								return <PetCard pet={pet} deletePetHandler={deletePetHandler} updatePetHandler={updatePetHandler} />;
 							})
 						)}
 
-						{agentProperties.length !== 0 && (
+						{sellerPets.length !== 0 && (
 							<Stack className="pagination-config">
 								<Stack className="pagination-box">
 									<Pagination
@@ -158,7 +150,7 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 									/>
 								</Stack>
 								<Stack className="total-result">
-									<Typography>{total} property available</Typography>
+									<Typography>{total} pet available</Typography>
 								</Stack>
 							</Stack>
 						)}
@@ -169,15 +161,15 @@ const MyProperties: NextPage = ({ initialInput, ...props }: any) => {
 	}
 };
 
-MyProperties.defaultProps = {
+MyPets.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 5,
 		sort: 'createdAt',
 		search: {
-			propertyStatus: 'ACTIVE',
+			petStatus: 'ACTIVE',
 		},
 	},
 };
 
-export default MyProperties;
+export default MyPets;

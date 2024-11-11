@@ -4,9 +4,9 @@ import { gql } from '@apollo/client';
  *         MEMBER         *
  *************************/
 
-export const GET_AGENTS = gql`
-	query GetAgents($input: AgentsInquiry!) {
-		getAgents(input: $input) {
+export const GET_SELLERS = gql`
+	query GetSellers($input: SellersInquiry!) {
+		getSellers(input: $input) {
 			list {
 				_id
 				memberType
@@ -20,7 +20,7 @@ export const GET_AGENTS = gql`
 				memberDesc
 				memberWarnings
 				memberBlocks
-				memberProperties
+				memberPets
 				memberRank
 				memberPoints
 				memberLikes
@@ -55,7 +55,7 @@ export const GET_MEMBER = gql(`
         memberImage
         memberAddress
         memberDesc
-        memberProperties
+        memberPets
         memberArticles
         memberPoints
         memberLikes
@@ -79,7 +79,7 @@ export const GET_MEMBER = gql(`
 `);
 
 /**************************
- *        PROPERTY        *
+ *        PET        *
  *************************/
 
 export const GET_PET = gql`
@@ -321,7 +321,7 @@ export const GET_BOARD_ARTICLE = gql`
 				memberDesc
 				memberWarnings
 				memberBlocks
-				memberProperties
+				memberPets
 				memberRank
 				memberPoints
 				memberLikes
@@ -373,7 +373,7 @@ export const GET_BOARD_ARTICLES = gql`
 					memberDesc
 					memberWarnings
 					memberBlocks
-					memberProperties
+					memberPets
 					memberRank
 					memberPoints
 					memberLikes
@@ -419,7 +419,7 @@ export const GET_COMMENTS = gql`
 					memberDesc
 					memberWarnings
 					memberBlocks
-					memberProperties
+					memberPets
 					memberRank
 					memberPoints
 					memberLikes
@@ -470,7 +470,7 @@ export const GET_MEMBER_FOLLOWERS = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberProperties
+					memberPets
 					memberArticles
 					memberPoints
 					memberLikes
@@ -513,7 +513,7 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 					memberImage
 					memberAddress
 					memberDesc
-					memberProperties
+					memberPets
 					memberArticles
 					memberPoints
 					memberLikes
@@ -554,7 +554,7 @@ export const GET_NOTIFICATIONS = gql`
 				_id
 				authorId
 				receiverId
-				propertyId
+				petId
 				articleId
 				notificationType
 				notificationStatus
@@ -564,7 +564,7 @@ export const GET_NOTIFICATIONS = gql`
 				createdAt
 				updatedAt
 				authorNick
-				propertyTitle
+				petTitle
 				articleTitle
 				commentContent
 				commentRefId

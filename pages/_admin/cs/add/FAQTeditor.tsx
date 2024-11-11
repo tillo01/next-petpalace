@@ -20,7 +20,7 @@ const FAQTeditor = () => {
 		router = useRouter();
 	const [noticeCategory, setNoticeCategory] = useState<NoticeCategory>(NoticeCategory.NOTICE);
 	const [noticeStatus, setNoticeStatus] = useState<NoticeStatus>(NoticeStatus.HOLD);
-	const [noticeType, setNoticeType] = useState<NoticeType>(NoticeType.PROPERTY);
+	const [noticeType, setNoticeType] = useState<NoticeType>(NoticeType.PET);
 
 	/** APOLLO REQUESTS **/
 	const [createFaqQuestions] = useMutation(CREATE_FAQ_QUESTIONS);
@@ -136,15 +136,15 @@ const FAQTeditor = () => {
 							displayEmpty
 							inputProps={{ 'aria-label': 'Without label' }}
 						>
-							<MenuItem value={NoticeType.PROPERTY}>
-								<span>PROPERTY</span>
+							<MenuItem value={NoticeType.PET}>
+								<span>PET</span>
 							</MenuItem>
 							<MenuItem value={NoticeType.COMMUNITY}>
 								<span>COMMUNITY</span>
 							</MenuItem>
 
-							<MenuItem value={NoticeType.FORAGENTS}>
-								<span>FORAGENTS</span>
+							<MenuItem value={NoticeType.FORSELLERS}>
+								<span>FORSELLERS</span>
 							</MenuItem>
 							<MenuItem value={NoticeType.FORBUYERS}>
 								<span>FORBUYERS</span>

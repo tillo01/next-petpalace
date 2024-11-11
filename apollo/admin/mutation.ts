@@ -17,7 +17,7 @@ export const UPDATE_MEMBER_BY_ADMIN = gql`
 			memberImage
 			memberAddress
 			memberDesc
-			memberProperties
+			memberPets
 			memberRank
 			memberArticles
 			memberPoints
@@ -34,7 +34,7 @@ export const UPDATE_MEMBER_BY_ADMIN = gql`
 `;
 
 /**************************
- *        PROPERTY        *
+ *        PET        *
  *************************/
 
 export const UPDATE_PET_BY_ADMIN = gql`

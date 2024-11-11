@@ -179,12 +179,12 @@ export default function NotifIcon() {
 										</Typography>
 									</>
 								);
-							} else if (notif.propertyTitle) {
+							} else if (notif.petTitle) {
 								target = (
 									<>
-										on your property:{' '}
+										on your pet:{' '}
 										<Typography component="span" fontWeight="bold">
-											{notif.propertyTitle}
+											{notif.petTitle}
 										</Typography>
 									</>
 								);
@@ -205,15 +205,15 @@ export default function NotifIcon() {
 									</Typography>
 								</>
 							);
-						} else if (notif.propertyTitle) {
+						} else if (notif.petTitle) {
 							messageContent = (
 								<>
 									<Typography component="span" fontWeight="bold">
 										{notif.authorNick}
 									</Typography>{' '}
-									liked a property you posted:{' '}
+									liked a pet you posted:{' '}
 									<Typography component="span" fontWeight="bold">
-										{notif.propertyTitle}
+										{notif.petTitle}
 									</Typography>
 								</>
 							);

@@ -246,8 +246,8 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 									<MenuItem value={'ALL'} onClick={() => searchTypeHandler('ALL')}>
 										ALL
 									</MenuItem>
-									<MenuItem value={'PROPERTY'} onClick={() => searchTypeHandler('PROPERTY')}>
-										PROPERTY
+									<MenuItem value={'PET'} onClick={() => searchTypeHandler('PET')}>
+										PET
 									</MenuItem>
 									<MenuItem value={'FORBUYERS'} onClick={() => searchTypeHandler('FORBUYERS')}>
 										FORBUYERS
@@ -255,8 +255,8 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 									<MenuItem value={'PAYMENT'} onClick={() => searchTypeHandler('PAYMENT')}>
 										PAYMENT
 									</MenuItem>
-									<MenuItem value={'FORAGENTS'} onClick={() => searchTypeHandler('FORAGENTS')}>
-										FORAGENTS
+									<MenuItem value={'FORSELLERS'} onClick={() => searchTypeHandler('FORSELLERS')}>
+										FORSELLERS
 									</MenuItem>
 									<MenuItem value={'COMMUNITY'} onClick={() => searchTypeHandler('COMMUNITY')}>
 										COMMUNITY

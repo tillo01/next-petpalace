@@ -32,8 +32,8 @@ const AdminMenuList = (props: any) => {
 		if (device === 'mobile') setMobileLayout(true);
 
 		switch (pathnames[1]) {
-			case 'properties':
-				setClickMenu(['Properties']);
+			case 'pets':
+				setClickMenu(['Pets']);
 				break;
 			case 'community':
 				setClickMenu(['Community']);
@@ -86,9 +86,9 @@ const AdminMenuList = (props: any) => {
 			on_click: () => subMenuChangeHandler('Users'),
 		},
 		{
-			title: 'Properties',
+			title: 'Pets',
 			icon: <UserCircleGear size={20} color="#bdbdbd" weight="fill" />,
-			on_click: () => subMenuChangeHandler('Properties'),
+			on_click: () => subMenuChangeHandler('Pets'),
 		},
 		{
 			title: 'Community',
@@ -104,7 +104,7 @@ const AdminMenuList = (props: any) => {
 
 	const sub_menu_set: any = {
 		Users: [{ title: 'List', url: '/_admin/users' }],
-		Properties: [{ title: 'List', url: '/_admin/properties' }],
+		Pets: [{ title: 'List', url: '/_admin/pets' }],
 		Community: [{ title: 'List', url: '/_admin/community' }],
 		Cs: [
 			{ title: 'FAQ', url: '/_admin/cs/faq' },
