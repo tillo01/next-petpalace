@@ -100,13 +100,13 @@ const PropertyCard = (props: PropertyCardType) => {
 								sx={{ fontWeight: 500, fontSize: '13px' }}
 								className={property.propertyRent ? '' : 'disabled-type'}
 							>
-								Rent
+								Adoption
 							</Typography>
 							<Typography
 								sx={{ fontWeight: 500, fontSize: '13px' }}
 								className={property.propertyBarter ? '' : 'disabled-type'}
 							>
-								Barter
+								Sell
 							</Typography>
 						</Stack>
 						{!recentlyVisited && (

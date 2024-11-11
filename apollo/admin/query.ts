@@ -42,55 +42,34 @@ export const GET_ALL_MEMBERS_BY_ADMIN = gql`
  *        PROPERTY        *
  *************************/
 
-export const GET_ALL_PROPERTIES_BY_ADMIN = gql`
-	query GetAllPropertiesByAdmin($input: AllPropertiesInquiry!) {
-		getAllPropertiesByAdmin(input: $input) {
+export const GET_ALL_PETS_BY_ADMIN = gql`
+	query GetAllPetsByAdmin($input: AllPetsInquiry!) {
+		getAllPetsByAdmin(input: $input) {
 			list {
 				_id
-				propertyType
-				propertyStatus
-				propertyLocation
-				propertyAddress
-				propertyTitle
-				propertyPrice
-				propertySquare
-				propertyBeds
-				propertyRooms
-				propertyViews
-				propertyLikes
-				propertyImages
-				propertyDesc
-				propertyBarter
-				propertyRent
+				petType
+				petStatus
+				petLocation
+				petAddress
+				petTitle
+				petPrice
+				petWeight
+				petHeight
+				petAges
+				petViews
+				petLikes
+				petComments
+				petRank
+				petImages
+				petDesc
+				petSell
+				petAdoption
 				memberId
 				soldAt
 				deletedAt
-				constructedAt
+				bornAt
 				createdAt
 				updatedAt
-				memberData {
-					_id
-					memberType
-					memberStatus
-					memberAuthType
-					memberPhone
-					memberNick
-					memberFullName
-					memberImage
-					memberAddress
-					memberDesc
-					memberWarnings
-					memberBlocks
-					memberProperties
-					memberRank
-					memberPoints
-					memberLikes
-					memberViews
-					deletedAt
-					createdAt
-					updatedAt
-					accessToken
-				}
 			}
 			metaCounter {
 				total

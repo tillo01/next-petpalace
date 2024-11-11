@@ -13,7 +13,7 @@ import {
 	IconButton,
 } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { PropertyLocation, PropertyType } from '../../enums/property.enum';
+import { PetLocation, PetType } from '../../enums/property.enum';
 import { PropertiesInquiry } from '../../types/property/property.input';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -38,8 +38,8 @@ const Filter = (props: FilterType) => {
 	const { searchFilter, setSearchFilter, initialInput } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [propertyLocation, setPropertyLocation] = useState<PropertyLocation[]>(Object.values(PropertyLocation));
-	const [propertyType, setPropertyType] = useState<PropertyType[]>(Object.values(PropertyType));
+	const [propertyLocation, setPetLocation] = useState<PetLocation[]>(Object.values(PetLocation));
+	const [propertyType, setPetType] = useState<PetType[]>(Object.values(PetType));
 	const [searchText, setSearchText] = useState<string>('');
 	const [showMore, setShowMore] = useState<boolean>(false);
 
@@ -569,7 +569,7 @@ const Filter = (props: FilterType) => {
 										color="default"
 										size="small"
 										value={location}
-										checked={(searchFilter?.search?.locationList || []).includes(location as PropertyLocation)}
+										checked={(searchFilter?.search?.locationList || []).includes(location as PetLocation)}
 										onChange={propertyLocationSelectHandler}
 									/>
 									<label htmlFor={location} style={{ cursor: 'pointer' }}>
@@ -591,7 +591,7 @@ const Filter = (props: FilterType) => {
 								size="small"
 								value={type}
 								onChange={propertyTypeSelectHandler}
-								checked={(searchFilter?.search?.typeList || []).includes(type as PropertyType)}
+								checked={(searchFilter?.search?.typeList || []).includes(type as PetType)}
 							/>
 							<label style={{ cursor: 'pointer' }}>
 								<Typography className="property_type">{type}</Typography>

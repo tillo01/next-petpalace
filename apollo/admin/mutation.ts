@@ -37,61 +37,131 @@ export const UPDATE_MEMBER_BY_ADMIN = gql`
  *        PROPERTY        *
  *************************/
 
-export const UPDATE_PROPERTY_BY_ADMIN = gql`
-	mutation UpdatePropertyByAdmin($input: PropertyUpdate!) {
-		updatePropertyByAdmin(input: $input) {
+export const UPDATE_PET_BY_ADMIN = gql`
+	mutation UpdatePet($input: PetUpdate!) {
+		updatePet(input: $input) {
 			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
+			petType
+			petStatus
+			petLocation
+			petAddress
+			petTitle
+			petPrice
+			petWeight
+			petHeight
+			petAges
+			petViews
+			petLikes
+			petComments
+			petRank
+			petImages
+			petDesc
+			petSell
+			petAdoption
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
+			bornAt
 			createdAt
 			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberPets
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
 		}
 	}
 `;
 
-export const REMOVE_PROPERTY_BY_ADMIN = gql`
-	mutation RemovePropertyByAdmin($input: String!) {
-		removePropertyByAdmin(propertyId: $input) {
-			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
-			memberId
-			soldAt
-			deletedAt
-			constructedAt
-			createdAt
-			updatedAt
-		}
+export const REMOVE_PET_BY_ADMIN = gql`
+	mutation RemovePetByAdmin($input:String!) {
+    removePetByAdmin(petId: $input) {
+        _id
+        petType
+        petStatus
+        petLocation
+        petAddress
+        petTitle
+        petPrice
+        petWeight
+        petHeight
+        petAges
+        petViews
+        petLikes
+        petComments
+        petRank
+        petImages
+        petDesc
+        petSell
+        petAdoption
+        memberId
+        soldAt
+        deletedAt
+        bornAt
+        createdAt
+        updatedAt
+        memberData {
+            _id
+            memberType
+            memberStatus
+            memberAuthType
+            memberPhone
+            memberNick
+            memberFullName
+            memberImage
+            memberAddress
+            memberDesc
+            memberPets
+            memberArticles
+            memberFollowers
+            memberFollowings
+            memberPoints
+            memberLikes
+            memberViews
+            memberComments
+            memberRank
+            memberWarnings
+            memberBlocks
+            deletedAt
+            createdAt
+            updatedAt
+            accessToken
+        }
+        meLiked {
+            memberId
+            likeRefId
+            myFavorite
+        }
+    }
+}
+
 	}
 `;
 

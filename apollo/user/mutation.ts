@@ -122,87 +122,157 @@ export const LIKE_TARGET_MEMBER = gql`
  *        PROPERTY        *
  *************************/
 
-export const CREATE_PROPERTY = gql`
-	mutation CreateProperty($input: PropertyInput!) {
-		createProperty(input: $input) {
+export const CREATE_PET = gql`
+	mutation CreatePet($input: PetInput!) {
+		createPet(input: $input) {
 			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
+			petType
+			petStatus
+			petLocation
+			petAddress
+			petTitle
+			petPrice
+			petWeight
+			petHeight
+			petAges
+			petViews
+			petLikes
+			petComments
+			petRank
+			petImages
+			petDesc
+			petSell
+			petAdoption
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
+			bornAt
 			createdAt
 			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberPets
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
 		}
 	}
 `;
 
-export const UPDATE_PROPERTY = gql`
-	mutation UpdateProperty($input: PropertyUpdate!) {
-		updateProperty(input: $input) {
+export const UPDATE_PET = gql`
+	mutation UpdatePet($input: PetUpdate!) {
+		updatePet(input: $input) {
 			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
+			petType
+			petStatus
+			petLocation
+			petAddress
+			petTitle
+			petPrice
+			petWeight
+			petHeight
+			petAges
+			petViews
+			petLikes
+			petComments
+			petRank
+			petImages
+			petDesc
+			petSell
+			petAdoption
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
+			bornAt
 			createdAt
 			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberPets
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
 		}
 	}
 `;
 
-export const LIKE_TARGET_PROPERTY = gql`
-	mutation LikeTargetProperty($input: String!) {
-		likeTargetProperty(propertyId: $input) {
+export const LIKE_TARGET_PET = gql`
+	mutation LikeTargetPet($input: String!) {
+		likeTargetPet(petId: $input) {
 			_id
-			propertyType
-			propertyStatus
-			propertyLocation
-			propertyAddress
-			propertyTitle
-			propertyPrice
-			propertySquare
-			propertyBeds
-			propertyRooms
-			propertyViews
-			propertyLikes
-			propertyImages
-			propertyDesc
-			propertyBarter
-			propertyRent
+			petType
+			petStatus
+			petLocation
+			petAddress
+			petTitle
+			petPrice
+			petWeight
+			petHeight
+			petAges
+			petViews
+			petLikes
+			petComments
+			petRank
+			petImages
+			petDesc
+			petSell
+			petAdoption
 			memberId
 			soldAt
 			deletedAt
-			constructedAt
+			bornAt
 			createdAt
 			updatedAt
 		}
