@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Stack, Box, Modal, Divider, Button } from '@mui/material';
+import { Stack, Box, Modal, Divider, Button, OutlinedInput } from '@mui/material';
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
@@ -28,6 +28,19 @@ const MenuProps = {
 	PaperProps: {
 		style: {
 			maxHeight: '200px',
+		},
+		sx: {
+			'& .MuiMenuItem-root': {
+				'&.Mui-selected': {
+					backgroundColor: 'transparent',
+					'&:hover': {
+						backgroundColor: '#7ed957',
+					},
+				},
+				'&:hover': {
+					backgroundColor: '#f5f5f5',
+				},
+			},
 		},
 	},
 };
@@ -333,13 +346,29 @@ const Advanced = (props: HeaderFilterProps) => {
 										</div>
 									</div>
 									<div className={'box'}>
-										<span>options</span>
+										<span>Options</span>
 										<div className={'inside'}>
-											<FormControl>
+											<FormControl
+												variant="outlined"
+												sx={{
+													'& .MuiOutlinedInput-root': {
+														'& fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&:hover fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&.Mui-focused fieldset': {
+															borderColor: '#7ed957',
+														},
+													},
+												}}
+											>
 												<Select
 													value={optionCheck}
 													onChange={petOptionSelectHandler}
 													displayEmpty
+													input={<OutlinedInput />}
 													inputProps={{ 'aria-label': 'Without label' }}
 												>
 													<MenuItem value={'all'}>All Options</MenuItem>
@@ -354,7 +383,23 @@ const Advanced = (props: HeaderFilterProps) => {
 									<div className={'box'}>
 										<span>Year Born</span>
 										<div className={'inside space-between align-center'}>
-											<FormControl sx={{ width: '122px' }}>
+											<FormControl
+												variant="outlined"
+												sx={{
+													'& .MuiOutlinedInput-root': {
+														'& fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&:hover fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&.Mui-focused fieldset': {
+															borderColor: '#7ed957',
+														},
+													},
+													width: '122px',
+												}}
+											>
 												<Select
 													value={yearCheck.start.toString()}
 													onChange={yearStartChangeHandler}
@@ -370,7 +415,23 @@ const Advanced = (props: HeaderFilterProps) => {
 												</Select>
 											</FormControl>
 											<div className={'minus-line'}></div>
-											<FormControl sx={{ width: '122px' }}>
+											<FormControl
+												variant="outlined"
+												sx={{
+													'& .MuiOutlinedInput-root': {
+														'& fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&:hover fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&.Mui-focused fieldset': {
+															borderColor: '#7ed957',
+														},
+													},
+													width: '122px',
+												}}
+											>
 												<Select
 													value={yearCheck.end.toString()}
 													onChange={yearEndChangeHandler}
@@ -393,7 +454,23 @@ const Advanced = (props: HeaderFilterProps) => {
 									<div className={'box'}>
 										<span>Weight</span>
 										<div className={'inside space-between align-center'}>
-											<FormControl sx={{ width: '122px' }}>
+											<FormControl
+												variant="outlined"
+												sx={{
+													'& .MuiOutlinedInput-root': {
+														'& fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&:hover fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&.Mui-focused fieldset': {
+															borderColor: '#7ed957',
+														},
+													},
+													width: '122px',
+												}}
+											>
 												<Select
 													value={searchFilter?.search?.weightRange?.start}
 													onChange={(e: any) => petWeightHandler(e, 'start')}
@@ -411,7 +488,23 @@ const Advanced = (props: HeaderFilterProps) => {
 												</Select>
 											</FormControl>
 											<div className={'minus-line'}></div>
-											<FormControl sx={{ width: '122px' }}>
+											<FormControl
+												variant="outlined"
+												sx={{
+													'& .MuiOutlinedInput-root': {
+														'& fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&:hover fieldset': {
+															borderColor: '#7ed957',
+														},
+														'&.Mui-focused fieldset': {
+															borderColor: '#7ed957',
+														},
+													},
+													width: '122px',
+												}}
+											>
 												<Select
 													value={searchFilter?.search?.weightRange?.end}
 													onChange={(e: any) => petWeightHandler(e, 'end')}
