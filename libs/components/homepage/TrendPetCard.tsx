@@ -64,11 +64,11 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 					<p className={'desc'}>{pet.petDesc ?? 'no description'}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+							<img src="/img/icons/age.svg" alt="" />
 							<span>{pet.petHeight} weight</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
+							<img src="/img/icons/height.svg" alt="" />
 							<span>{pet.petAges} height</span>
 						</div>
 						<div>

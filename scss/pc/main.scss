@@ -402,7 +402,7 @@ body::-webkit-scrollbar {
 						}
 					}
 				}
-				.filter-rooms {
+				.filter-heights {
 					position: absolute;
 					padding: 10px 92px;
 					width: 350px;
@@ -964,7 +964,7 @@ body::-webkit-scrollbar {
 					&.align-center {
 						align-items: center;
 					}
-					div.room {
+					div.height {
 						width: 46px;
 						height: 46px;
 						display: flex;
@@ -985,7 +985,7 @@ body::-webkit-scrollbar {
 							border-radius: 0px 12px 12px 0px;
 						}
 						&.active {
-							border: 2px solid #181a20;
+							border: 2px solid #7ed957;
 						}
 					}
 					select {

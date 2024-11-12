@@ -51,12 +51,12 @@ const TopPetCard = (props: TopPetCardProps) => {
 					<p className={'desc'}>{pet?.petAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{pet?.petHeight} bed</span>
+							<img src="/img/icons/age.svg" alt="" />
+							<span>{pet?.petHeight} age</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{pet?.petAges} rooms</span>
+							<img src="/img/icons/height.svg" alt="" />
+							<span>{pet?.petAges} heights</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
@@ -67,7 +67,7 @@ const TopPetCard = (props: TopPetCardProps) => {
 					<div className={'bott'}>
 						<p>
 							{' '}
-							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
+							{pet.petAdoption ? 'Adoption' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Sell' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
@@ -114,12 +114,12 @@ const TopPetCard = (props: TopPetCardProps) => {
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
 
-							<span>{pet?.petHeight} bed</span>
+							<span>{pet?.petHeight} age</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
 
-							<span>{pet?.petAges} rooms</span>
+							<span>{pet?.petAges} heights</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
@@ -130,7 +130,7 @@ const TopPetCard = (props: TopPetCardProps) => {
 					<div className={'bott'}>
 						<p>
 							{' '}
-							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
+							{pet.petAdoption ? 'Adoption' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Sell' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>

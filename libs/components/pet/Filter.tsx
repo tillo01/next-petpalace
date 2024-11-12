@@ -79,8 +79,8 @@ const Filter = (props: FilterType) => {
 				.then();
 		}
 
-		if (searchFilter?.search?.roomsList?.length == 0) {
-			delete searchFilter.search.roomsList;
+		if (searchFilter?.search?.heightsList?.length == 0) {
+			delete searchFilter.search.heightsList;
 			router
 				.push(
 					`/pet?input=${JSON.stringify({
@@ -111,8 +111,8 @@ const Filter = (props: FilterType) => {
 				.then();
 		}
 
-		if (searchFilter?.search?.bedsList?.length == 0) {
-			delete searchFilter.search.bedsList;
+		if (searchFilter?.search?.agesList?.length == 0) {
+			delete searchFilter.search.agesList;
 			router
 				.push(
 					`/pet?input=${JSON.stringify({
@@ -229,24 +229,24 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const petRoomSelectHandler = useCallback(
+	const petHeightSelectHandler = useCallback(
 		async (number: Number) => {
 			try {
 				if (number !== 0) {
-					if (searchFilter?.search?.roomsList?.includes(number)) {
+					if (searchFilter?.search?.heightsList?.includes(number)) {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
+									heightsList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									roomsList: searchFilter?.search?.roomsList?.filter((item: Number) => item !== number),
+									heightsList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							{ scroll: false },
@@ -255,17 +255,17 @@ const Filter = (props: FilterType) => {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
+								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.heightsList || []), number] },
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, roomsList: [...(searchFilter?.search?.roomsList || []), number] },
+								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.heightsList || []), number] },
 							})}`,
 							{ scroll: false },
 						);
 					}
 				} else {
-					delete searchFilter?.search.roomsList;
+					delete searchFilter?.search.heightsList;
 					setSearchFilter({ ...searchFilter });
 
 					await router.push(
@@ -285,9 +285,9 @@ const Filter = (props: FilterType) => {
 					);
 				}
 
-				console.log('petRoomSelectHandler:', number);
+				console.log('petHeightSelectHandler:', number);
 			} catch (err: any) {
-				console.log('ERROR, petRoomSelectHandler:', err);
+				console.log('ERROR, petHeightSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -338,24 +338,24 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const petBedSelectHandler = useCallback(
+	const petAgeSelectHandler = useCallback(
 		async (number: Number) => {
 			try {
 				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
+					if (searchFilter?.search?.agesList?.includes(number)) {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							{ scroll: false },
@@ -364,17 +364,17 @@ const Filter = (props: FilterType) => {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							{ scroll: false },
 						);
 					}
 				} else {
-					delete searchFilter?.search.bedsList;
+					delete searchFilter?.search.agesList;
 					setSearchFilter({ ...searchFilter });
 					await router.push(
 						`/pet?input=${JSON.stringify({
@@ -393,9 +393,9 @@ const Filter = (props: FilterType) => {
 					);
 				}
 
-				console.log('petBedSelectHandler:', number);
+				console.log('petAgeSelectHandler:', number);
 			} catch (err: any) {
-				console.log('ERROR, petBedSelectHandler:', err);
+				console.log('ERROR, petAgeSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -411,14 +411,14 @@ const Filter = (props: FilterType) => {
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
+							weightRange: { ...searchFilter.search.weightRange, start: value },
 						},
 					})}`,
 					`/pet?input=${JSON.stringify({
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, start: value },
+							weightRange: { ...searchFilter.search.weightRange, start: value },
 						},
 					})}`,
 					{ scroll: false },
@@ -429,14 +429,14 @@ const Filter = (props: FilterType) => {
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
+							weightRange: { ...searchFilter.search.weightRange, end: value },
 						},
 					})}`,
 					`/pet?input=${JSON.stringify({
 						...searchFilter,
 						search: {
 							...searchFilter.search,
-							squaresRange: { ...searchFilter.search.squaresRange, end: value },
+							weightRange: { ...searchFilter.search.weightRange, end: value },
 						},
 					})}`,
 					{ scroll: false },
@@ -604,59 +604,59 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: '12px 0 0 12px',
-									border: !searchFilter?.search?.roomsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+									border: !searchFilter?.search?.heightsList ? '2px solid #181A20' : '1px solid #b9b9b9',
 								}}
-								onClick={() => petRoomSelectHandler(0)}
+								onClick={() => petHeightSelectHandler(0)}
 							>
 								Any
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.roomsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.roomsList?.includes(1) ? undefined : 'none',
+									border: searchFilter?.search?.heightsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.heightsList?.includes(1) ? undefined : 'none',
 								}}
-								onClick={() => petRoomSelectHandler(1)}
+								onClick={() => petHeightSelectHandler(1)}
 							>
 								1
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.roomsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.roomsList?.includes(2) ? undefined : 'none',
+									border: searchFilter?.search?.heightsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.heightsList?.includes(2) ? undefined : 'none',
 								}}
-								onClick={() => petRoomSelectHandler(2)}
+								onClick={() => petHeightSelectHandler(2)}
 							>
 								2
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.roomsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.roomsList?.includes(3) ? undefined : 'none',
+									border: searchFilter?.search?.heightsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.heightsList?.includes(3) ? undefined : 'none',
 								}}
-								onClick={() => petRoomSelectHandler(3)}
+								onClick={() => petHeightSelectHandler(3)}
 							>
 								3
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.roomsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
-									borderRight: searchFilter?.search?.roomsList?.includes(4) ? undefined : 'none',
+									border: searchFilter?.search?.heightsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.heightsList?.includes(4) ? undefined : 'none',
+									borderRight: searchFilter?.search?.heightsList?.includes(4) ? undefined : 'none',
 								}}
-								onClick={() => petRoomSelectHandler(4)}
+								onClick={() => petHeightSelectHandler(4)}
 							>
 								4
 							</Button>
 							<Button
 								sx={{
 									borderRadius: '0 12px 12px 0',
-									border: searchFilter?.search?.roomsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									border: searchFilter?.search?.heightsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
 								}}
-								onClick={() => petRoomSelectHandler(5)}
+								onClick={() => petHeightSelectHandler(5)}
 							>
 								5+
 							</Button>
@@ -668,60 +668,60 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: '12px 0 0 12px',
-									border: !searchFilter?.search?.bedsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+									border: !searchFilter?.search?.agesList ? '2px solid #181A20' : '1px solid #b9b9b9',
 								}}
-								onClick={() => petBedSelectHandler(0)}
+								onClick={() => petAgeSelectHandler(0)}
 							>
 								Any
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.bedsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.bedsList?.includes(1) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(1) ? undefined : 'none',
 								}}
-								onClick={() => petBedSelectHandler(1)}
+								onClick={() => petAgeSelectHandler(1)}
 							>
 								1
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.bedsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.bedsList?.includes(2) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(2) ? undefined : 'none',
 								}}
-								onClick={() => petBedSelectHandler(2)}
+								onClick={() => petAgeSelectHandler(2)}
 							>
 								2
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.bedsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.bedsList?.includes(3) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(3) ? undefined : 'none',
 								}}
-								onClick={() => petBedSelectHandler(3)}
+								onClick={() => petAgeSelectHandler(3)}
 							>
 								3
 							</Button>
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.bedsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.bedsList?.includes(4) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
 									// borderRight: false ? undefined : 'none',
 								}}
-								onClick={() => petBedSelectHandler(4)}
+								onClick={() => petAgeSelectHandler(4)}
 							>
 								4
 							</Button>
 							<Button
 								sx={{
 									borderRadius: '0 12px 12px 0',
-									border: searchFilter?.search?.bedsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.bedsList?.includes(5) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(5) ? undefined : 'none',
 								}}
-								onClick={() => petBedSelectHandler(5)}
+								onClick={() => petAgeSelectHandler(5)}
 							>
 								5+
 							</Button>
@@ -732,7 +732,7 @@ const Filter = (props: FilterType) => {
 					<Typography className={'title'}>Options</Typography>
 					<Stack className={'input-box'}>
 						<Checkbox
-							id={'Barter'}
+							id={'Sell'}
 							className="pet-checkbox"
 							size="small"
 							value={'petSell'}
@@ -740,13 +740,13 @@ const Filter = (props: FilterType) => {
 							onChange={petOptionSelectHandler}
 							color="success"
 						/>
-						<label htmlFor={'Barter'} style={{ cursor: 'pointer' }}>
+						<label htmlFor={'Sell'} style={{ cursor: 'pointer' }}>
 							<Typography className="propert-type">Sell</Typography>
 						</label>
 					</Stack>
 					<Stack className={'input-box'}>
 						<Checkbox
-							id={'Rent'}
+							id={'Adoption'}
 							className="pet-checkbox"
 							size="small"
 							value={'petAdoption'}
@@ -754,7 +754,7 @@ const Filter = (props: FilterType) => {
 							onChange={petOptionSelectHandler}
 							color={'default'}
 						/>
-						<label htmlFor={'Rent'} style={{ cursor: 'pointer' }}>
+						<label htmlFor={'Adoption'} style={{ cursor: 'pointer' }}>
 							<Typography className="propert-type">Adoption</Typography>
 						</label>
 					</Stack>
@@ -762,25 +762,25 @@ const Filter = (props: FilterType) => {
 				<Stack className={''}>
 					<Stack className={'find-your-home'} mb={'30px'}>
 						<Typography className={'title'}>Weight</Typography>
-						<Stack className="square-year-input">
+						<Stack className="weight-year-input">
 							<FormControl>
 								<InputLabel id="demo-simple-select-label">Min</InputLabel>
 								<Select
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
 									color="success"
-									value={searchFilter?.search?.squaresRange?.start ?? 0}
+									value={searchFilter?.search?.weightRange?.start ?? 0}
 									label="Min"
 									onChange={(e: any) => petWeightHandler(e, 'start')}
 									MenuProps={MenuProps}
 								>
-									{petWeight.map((square: number) => (
+									{petWeight.map((weight: number) => (
 										<MenuItem
-											value={square}
-											disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-											key={square}
+											value={weight}
+											disabled={(searchFilter?.search?.weightRange?.end || 0) < weight}
+											key={weight}
 										>
-											{square}
+											{weight}
 										</MenuItem>
 									))}
 								</Select>
@@ -792,18 +792,18 @@ const Filter = (props: FilterType) => {
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
 									color="success"
-									value={searchFilter?.search?.squaresRange?.end ?? 500}
+									value={searchFilter?.search?.weightRange?.end ?? 500}
 									label="Max"
 									onChange={(e: any) => petWeightHandler(e, 'end')}
 									MenuProps={MenuProps}
 								>
-									{petWeight.map((square: number) => (
+									{petWeight.map((weight: number) => (
 										<MenuItem
-											value={square}
-											disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-											key={square}
+											value={weight}
+											disabled={(searchFilter?.search?.weightRange?.start || 0) > weight}
+											key={weight}
 										>
-											{square}
+											{weight}
 										</MenuItem>
 									))}
 								</Select>
@@ -812,7 +812,7 @@ const Filter = (props: FilterType) => {
 					</Stack>
 					<Stack className={'find-your-home'}>
 						<Typography className={'title'}>Price Range</Typography>
-						<Stack className="square-year-input">
+						<Stack className="weight-year-input">
 							<input
 								type="number"
 								placeholder="$ min"

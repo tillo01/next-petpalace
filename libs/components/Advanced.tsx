@@ -45,15 +45,15 @@ const Advanced = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<PetsInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
-	const roomsRef: any = useRef();
+	const heightsRef: any = useRef();
 	const router = useRouter();
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [openRooms, setOpenRooms] = useState(false);
+	const [openHeights, setOpenHeights] = useState(false);
 	const [petLocation, setPetLocation] = useState<PetLocation[]>(Object.values(PetLocation));
 	const [petType, setPetType] = useState<PetType[]>(Object.values(PetType));
-	const [yearCheck, setYearCheck] = useState({ start: 1970, end: thisYear });
+	const [yearCheck, setYearCheck] = useState({ start: 1990, end: thisYear });
 	const [optionCheck, setOptionCheck] = useState('all');
 
 	/** LIFECYCLES **/
@@ -67,8 +67,8 @@ const Advanced = (props: HeaderFilterProps) => {
 				setOpenType(false);
 			}
 
-			if (!roomsRef?.current?.contains(event.target)) {
-				setOpenRooms(false);
+			if (!heightsRef?.current?.contains(event.target)) {
+				setOpenHeights(false);
 			}
 		};
 
@@ -89,61 +89,61 @@ const Advanced = (props: HeaderFilterProps) => {
 
 	const advancedFilterHandler = (status: boolean) => {
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 		setOpenAdvancedFilter(status);
 	};
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenHeights(false);
 	};
 
-	const roomStateChangeHandler = () => {
-		setOpenRooms((prev) => !prev);
+	const heightStateChangeHandler = () => {
+		setOpenHeights((prev) => !prev);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
 
 	const disableAllStateHandler = () => {
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
 
-	const petBedSelectHandler = useCallback(
+	const petAgeSelectHandler = useCallback(
 		async (number: Number) => {
 			try {
 				if (number != 0) {
-					if (searchFilter?.search?.bedsList?.includes(number)) {
+					if (searchFilter?.search?.agesList?.includes(number)) {
 						setSearchFilter({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								bedsList: searchFilter?.search?.bedsList?.filter((item: Number) => item !== number),
+								agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
 							},
 						});
 					} else {
 						setSearchFilter({
 							...searchFilter,
-							search: { ...searchFilter.search, bedsList: [...(searchFilter?.search?.bedsList || []), number] },
+							search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
 						});
 					}
 				} else {
-					delete searchFilter?.search.bedsList;
+					delete searchFilter?.search.agesList;
 					setSearchFilter({ ...searchFilter });
 				}
 
-				console.log('petBedSelectHandler:', number);
+				console.log('petAgeSelectHandler:', number);
 			} catch (err: any) {
-				console.log('ERROR, petBedSelectHandler:', err);
+				console.log('ERROR, petAgeSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -189,7 +189,7 @@ const Advanced = (props: HeaderFilterProps) => {
 					search: {
 						...searchFilter.search,
 						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, start: parseInt(value) },
+						weightRange: { ...searchFilter.search.weightRange, start: parseInt(value) },
 					},
 				});
 			} else {
@@ -198,7 +198,7 @@ const Advanced = (props: HeaderFilterProps) => {
 					search: {
 						...searchFilter.search,
 						// @ts-ignore
-						squaresRange: { ...searchFilter.search.squaresRange, end: parseInt(value) },
+						weightRange: { ...searchFilter.search.weightRange, end: parseInt(value) },
 					},
 				});
 			}
@@ -246,16 +246,16 @@ const Advanced = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.roomsList?.length == 0) {
-				delete searchFilter.search.roomsList;
+			if (searchFilter?.search?.heightsList?.length == 0) {
+				delete searchFilter.search.heightsList;
 			}
 
 			if (searchFilter?.search?.options?.length == 0) {
 				delete searchFilter.search.options;
 			}
 
-			if (searchFilter?.search?.bedsList?.length == 0) {
-				delete searchFilter.search.bedsList;
+			if (searchFilter?.search?.agesList?.length == 0) {
+				delete searchFilter.search.agesList;
 			}
 
 			await router.push(`/pet?input=${JSON.stringify(searchFilter)}`, `/pet?input=${JSON.stringify(searchFilter)}`);
@@ -284,7 +284,7 @@ const Advanced = (props: HeaderFilterProps) => {
 					open={openAdvancedFilter}
 					onClose={() => advancedFilterHandler(false)}
 					aria-labelledby="modal-modal-title"
-					aria-describedby="modal-modal-description"
+					aria-descriageby="modal-modal-description"
 				>
 					{/* @ts-ignore */}
 					<Box sx={style}>
@@ -313,21 +313,21 @@ const Advanced = (props: HeaderFilterProps) => {
 							<div className={'middle'}>
 								<div className={'row-box'}>
 									<div className={'box'}>
-										<span>bedrooms</span>
+										<span>Ages</span>
 										<div className={'inside'}>
 											<div
-												className={`room ${!searchFilter?.search?.bedsList ? 'active' : ''}`}
-												onClick={() => petBedSelectHandler(0)}
+												className={`height ${!searchFilter?.search?.agesList ? 'active' : ''}`}
+												onClick={() => petAgeSelectHandler(0)}
 											>
 												Any
 											</div>
-											{[1, 2, 3, 4, 5].map((bed: number) => (
+											{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((age: number) => (
 												<div
-													className={`room ${searchFilter?.search?.bedsList?.includes(bed) ? 'active' : ''}`}
-													onClick={() => petBedSelectHandler(bed)}
-													key={bed}
+													className={`height ${searchFilter?.search?.agesList?.includes(age) ? 'active' : ''}`}
+													onClick={() => petAgeSelectHandler(age)}
+													key={age}
 												>
-													{bed == 0 ? 'Any' : bed}
+													{age == 0 ? 'Any' : age}
 												</div>
 											))}
 										</div>
@@ -395,41 +395,37 @@ const Advanced = (props: HeaderFilterProps) => {
 										<div className={'inside space-between align-center'}>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
-													value={searchFilter?.search?.squaresRange?.start}
+													value={searchFilter?.search?.weightRange?.start}
 													onChange={(e: any) => petWeightHandler(e, 'start')}
 													displayEmpty
 													inputProps={{ 'aria-label': 'Without label' }}
 													MenuProps={MenuProps}
 												>
-													{petWeight.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.end || 0) < square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
+													{petWeight
+														.filter((weight) => weight <= 11.5)
+														.map((weight) => (
+															<MenuItem value={weight} key={weight}>
+																{weight}
+															</MenuItem>
+														))}
 												</Select>
 											</FormControl>
 											<div className={'minus-line'}></div>
 											<FormControl sx={{ width: '122px' }}>
 												<Select
-													value={searchFilter?.search?.squaresRange?.end}
+													value={searchFilter?.search?.weightRange?.end}
 													onChange={(e: any) => petWeightHandler(e, 'end')}
 													displayEmpty
 													inputProps={{ 'aria-label': 'Without label' }}
 													MenuProps={MenuProps}
 												>
-													{petWeight.map((square: number) => (
-														<MenuItem
-															value={square}
-															disabled={(searchFilter?.search?.squaresRange?.start || 0) > square}
-															key={square}
-														>
-															{square}
-														</MenuItem>
-													))}
+													{petWeight
+														.filter((weight) => weight > 11.5)
+														.map((weight) => (
+															<MenuItem value={weight} key={weight}>
+																{weight}
+															</MenuItem>
+														))}
 												</Select>
 											</FormControl>
 										</div>
@@ -463,13 +459,13 @@ Advanced.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
+			weightRange: {
 				start: 0,
-				end: 500,
+				end: 23,
 			},
 			pricesRange: {
 				start: 0,
-				end: 2000000,
+				end: 3000000,
 			},
 		},
 	},

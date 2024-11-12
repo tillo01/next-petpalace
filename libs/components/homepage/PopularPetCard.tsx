@@ -49,11 +49,11 @@ const PopularPetCard = (props: PopularPetCardProps) => {
 					<p className={'desc'}>{pet.petAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
+							<img src="/img/icons/age.svg" alt="" />
 							<span>{pet?.petHeight} weight</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
+							<img src="/img/icons/height.svg" alt="" />
 							<span>{pet?.petAges} height</span>
 						</div>
 						<div>
@@ -63,7 +63,7 @@ const PopularPetCard = (props: PopularPetCardProps) => {
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>{pet?.petAdoption ? 'rent' : 'sale'}</p>
+						<p>{pet?.petAdoption ? 'adoption' : 'sale'}</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />

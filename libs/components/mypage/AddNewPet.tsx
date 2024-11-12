@@ -280,7 +280,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 
 							<Stack className="config-row">
 								<Stack className="price-year-after-price">
-									<Typography className="title">Barter</Typography>
+									<Typography className="title">Sell</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petSell ? 'yes' : 'no'}
@@ -299,7 +299,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Rent</Typography>
+									<Typography className="title">Adoption</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petAdoption ? 'yes' : 'no'}
@@ -321,7 +321,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 
 							<Stack className="config-row">
 								<Stack className="price-year-after-price">
-									<Typography className="title">Rooms</Typography>
+									<Typography className="title">Heights</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petAges || 'select'}
@@ -333,15 +333,15 @@ const AddPet = ({ initialValues, ...props }: any) => {
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{[1, 2, 3, 4, 5].map((room: number) => (
-											<option value={`${room}`}>{room}</option>
+										{[1, 2, 3, 4, 5].map((height: number) => (
+											<option value={`${height}`}>{height}</option>
 										))}
 									</select>
 									<div className={'divider'}></div>
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Bed</Typography>
+									<Typography className="title">Age</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petHeight || 'select'}
@@ -353,15 +353,15 @@ const AddPet = ({ initialValues, ...props }: any) => {
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{[1, 2, 3, 4, 5].map((bed: number) => (
-											<option value={`${bed}`}>{bed}</option>
+										{[1, 2, 3, 4, 5].map((age: number) => (
+											<option value={`${age}`}>{age}</option>
 										))}
 									</select>
 									<div className={'divider'}></div>
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Square</Typography>
+									<Typography className="title">Weight</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petWeight || 'select'}
@@ -373,9 +373,9 @@ const AddPet = ({ initialValues, ...props }: any) => {
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{petWeight.map((square: number) => {
-											if (square !== 0) {
-												return <option value={`${square}`}>{square}</option>;
+										{petWeight.map((weight: number) => {
+											if (weight !== 0) {
+												return <option value={`${weight}`}>{weight}</option>;
 											}
 										})}
 									</select>

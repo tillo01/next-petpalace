@@ -7,7 +7,7 @@ import { styled } from '@mui/material/styles';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} square {...props} />)(
+const Accordion = styled((props: AccordionProps) => <MuiAccordion disableGutters elevation={0} weight {...props} />)(
 	({ theme }) => ({
 		border: `1px solid ${theme.palette.divider}`,
 		'&:not(:last-child)': {
@@ -65,7 +65,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a21',
 				subject: 'How can I search for pets on your website?',
-				content: 'Simply use our search bar to enter location, price range, bedrooms/bathrooms, and pet type.',
+				content: 'Simply use our search bar to enter location, price range, ageheights/bathheights, and pet type.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a23',
@@ -164,7 +164,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a03',
 				subject: 'What should buyers pay attention to?',
-				content: 'Buyers should check and decide whether the pet they want to buy or rent is actually suitable!',
+				content: 'Buyers should check and decide whether the pet they want to buy or adoption is actually suitable!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a85',

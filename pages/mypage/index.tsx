@@ -58,7 +58,7 @@ const MyPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Subscribed!', 800);
+			await sweetTopSmallSuccessAlert('Subscriage!', 800);
 
 			await refetch({ input: query });
 		} catch (err: any) {
@@ -78,7 +78,7 @@ const MyPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Unsubscribed!', 800);
+			await sweetTopSmallSuccessAlert('Unsubscriage!', 800);
 
 			await refetch({ input: query });
 		} catch (err: any) {

@@ -45,12 +45,12 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const [searchFilter, setSearchFilter] = useState<PetsInquiry>(initialInput);
 	const locationRef: any = useRef();
 	const typeRef: any = useRef();
-	const roomsRef: any = useRef();
+	const heightsRef: any = useRef();
 	const router = useRouter();
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openLocation, setOpenLocation] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const [openRooms, setOpenRooms] = useState(false);
+	const [openHeights, setOpenHeights] = useState(false);
 	const [petLocation, setPetLocation] = useState<PetLocation[]>(Object.values(PetLocation));
 	const [petType, setPetType] = useState<PetType[]>(Object.values(PetType));
 	const [yearCheck, setYearCheck] = useState({ start: 1970, end: thisYear });
@@ -67,8 +67,8 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				setOpenType(false);
 			}
 
-			if (!roomsRef?.current?.contains(event.target)) {
-				setOpenRooms(false);
+			if (!heightsRef?.current?.contains(event.target)) {
+				setOpenHeights(false);
 			}
 		};
 
@@ -89,31 +89,31 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 
 	const advancedFilterHandler = (status: boolean) => {
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 		setOpenAdvancedFilter(status);
 	};
 
 	const locationStateChangeHandler = () => {
 		setOpenLocation((prev) => !prev);
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 	};
 
 	const typeStateChangeHandler = () => {
 		setOpenType((prev) => !prev);
 		setOpenLocation(false);
-		setOpenRooms(false);
+		setOpenHeights(false);
 	};
 
-	const roomStateChangeHandler = () => {
-		setOpenRooms((prev) => !prev);
+	const heightStateChangeHandler = () => {
+		setOpenHeights((prev) => !prev);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
 
 	const disableAllStateHandler = () => {
-		setOpenRooms(false);
+		setOpenHeights(false);
 		setOpenType(false);
 		setOpenLocation(false);
 	};
@@ -146,7 +146,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						typeList: [value],
 					},
 				});
-				roomStateChangeHandler();
+				heightStateChangeHandler();
 			} catch (err: any) {
 				console.log('ERROR, petTypeSelectHandler:', err);
 			}
@@ -154,19 +154,19 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		[searchFilter],
 	);
 
-	const petRoomSelectHandler = useCallback(
+	const petHeightSelectHandler = useCallback(
 		async (value: any) => {
 			try {
 				setSearchFilter({
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						roomsList: [value],
+						heightsList: [value],
 					},
 				});
 				disableAllStateHandler();
 			} catch (err: any) {
-				console.log('ERROR, petRoomSelectHandler:', err);
+				console.log('ERROR, petHeightSelectHandler:', err);
 			}
 		},
 		[searchFilter],
@@ -182,16 +182,16 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.roomsList?.length == 0) {
-				delete searchFilter.search.roomsList;
+			if (searchFilter?.search?.heightsList?.length == 0) {
+				delete searchFilter.search.heightsList;
 			}
 
 			if (searchFilter?.search?.options?.length == 0) {
 				delete searchFilter.search.options;
 			}
 
-			if (searchFilter?.search?.bedsList?.length == 0) {
-				delete searchFilter.search.bedsList;
+			if (searchFilter?.search?.agesList?.length == 0) {
+				delete searchFilter.search.agesList;
 			}
 
 			await router.push(`/pet?input=${JSON.stringify(searchFilter)}`, `/pet?input=${JSON.stringify(searchFilter)}`);
@@ -215,8 +215,10 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<span> {searchFilter?.search?.typeList ? searchFilter?.search?.typeList[0] : t('Pets type')} </span>
 							<ExpandMoreIcon />
 						</Box>
-						<Box className={`box ${openRooms ? 'on' : ''}`} onClick={roomStateChangeHandler}>
-							<span>{searchFilter?.search?.roomsList ? `${searchFilter?.search?.roomsList[0]} ages` : t('Ages')}</span>
+						<Box className={`box ${openHeights ? 'on' : ''}`} onClick={heightStateChangeHandler}>
+							<span>
+								{searchFilter?.search?.heightsList ? `${searchFilter?.search?.heightsList[0]} ages` : t('Ages')}
+							</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
@@ -251,11 +253,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						})}
 					</div>
 
-					<div className={`filter-rooms ${openRooms ? 'on' : ''}`} ref={roomsRef}>
-						{[1, 2, 3, 4, 5].map((room: number) => {
+					<div className={`filter-heights ${openHeights ? 'on' : ''}`} ref={heightsRef}>
+						{[1, 2, 3, 4, 5].map((height: number) => {
 							return (
-								<span onClick={() => petRoomSelectHandler(room)} key={room}>
-									{room} age{room > 1 ? 's' : ''}
+								<span onClick={() => petHeightSelectHandler(height)} key={height}>
+									{height} age{height > 1 ? 's' : ''}
 								</span>
 							);
 						})}
@@ -273,7 +275,7 @@ HeaderFilter.defaultProps = {
 		page: 1,
 		limit: 9,
 		search: {
-			squaresRange: {
+			weightRange: {
 				start: 0,
 				end: 500,
 			},

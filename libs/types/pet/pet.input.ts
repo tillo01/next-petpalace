@@ -22,12 +22,12 @@ interface PISearch {
 	memberId?: string;
 	locationList?: PetLocation[];
 	typeList?: PetType[];
-	roomsList?: Number[];
+	heightsList?: Number[];
 	options?: string[];
-	bedsList?: Number[];
+	agesList?: Number[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;
-	squaresRange?: Range;
+	weightRange?: Range;
 	text?: string;
 }
 

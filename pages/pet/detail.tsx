@@ -217,7 +217,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 									<Stack className={'top-box'}>
 										<Typography className={'city'}>{pet?.petLocation}</Typography>
 										<Stack className={'divider'}></Stack>
-										<Stack className={'buy-rent-box'}>
+										<Stack className={'buy-adoption-box'}>
 											{pet?.petSell && (
 												<>
 													<Stack className={'circle'}>
@@ -225,7 +225,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 															<circle cx="3" cy="3" r="3" fill="#EB6753" />
 														</svg>
 													</Stack>
-													<Typography className={'buy-rent'}>Barter</Typography>
+													<Typography className={'buy-adoption'}>Sell</Typography>
 												</>
 											)}
 
@@ -236,7 +236,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 															<circle cx="3" cy="3" r="3" fill="#7ed957" />
 														</svg>
 													</Stack>
-													<Typography className={'buy-rent'}>rent</Typography>
+													<Typography className={'buy-adoption'}>adoption</Typography>
 												</>
 											)}
 										</Stack>
@@ -262,10 +262,10 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 									</Stack>
 									<Stack className={'bottom-box'}>
 										<Stack className="option">
-											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} bed</Typography>
+											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} age</Typography>
 										</Stack>
 										<Stack className="option">
-											<img src="/img/icons/height.png" alt="" /> <Typography>{pet?.petAges} room</Typography>
+											<img src="/img/icons/height.png" alt="" /> <Typography>{pet?.petAges} height</Typography>
 										</Stack>
 
 										<Stack className="option">
@@ -411,11 +411,11 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 														<Typography className={'data'}>{pet?.petWeight} m2</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Rooms</Typography>
+														<Typography className={'title'}>Heights</Typography>
 														<Typography className={'data'}>{pet?.petAges}</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Bedrooms</Typography>
+														<Typography className={'title'}>Ageheights</Typography>
 														<Typography className={'data'}>{pet?.petHeight}</Typography>
 													</Box>
 												</Stack>
@@ -431,7 +431,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 													<Box component={'div'} className={'info'}>
 														<Typography className={'title'}>Pet Options</Typography>
 														<Typography className={'data'}>
-															For {pet?.petSell && 'Barter'} {pet?.petAdoption && 'Rent'}
+															For {pet?.petSell && 'Sell'} {pet?.petAdoption && 'Adoption'}
 														</Typography>
 													</Box>
 												</Stack>
@@ -520,7 +520,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 								<Typography className={'title'}>Address</Typography>
 								<Stack className={'map-box'}>
 									<iframe
-										src="https://www.google.com/maps/embed?pb=!1m18...&style=[JSON_STYLE]"
+										src="https://www.google.com/maps/emage?pb=!1m18...&style=[JSON_STYLE]"
 										width="100%"
 										height="100%"
 										// @ts-ignore

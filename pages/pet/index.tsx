@@ -218,7 +218,7 @@ PetList.defaultProps = {
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {
-			squaresRange: {
+			weightRange: {
 				start: 0,
 				end: 500,
 			},

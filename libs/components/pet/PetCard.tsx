@@ -80,11 +80,11 @@ const PetCard = (props: PetCardType) => {
 					<Stack className="options">
 						<Stack className="option">
 							<img src="/img/icons/weight.png" alt="" />
-							<Typography>{pet.petHeight} bed</Typography>
+							<Typography>{pet.petHeight} age</Typography>
 						</Stack>
 						<Stack className="option">
 							<img src="/img/icons/height.png" alt="" />
-							<Typography>{pet.petAges} room</Typography>
+							<Typography>{pet.petAges} height</Typography>
 						</Stack>
 						<Stack className="option">
 							<img src="/img/icons/age.png" alt="" />

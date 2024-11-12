@@ -42,7 +42,7 @@ const Footer = () => {
 						<Box component={'div'} className={'bottom'}>
 							<div>
 								<strong>Popular Search</strong>
-								<span>Pet for Rent</span>
+								<span>Pet for Adoption</span>
 								<span>Pet Low to hide</span>
 							</div>
 							<div>
