@@ -79,8 +79,8 @@ const Filter = (props: FilterType) => {
 				.then();
 		}
 
-		if (searchFilter?.search?.heightsList?.length == 0) {
-			delete searchFilter.search.heightsList;
+		if (searchFilter?.search?.agesList?.length == 0) {
+			delete searchFilter.search.agesList;
 			router
 				.push(
 					`/pet?input=${JSON.stringify({
@@ -233,20 +233,20 @@ const Filter = (props: FilterType) => {
 		async (number: Number) => {
 			try {
 				if (number !== 0) {
-					if (searchFilter?.search?.heightsList?.includes(number)) {
+					if (searchFilter?.search?.agesList?.includes(number)) {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									heightsList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									heightsList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							{ scroll: false },
@@ -255,17 +255,17 @@ const Filter = (props: FilterType) => {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.heightsList || []), number] },
+								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.heightsList || []), number] },
+								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							{ scroll: false },
 						);
 					}
 				} else {
-					delete searchFilter?.search.heightsList;
+					delete searchFilter?.search.agesList;
 					setSearchFilter({ ...searchFilter });
 
 					await router.push(
@@ -604,7 +604,7 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: '12px 0 0 12px',
-									border: !searchFilter?.search?.heightsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+									border: !searchFilter?.search?.agesList ? '2px solid #181A20' : '1px solid #b9b9b9',
 								}}
 								onClick={() => petHeightSelectHandler(0)}
 							>
@@ -613,8 +613,8 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.heightsList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.heightsList?.includes(1) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(1) ? undefined : 'none',
 								}}
 								onClick={() => petHeightSelectHandler(1)}
 							>
@@ -623,8 +623,8 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.heightsList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.heightsList?.includes(2) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(2) ? undefined : 'none',
 								}}
 								onClick={() => petHeightSelectHandler(2)}
 							>
@@ -633,8 +633,8 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.heightsList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.heightsList?.includes(3) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(3) ? undefined : 'none',
 								}}
 								onClick={() => petHeightSelectHandler(3)}
 							>
@@ -643,9 +643,9 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: 0,
-									border: searchFilter?.search?.heightsList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.heightsList?.includes(4) ? undefined : 'none',
-									borderRight: searchFilter?.search?.heightsList?.includes(4) ? undefined : 'none',
+									border: searchFilter?.search?.agesList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									borderLeft: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
+									borderRight: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
 								}}
 								onClick={() => petHeightSelectHandler(4)}
 							>
@@ -654,7 +654,7 @@ const Filter = (props: FilterType) => {
 							<Button
 								sx={{
 									borderRadius: '0 12px 12px 0',
-									border: searchFilter?.search?.heightsList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
+									border: searchFilter?.search?.agesList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
 								}}
 								onClick={() => petHeightSelectHandler(5)}
 							>

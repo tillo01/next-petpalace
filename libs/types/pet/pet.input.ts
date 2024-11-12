@@ -22,9 +22,9 @@ interface PISearch {
 	memberId?: string;
 	locationList?: PetLocation[];
 	typeList?: PetType[];
-	heightsList?: Number[];
-	options?: string[];
 	agesList?: Number[];
+	options?: string[];
+	heightsList?: Number[];
 	pricesRange?: Range;
 	periodsRange?: PeriodsRange;
 	weightRange?: Range;

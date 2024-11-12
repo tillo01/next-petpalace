@@ -161,7 +161,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					...searchFilter,
 					search: {
 						...searchFilter.search,
-						heightsList: [value],
+						agesList: [value],
 					},
 				});
 				disableAllStateHandler();
@@ -182,8 +182,8 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.heightsList?.length == 0) {
-				delete searchFilter.search.heightsList;
+			if (searchFilter?.search?.agesList?.length == 0) {
+				delete searchFilter.search.agesList;
 			}
 
 			if (searchFilter?.search?.options?.length == 0) {
@@ -216,9 +216,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 							<ExpandMoreIcon />
 						</Box>
 						<Box className={`box ${openHeights ? 'on' : ''}`} onClick={heightStateChangeHandler}>
-							<span>
-								{searchFilter?.search?.heightsList ? `${searchFilter?.search?.heightsList[0]} ages` : t('Ages')}
-							</span>
+							<span>{searchFilter?.search?.agesList ? `${searchFilter?.search?.agesList[0]} ages` : t('Ages')}</span>
 							<ExpandMoreIcon />
 						</Box>
 					</Stack>
@@ -254,7 +252,7 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 					</div>
 
 					<div className={`filter-heights ${openHeights ? 'on' : ''}`} ref={heightsRef}>
-						{[1, 2, 3, 4, 5].map((height: number) => {
+						{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((height: number) => {
 							return (
 								<span onClick={() => petHeightSelectHandler(height)} key={height}>
 									{height} age{height > 1 ? 's' : ''}

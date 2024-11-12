@@ -246,8 +246,8 @@ const Advanced = (props: HeaderFilterProps) => {
 				delete searchFilter.search.typeList;
 			}
 
-			if (searchFilter?.search?.heightsList?.length == 0) {
-				delete searchFilter.search.heightsList;
+			if (searchFilter?.search?.agesList?.length == 0) {
+				delete searchFilter.search.agesList;
 			}
 
 			if (searchFilter?.search?.options?.length == 0) {
