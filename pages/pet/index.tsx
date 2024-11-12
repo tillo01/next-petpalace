@@ -15,7 +15,8 @@ import { GET_PETS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { LIKE_TARGET_PET } from '../../apollo/user/mutation';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
-import { PetCard } from '../../libs/components/mypage/PropertyCard';
+import { PetCard } from '../../libs/components/mypage/PetCard';
+import PetBigCard from '../../libs/components/common/PetBigCard';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -176,7 +177,7 @@ const PetList: NextPage = ({ initialInput, ...props }: any) => {
 									</div>
 								) : (
 									pets.map((pet: Pet) => {
-										return <PetCard pet={pet} key={pet?._id} likePetHandler={likePetHandler} />;
+										return <PetBigCard pet={pet} key={pet?._id} likePetHandler={likePetHandler} />;
 									})
 								)}
 							</Stack>

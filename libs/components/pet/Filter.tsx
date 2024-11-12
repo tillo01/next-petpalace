@@ -599,7 +599,7 @@ const Filter = (props: FilterType) => {
 				</Stack>
 				<Stack className={''}>
 					<Stack className={'find-your-home'} mb={'30px'}>
-						<Typography className={'title'}>Rooms</Typography>
+						<Typography className={'title'}>Height</Typography>
 						<Stack className="button-group">
 							<Button
 								sx={{
@@ -663,7 +663,7 @@ const Filter = (props: FilterType) => {
 						</Stack>
 					</Stack>
 					<Stack className={'find-your-home'} mb={'30px'}>
-						<Typography className={'title'}>Bedrooms</Typography>
+						<Typography className={'title'}>Ages</Typography>
 						<Stack className="button-group">
 							<Button
 								sx={{
@@ -741,7 +741,7 @@ const Filter = (props: FilterType) => {
 							color="success"
 						/>
 						<label htmlFor={'Barter'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">Barter</Typography>
+							<Typography className="propert-type">Sell</Typography>
 						</label>
 					</Stack>
 					<Stack className={'input-box'}>
@@ -755,13 +755,13 @@ const Filter = (props: FilterType) => {
 							color={'default'}
 						/>
 						<label htmlFor={'Rent'} style={{ cursor: 'pointer' }}>
-							<Typography className="propert-type">Rent</Typography>
+							<Typography className="propert-type">Adoption</Typography>
 						</label>
 					</Stack>
 				</Stack>
 				<Stack className={''}>
 					<Stack className={'find-your-home'} mb={'30px'}>
-						<Typography className={'title'}>Square meter</Typography>
+						<Typography className={'title'}>Weight</Typography>
 						<Stack className="square-year-input">
 							<FormControl>
 								<InputLabel id="demo-simple-select-label">Min</InputLabel>

@@ -65,21 +65,21 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/bed.svg" alt="" />
-							<span>{pet.petHeight} bed</span>
+							<span>{pet.petHeight} weight</span>
 						</div>
 						<div>
 							<img src="/img/icons/room.svg" alt="" />
-							<span>{pet.petAges} rooms</span>
+							<span>{pet.petAges} height</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{pet.petWeight} m2</span>
+							<span>{pet.petWeight} age</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
 						<p>
-							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
+							{pet.petAdoption ? 'Sell' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Adoption' : ''}
 						</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
@@ -133,15 +133,15 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{pet.petHeight} weight</span>
+							<span>{pet.petWeight} weight</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{pet.petAges} height</span>
+							<span>{pet.petHeight} height</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
-							<span>{pet.petWeight} age</span>
+							<span>{pet.petAges} age</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -157,10 +157,10 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 								}
 								sx={{ width: 48, height: 48, marginRight: 2 }}
 							/>
-							<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
+							<p>{pet?.memberData?.memberNick ?? 'Seller'}</p>
 						</p>
 						<p>
-							{pet.petAdoption ? 'Rent' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Barter' : ''}
+							{pet.petAdoption ? 'Adoption' : ''} {pet.petAdoption && pet.petSell && '/'} {pet.petSell ? 'Sell' : ''}
 						</p>
 
 						<div className="view-like-box">

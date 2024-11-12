@@ -50,15 +50,15 @@ const PopularPetCard = (props: PopularPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/bed.svg" alt="" />
-							<span>{pet?.petHeight} bed</span>
+							<span>{pet?.petHeight} weight</span>
 						</div>
 						<div>
 							<img src="/img/icons/room.svg" alt="" />
-							<span>{pet?.petAges} rooms</span>
+							<span>{pet?.petAges} height</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{pet?.petWeight} m2</span>
+							<span>{pet?.petWeight} age</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -107,20 +107,20 @@ const PopularPetCard = (props: PopularPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{pet?.petHeight} bed</span>
+							<span>{pet?.petHeight} weight</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{pet?.petAges} rooms</span>
+							<span>{pet?.petAges} height</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
-							<span>{pet?.petWeight} m2</span>
+							<span>{pet?.petWeight} ages</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
-						<p>{pet?.petAdoption ? 'rent' : 'sale'}</p>
+						<p>{pet?.petAdoption ? 'Adoption' : 'Sell'}</p>
 						<div className="view-like-box">
 							<IconButton color={'default'}>
 								<RemoveRedEyeIcon />

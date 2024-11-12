@@ -10,13 +10,13 @@ export enum PetStatus {
 }
 
 export enum PetLocation {
-	SEOUL = 'SEOUL',
-	BUSAN = 'BUSAN',
-	INCHEON = 'INCHEON',
-	DAEGU = 'DAEGU',
-	GYEONGJU = 'GYEONGJU',
-	GWANGJU = 'GWANGJU',
-	CHONJU = 'CHONJU',
-	DAEJON = 'DAEJON',
-	JEJU = 'JEJU',
+	TOKYO = 'TOKYO',
+	OSAKA = 'OSAKA',
+	KYOTO = 'KYOTO',
+	NAGOYA = 'NAGOYA',
+	NARA = 'NARA',
+	FUKUOKA = 'FUKUOKA',
+	HIROSHIMA = 'HIROSHIMA',
+	YOKOHAMA = 'YOKOHAMA',
+	KOBE = 'KOBE',
 }

@@ -6,7 +6,7 @@ const thisYear = new Date().getFullYear();
 
 export const petYears: any = [];
 
-for (let i = 1970; i <= thisYear; i++) {
+for (let i = 1990; i <= thisYear; i++) {
 	petYears.push(String(i));
 }
 

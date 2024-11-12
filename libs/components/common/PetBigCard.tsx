@@ -63,23 +63,23 @@ const PetBigCard = (props: PetBigCardProps) => {
 					<p className={'desc'}>{pet?.petAddress}</p>
 					<div className={'options'}>
 						<div>
-							<img src="/img/icons/bed.svg" alt="" />
-							<span>{pet?.petHeight} bed</span>
+							<img src="/img/icons/weight.png" alt="" />
+							<span>{pet?.petHeight} weight</span>
 						</div>
 						<div>
-							<img src="/img/icons/room.svg" alt="" />
-							<span>{pet?.petAges} rooms</span>
+							<img src="/img/icons/height.png" alt="" />
+							<span>{pet?.petAges} height</span>
 						</div>
 						<div>
-							<img src="/img/icons/expand.svg" alt="" />
-							<span>{pet?.petWeight} m2</span>
+							<img src="/img/icons/age.png" alt="" />
+							<span>{pet?.petWeight} ages</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
 						<div>
-							{pet?.petAdoption ? <p>Rent</p> : <span>Rent</span>}
-							{pet?.petSell ? <p>Barter</p> : <span>Barter</span>}
+							{pet?.petAdoption ? <p>Adoption</p> : <span>Adoption</span>}
+							{pet?.petSell ? <p>Sell</p> : <span>Sell</span>}
 						</div>
 						<div className="buttons-box">
 							<IconButton color={'default'}>

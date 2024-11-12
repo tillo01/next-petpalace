@@ -7,7 +7,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import { Pet } from '../../types/pet/pet';
 import { PetsInquiry } from '../../types/pet/pet.input';
-import TrendPetCard from './TrendPetCard';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_PETS } from '../../../apollo/user/query';
 import { T } from '../../types/common';
@@ -15,6 +14,7 @@ import { LIKE_TARGET_PET } from '../../../apollo/user/mutation';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 import { Message } from '../../enums/common.enum';
 import { Messages } from '../../config';
+import TrendPetCard from './TrendPetCard';
 
 interface TrendPetsProps {
 	initialInput: PetsInquiry;
@@ -149,7 +149,7 @@ const TrendPets = (props: TrendPetsProps) => {
 TrendPets.defaultProps = {
 	initialInput: {
 		page: 1,
-		limit: 20,
+		limit: 7,
 		sort: 'petLikes',
 		direction: 'DESC',
 		search: {},

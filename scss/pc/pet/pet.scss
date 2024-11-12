@@ -212,24 +212,21 @@
 				.main-config {
 					width: 936px;
 					align-items: center;
-					gap: 109px;
 					.list-config {
 						display: flex;
 						width: 100%;
 						height: auto;
 						flex-direction: row;
 						flex-wrap: wrap;
-						gap: 23px;
+
 						.card-config {
 							width: auto;
 							height: auto;
 							display: flex;
 							flex-direction: row;
-							margin-bottom: 7px;
 							border-radius: 12px;
 							background: #fff;
 							box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
-
 							.top {
 								position: relative;
 								width: 100%;

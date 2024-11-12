@@ -4,10 +4,8 @@ import { NextPage } from 'next';
 import { Stack } from '@mui/material';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
-import MyPets from '../../libs/components/mypage/MyPets';
 import MyFavorites from '../../libs/components/mypage/MyFavorites';
 import RecentlyVisited from '../../libs/components/mypage/RecentlyVisited';
-import AddPet from '../../libs/components/mypage/AddNewPet';
 import MyProfile from '../../libs/components/mypage/MyProfile';
 import MyArticles from '../../libs/components/mypage/MyArticles';
 import { useMutation, useReactiveVar } from '@apollo/client';
@@ -21,6 +19,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { LIKE_TARGET_MEMBER, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
 import { Messages } from '../../libs/config';
 import { T } from '../../libs/types/common';
+import AddPet from '../../libs/components/mypage/AddNewPet';
+import MyPets from '../../libs/components/member/MemberPets';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
