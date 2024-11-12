@@ -220,11 +220,11 @@ PetList.defaultProps = {
 		search: {
 			weightRange: {
 				start: 0,
-				end: 500,
+				end: 26,
 			},
 			pricesRange: {
 				start: 0,
-				end: 2000000,
+				end: 3000000,
 			},
 		},
 	},

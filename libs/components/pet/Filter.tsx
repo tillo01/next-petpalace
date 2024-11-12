@@ -239,14 +239,14 @@ const Filter = (props: FilterType) => {
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
 								search: {
 									...searchFilter.search,
-									agesList: searchFilter?.search?.agesList?.filter((item: Number) => item !== number),
+									agesList: searchFilter?.search?.heightsList?.filter((item: Number) => item !== number),
 								},
 							})}`,
 							{ scroll: false },
@@ -255,17 +255,17 @@ const Filter = (props: FilterType) => {
 						await router.push(
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
+								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							`/pet?input=${JSON.stringify({
 								...searchFilter,
-								search: { ...searchFilter.search, agesList: [...(searchFilter?.search?.agesList || []), number] },
+								search: { ...searchFilter.search, heightsList: [...(searchFilter?.search?.agesList || []), number] },
 							})}`,
 							{ scroll: false },
 						);
 					}
 				} else {
-					delete searchFilter?.search.agesList;
+					delete searchFilter?.search.heightsList;
 					setSearchFilter({ ...searchFilter });
 
 					await router.push(
@@ -601,130 +601,293 @@ const Filter = (props: FilterType) => {
 					<Stack className={'find-your-home'} mb={'30px'}>
 						<Typography className={'title'}>Height</Typography>
 						<Stack className="button-group">
-							<Button
-								sx={{
-									borderRadius: '12px 0 0 12px',
-									border: !searchFilter?.search?.agesList ? '2px solid #181A20' : '1px solid #b9b9b9',
-								}}
-								onClick={() => petHeightSelectHandler(0)}
-							>
-								Any
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(1) ? undefined : 'none',
-								}}
-								onClick={() => petHeightSelectHandler(1)}
-							>
-								1
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(2) ? undefined : 'none',
-								}}
-								onClick={() => petHeightSelectHandler(2)}
-							>
-								2
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(3) ? undefined : 'none',
-								}}
-								onClick={() => petHeightSelectHandler(3)}
-							>
-								3
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
-									borderRight: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
-								}}
-								onClick={() => petHeightSelectHandler(4)}
-							>
-								4
-							</Button>
-							<Button
-								sx={{
-									borderRadius: '0 12px 12px 0',
-									border: searchFilter?.search?.agesList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-								}}
-								onClick={() => petHeightSelectHandler(5)}
-							>
-								5+
-							</Button>
+							<Stack className="button-group-row">
+								<Stack flexDirection={'row'}>
+									<Button
+										sx={{
+											borderRadius: '12px 0 0 12px',
+											border: !searchFilter?.search?.heightsList ? '2px solid #181A20' : '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(0)}
+									>
+										Any
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.heightsList?.includes(5)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.heightsList?.includes(5) ? undefined : 'none',
+										}}
+										onClick={() => petHeightSelectHandler(5)}
+									>
+										5
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.heightsList?.includes(10)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.heightsList?.includes(10) ? undefined : 'none',
+										}}
+										onClick={() => petHeightSelectHandler(10)}
+									>
+										10
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.heightsList?.includes(15)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.heightsList?.includes(15) ? undefined : 'none',
+										}}
+										onClick={() => petHeightSelectHandler(15)}
+									>
+										15
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.heightsList?.includes(20)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.heightsList?.includes(20) ? undefined : 'none',
+											borderRight: searchFilter?.search?.heightsList?.includes(20) ? undefined : 'none',
+										}}
+										onClick={() => petHeightSelectHandler(20)}
+									>
+										20
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.heightsList?.includes(25)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(25)}
+									>
+										25
+									</Button>
+								</Stack>
+
+								<Stack flexDirection={'row'}>
+									<Button
+										sx={{
+											border: searchFilter?.search?.heightsList?.includes(30)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(30)}
+									>
+										30
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.heightsList?.includes(35)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(35)}
+									>
+										35
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.heightsList?.includes(40)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(40)}
+									>
+										40
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.heightsList?.includes(45)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(45)}
+									>
+										45
+									</Button>
+									<Button
+										sx={{
+											borderRadius: '0 12px 12px 0',
+											border: searchFilter?.search?.heightsList?.includes(50)
+												? '2px solid #181A20'
+												: '1px solid #b9b9b9',
+										}}
+										onClick={() => petHeightSelectHandler(50)}
+									>
+										50+
+									</Button>
+								</Stack>
+							</Stack>
 						</Stack>
 					</Stack>
 					<Stack className={'find-your-home'} mb={'30px'}>
 						<Typography className={'title'}>Ages</Typography>
 						<Stack className="button-group">
-							<Button
-								sx={{
-									borderRadius: '12px 0 0 12px',
-									border: !searchFilter?.search?.agesList ? '2px solid #181A20' : '1px solid #b9b9b9',
-								}}
-								onClick={() => petAgeSelectHandler(0)}
-							>
-								Any
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(1) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(1) ? undefined : 'none',
-								}}
-								onClick={() => petAgeSelectHandler(1)}
-							>
-								1
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(2) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(2) ? undefined : 'none',
-								}}
-								onClick={() => petAgeSelectHandler(2)}
-							>
-								2
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(3) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(3) ? undefined : 'none',
-								}}
-								onClick={() => petAgeSelectHandler(3)}
-							>
-								3
-							</Button>
-							<Button
-								sx={{
-									borderRadius: 0,
-									border: searchFilter?.search?.agesList?.includes(4) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
-									// borderRight: false ? undefined : 'none',
-								}}
-								onClick={() => petAgeSelectHandler(4)}
-							>
-								4
-							</Button>
-							<Button
-								sx={{
-									borderRadius: '0 12px 12px 0',
-									border: searchFilter?.search?.agesList?.includes(5) ? '2px solid #181A20' : '1px solid #b9b9b9',
-									borderLeft: searchFilter?.search?.agesList?.includes(5) ? undefined : 'none',
-								}}
-								onClick={() => petAgeSelectHandler(5)}
-							>
-								5+
-							</Button>
+							<Stack className="button-group-row">
+								<Stack flexDirection={'row'}>
+									<Button
+										sx={{
+											borderRadius: '12px 0 0 12px',
+											border: !searchFilter?.search?.agesList ? '2px solid #fff' : '1px solid #b9b9b9',
+										}}
+										onClick={() => petAgeSelectHandler(0)}
+									>
+										Any
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.agesList?.includes(1) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(1) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(1)}
+									>
+										1
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.agesList?.includes(2) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(2) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(2)}
+									>
+										2
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.agesList?.includes(3) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(3) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(3)}
+									>
+										3
+									</Button>
+									<Button
+										sx={{
+											borderRadius: 0,
+											border: searchFilter?.search?.agesList?.includes(4) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(4) ? undefined : 'none',
+											// borderRight: false ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(4)}
+									>
+										4
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(5) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(5) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(5)}
+									>
+										5
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(6) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(6) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(6)}
+									>
+										6
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(7) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(7) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(7)}
+									>
+										7
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(8) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(8) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(8)}
+									>
+										8
+									</Button>
+								</Stack>
+								<Stack flexDirection={'row'}>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(9) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(9) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(9)}
+									>
+										9
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(10) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(10) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(10)}
+									>
+										10
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(11) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(11) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(11)}
+									>
+										11
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(12) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(12) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(12)}
+									>
+										12
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(13) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(13) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(13)}
+									>
+										13
+									</Button>
+									<Button
+										sx={{
+											border: searchFilter?.search?.agesList?.includes(14) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(14) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(14)}
+									>
+										14
+									</Button>
+									<Button
+										sx={{
+											borderRadius: '0 12px 12px 0',
+											border: searchFilter?.search?.agesList?.includes(15) ? '2px solid #fff' : '1px solid #b9b9b9',
+											borderLeft: searchFilter?.search?.agesList?.includes(15) ? undefined : 'none',
+										}}
+										onClick={() => petAgeSelectHandler(15)}
+									>
+										15
+									</Button>
+								</Stack>
+							</Stack>
 						</Stack>
 					</Stack>
 				</Stack>
@@ -769,20 +932,18 @@ const Filter = (props: FilterType) => {
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
 									color="success"
-									value={searchFilter?.search?.weightRange?.start ?? 0}
+									value={searchFilter?.search?.weightRange?.start}
 									label="Min"
 									onChange={(e: any) => petWeightHandler(e, 'start')}
 									MenuProps={MenuProps}
 								>
-									{petWeight.map((weight: number) => (
-										<MenuItem
-											value={weight}
-											disabled={(searchFilter?.search?.weightRange?.end || 0) < weight}
-											key={weight}
-										>
-											{weight}
-										</MenuItem>
-									))}
+									{petWeight
+										.filter((weight) => weight <= 13)
+										.map((weight) => (
+											<MenuItem value={weight} key={weight}>
+												{weight}
+											</MenuItem>
+										))}
 								</Select>
 							</FormControl>
 							<div className="central-divider"></div>
@@ -792,20 +953,18 @@ const Filter = (props: FilterType) => {
 									labelId="demo-simple-select-label"
 									id="demo-simple-select"
 									color="success"
-									value={searchFilter?.search?.weightRange?.end ?? 500}
+									value={searchFilter?.search?.weightRange?.end}
 									label="Max"
 									onChange={(e: any) => petWeightHandler(e, 'end')}
 									MenuProps={MenuProps}
 								>
-									{petWeight.map((weight: number) => (
-										<MenuItem
-											value={weight}
-											disabled={(searchFilter?.search?.weightRange?.start || 0) > weight}
-											key={weight}
-										>
-											{weight}
-										</MenuItem>
-									))}
+									{petWeight
+										.filter((weight) => weight > 13)
+										.map((weight) => (
+											<MenuItem value={weight} key={weight}>
+												{weight}
+											</MenuItem>
+										))}
 								</Select>
 							</FormControl>
 						</Stack>

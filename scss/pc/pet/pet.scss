@@ -164,7 +164,12 @@
 							.button-group {
 								width: 100%;
 								height: 43.998px;
+								display: flex;
 								flex-direction: row;
+								.button-group-row {
+									display: flex;
+									flex-direction: column;
+								}
 								button {
 									width: 100%;
 									color: #181a20;
@@ -210,7 +215,7 @@
 					}
 				}
 				.main-config {
-					width: 936px;
+					width: 1200px;
 					align-items: center;
 					.list-config {
 						display: flex;
@@ -220,10 +225,10 @@
 						flex-wrap: wrap;
 
 						.card-config {
-							width: auto;
+							width: 390px;
 							height: auto;
 							display: flex;
-							flex-direction: row;
+							flex-direction: column;
 							border-radius: 12px;
 							background: #fff;
 							box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
