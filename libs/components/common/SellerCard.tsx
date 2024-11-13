@@ -10,12 +10,12 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 
-interface AgentCardProps {
+interface SellerCardProps {
 	seller: any;
 	likeMemberHandler: any;
 }
 
-const AgentCard = (props: AgentCardProps) => {
+const SellerCard = (props: SellerCardProps) => {
 	const { seller, likeMemberHandler } = props;
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
@@ -43,9 +43,7 @@ const AgentCard = (props: AgentCardProps) => {
 							backgroundPosition: 'center',
 							backgroundRepeat: 'no-repeat',
 						}}
-					>
-						<div>{seller?.memberPets} pets</div>
-					</Box>
+					></Box>
 				</Link>
 
 				<Stack className={'seller-desc'}>
@@ -58,7 +56,7 @@ const AgentCard = (props: AgentCardProps) => {
 						>
 							<strong>{seller?.memberFullName ?? seller?.memberNick}</strong>
 						</Link>
-						<span>Agent</span>
+						<span>Seller</span>
 					</Box>
 					<Box component={'div'} className={'buttons'}>
 						<IconButton color={'default'}>
@@ -74,10 +72,11 @@ const AgentCard = (props: AgentCardProps) => {
 						</IconButton>
 						<Typography className="view-cnt">{seller?.memberLikes}</Typography>
 					</Box>
+					<div className="seller-pets">{seller?.memberPets} pets</div>
 				</Stack>
 			</Stack>
 		);
 	}
 };
 
-export default AgentCard;
+export default SellerCard;

@@ -16,7 +16,11 @@
 				width: 100%;
 				display: flex;
 				flex-direction: row;
+				justify-content: center;
 				align-items: center;
+				background-color: #717171b2;
+				border-radius: 50px;
+				border: 2px solid #7ed957;
 				img {
 					margin-right: 32px;
 					width: 135px;
@@ -29,7 +33,7 @@
 					display: flex;
 					flex-direction: column;
 					strong {
-						color: #181a20;
+						color: #fff;
 						font-family: $font;
 						font-size: 24px;
 						font-style: normal;
@@ -47,13 +51,14 @@
 							margin-right: 10px;
 							width: 16px;
 							height: 16px;
+							filter: brightness(0) invert(1);
 						}
 						span {
 							color: #181a20;
-							font-family: $font;
-							font-size: 20px;
+							font-family: serif;
+							font-size: 18px;
 							font-style: normal;
-							font-weight: 400;
+							font-weight: 600;
 							line-height: 28px;
 						}
 					}
@@ -154,15 +159,22 @@
 				position: relative;
 				margin-top: 75px;
 				padding: 58px 19px;
-				width: 95%;
+				width: 100%;
 				height: auto;
 				border-radius: 24px;
 				background: #f6f6f6;
+				.review-box-detail {
+					flex-direction: row;
+					justify-content: space-around;
+				}
 				.main-intro {
 					display: flex;
 					flex-direction: column;
+					align-items: center;
+					text-align: center;
+
 					span {
-						color: #181a20;
+						color: #7ed957;
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -182,16 +194,22 @@
 				}
 				.review-wrap {
 					padding: 29px 25px;
-					margin-top: 57px;
 					display: flex;
 					flex-direction: column;
 					border-radius: 12px;
-					background: #fff;
+					background: linear-gradient(
+						135deg,
+						rgba(255, 255, 255, 0.5),
+						rgba(192, 192, 192, 0.8),
+						rgba(255, 255, 255, 0.5)
+					);
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+					width: 40%;
+
 					.title-box {
 						svg {
-							width: 10px;
-							height: 10px;
+							width: 15px;
+							height: 15px;
 						}
 						span {
 							margin-left: 8px;
@@ -207,6 +225,7 @@
 						margin-top: 20px;
 						display: flex;
 						flex-direction: column;
+						justify-content: space-around;
 						padding-bottom: 10px;
 						border-bottom: 1px solid #c4c4c4;
 						.info {
@@ -277,6 +296,9 @@
 					background: #fff;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					padding: 30px 38px;
+					width: 40%;
+					height: 350px;
+
 					.main-title {
 						color: #181a20;
 						font-family: $font;
@@ -313,7 +335,7 @@
 						display: flex;
 						justify-content: flex-end;
 						button:disabled {
-							background: #dfdfdf;
+							background: #717171;
 						}
 						.submit-review {
 							display: flex;
@@ -327,7 +349,7 @@
 							border: 1px solid #c4c4c4;
 							cursor: pointer;
 							.title {
-								color: #181a20;
+								color: #7ed957;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
