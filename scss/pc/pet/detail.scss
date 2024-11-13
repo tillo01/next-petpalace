@@ -21,20 +21,15 @@
 					height: auto;
 					flex-direction: column;
 					align-items: center;
-					background: linear-gradient(
-						135deg,
-						rgba(255, 255, 255, 0.5),
-						rgba(192, 192, 192, 0.8),
-						rgba(255, 255, 255, 0.5)
-					);
+					background: #717171;
 					border-radius: 20px;
-					border: 1.5px solid #7ed957b3;
+					border: 2px solid #7ed957b3;
 					.left-box {
 						width: 50%;
 						height: auto;
 
 						.title-main {
-							color: #181a20;
+							color: #fff;
 							font-family: $font;
 							font-size: 30px;
 							font-style: normal;
@@ -52,7 +47,7 @@
 							margin-bottom: 17px;
 
 							.city {
-								color: #717171;
+								color: #fff;
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -78,7 +73,7 @@
 								}
 							}
 							.date {
-								color: #181a20;
+								color: #fff;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -91,6 +86,7 @@
 							height: auto;
 							flex-direction: row;
 							gap: 15px;
+
 							.option {
 								width: auto;
 								height: auto;
@@ -99,6 +95,7 @@
 								img {
 									width: 17px;
 									height: 17px;
+									filter: brightness(0) invert(1);
 								}
 								p {
 									color: #181a20;
@@ -226,7 +223,7 @@
 						border: 1px solid #c4c4c4;
 						display: flex;
 						flex-direction: row;
-						background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgb(48, 47, 47), rgba(255, 255, 255, 0.5));
+						background: #717171;
 						.reviews-config {
 							width: 500px;
 							height: 580px;
@@ -441,19 +438,14 @@
 					gap: 5px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: linear-gradient(
-						135deg,
-						rgba(255, 255, 255, 0.5),
-						rgba(192, 192, 192, 0.8),
-						rgba(255, 255, 255, 0.5)
-					);
+					background: linear-gradient(135deg, rgb(255, 255, 255), rgba(192, 192, 192, 0.459), rgba(255, 255, 255, 0.5));
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.info-box {
 						position: relative;
 						width: 100%;
 						gap: 8px;
 						.main-title {
-							color: #7ed957;
+							color: #181a20;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -473,7 +465,7 @@
 							.name-phone-listings {
 								gap: 5px;
 								.name {
-									color: #7ed957;
+									color: #181a20;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -486,7 +478,7 @@
 									align-items: center;
 									gap: 10px;
 									.number {
-										color: #fff;
+										color: #181a20;
 										font-family: $font;
 										font-size: 15px;
 										font-style: normal;
@@ -506,7 +498,7 @@
 							}
 						}
 						.sub-title {
-							color: #7ed957;
+							color: #181a20;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -519,7 +511,7 @@
 							padding: 15px;
 							border-radius: 8px;
 							border: 1px solid #ddd;
-							background: linear-gradient(135deg, rgb(255, 255, 255), rgba(189, 189, 189, 0.384), rgb(255, 255, 255));
+							background: #fff;
 							outline: none;
 							&::placeholder {
 								color: #717171;
@@ -530,7 +522,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #7ed957;
 							}
 						}
 						textarea {
@@ -553,7 +545,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #7ed957;
 							}
 						}
 						.send-message {
@@ -564,9 +556,9 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #7ed957;
+							background: #717171;
 							.title {
-								color: #fff;
+								color: #7ed957;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -651,7 +643,7 @@
 					display: flex;
 					justify-content: flex-end;
 					button:disabled {
-						background: #7ed957;
+						background: #717171;
 					}
 					.submit-review {
 						display: flex;
@@ -665,7 +657,7 @@
 						border: 1px solid #c4c4c4;
 						cursor: pointer;
 						.title {
-							color: #181a20;
+							color: #7ed957;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -711,6 +703,7 @@
 						flex-direction: row;
 						align-items: center;
 						gap: 22px;
+						cursor: pointer;
 					}
 				}
 				.cards-box {

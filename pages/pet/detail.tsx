@@ -233,10 +233,10 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 												<>
 													<Stack className={'circle'}>
 														<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
-															<circle cx="3" cy="3" r="3" fill="#7ed957" />
+															<circle cx="3" cy="3" r="3" fill="white" />
 														</svg>
 													</Stack>
-													<Typography className={'buy-adoption'}>adoption</Typography>
+													<Typography className={'buy-adoption'}>Adoption</Typography>
 												</>
 											)}
 										</Stack>
@@ -254,7 +254,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 											</g>
 											<defs>
 												<clipPath id="clip0_6505_6282">
-													<rect width="14" height="14" fill="white" />
+													<rect width="14" height="14" fill="#fff" />
 												</clipPath>
 											</defs>
 										</svg>
@@ -262,7 +262,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 									</Stack>
 									<Stack className={'bottom-box'}>
 										<Stack className="option">
-											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} age</Typography>
+											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} weight</Typography>
 										</Stack>
 										<Stack className="option">
 											<img src="/img/icons/height.png" alt="" /> <Typography>{pet?.petAges} height</Typography>
@@ -270,14 +270,14 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 
 										<Stack className="option">
 											<img src="/img/icons/age.png" alt="" />
-											<Typography>{pet?.petWeight} m2</Typography>
+											<Typography>{pet?.petWeight} ages</Typography>
 										</Stack>
 									</Stack>
 								</Stack>
 								<Stack className={'right-box'}>
 									<Stack className="buttons">
 										<Stack className="button-box">
-											<RemoveRedEyeIcon fontSize="medium" />
+											<RemoveRedEyeIcon sx={{ color: '#fff' }} fontSize="medium" />
 											<Typography>{pet?.petViews}</Typography>
 										</Stack>
 										<Stack className="button-box">
@@ -407,21 +407,21 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 														<Typography className={'data'}>${formatterStr(pet?.petPrice)}</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Pet Size</Typography>
-														<Typography className={'data'}>{pet?.petWeight} m2</Typography>
+														<Typography className={'title'}>Pet Weight</Typography>
+														<Typography className={'data'}>{pet?.petWeight} kg</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Heights</Typography>
-														<Typography className={'data'}>{pet?.petAges}</Typography>
+														<Typography className={'title'}>Pet Ages</Typography>
+														<Typography className={'data'}>{pet?.petAges} ages</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Ageheights</Typography>
-														<Typography className={'data'}>{pet?.petHeight}</Typography>
+														<Typography className={'title'}>Pet Height</Typography>
+														<Typography className={'data'}>{pet?.petHeight} cm</Typography>
 													</Box>
 												</Stack>
 												<Stack className={'right'}>
 													<Box component={'div'} className={'info'}>
-														<Typography className={'title'}>Year Built</Typography>
+														<Typography className={'title'}>Year Born</Typography>
 														<Typography className={'data'}>{moment(pet?.createdAt).format('YYYY')}</Typography>
 													</Box>
 													<Box component={'div'} className={'info'}>
@@ -431,7 +431,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 													<Box component={'div'} className={'info'}>
 														<Typography className={'title'}>Pet Options</Typography>
 														<Typography className={'data'}>
-															For {pet?.petSell && 'Sell'} {pet?.petAdoption && 'Adoption'}
+															for {pet?.petSell && 'Sell'} {pet?.petAdoption && 'Adoption'}
 														</Typography>
 													</Box>
 												</Stack>
