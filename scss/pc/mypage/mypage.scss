@@ -9,30 +9,41 @@
 				gap: 25px;
 				padding-top: 96px;
 				.back-frame {
+					position: relative;
 					width: 1260px;
 					height: auto;
 					display: flex;
-					flex-direction: row;
-					margin: 100px 0 200px 0;
+					flex-direction: column;
+					margin: 90px 0 200px 0;
 					border-radius: 12px;
 					border: 1px solid #c4c4c4;
 					background: #fff;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
+
 					.left-config {
-						position: relative;
+						display: flex;
+						flex-direction: row;
+						justify-content: space-around;
 						padding: 0 0 0 0;
-						width: 266px;
-						height: 700px;
+						width: 1200px;
+						height: 225px;
 						border-radius: 12px;
 						background: #fff;
 						border: 1px solid rgba(196, 196, 196, 0.79);
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
-						margin: 180px 20px 40px 20px;
+						background: linear-gradient(
+							135deg,
+							rgba(255, 255, 255, 0.5),
+							rgba(192, 192, 192, 0.8),
+							rgba(255, 255, 255, 0.5)
+						);
+						margin: 20px 0px 20px 30px;
 						.profile {
 							margin-top: 5px;
 							position: relative;
 							display: flex;
-							flex-direction: row;
+							flex-direction: column;
+							align-items: center;
 							.profile-img {
 								img {
 									width: 79px;
@@ -67,22 +78,31 @@
 								}
 								.view-list {
 									font-weight: bold;
-									color: red;
+									color: #7ed957;
 								}
 							}
 						}
 						.sections {
 							height: auto;
 							gap: 45px;
-							margin-top: 30px;
+							display: flex;
+							flex-direction: row;
+							align-items: flex-start;
 							.section {
 								height: auto;
 								.title {
+									position: relative;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
 									font-weight: 400;
 									line-height: 28px;
+									color: #fff;
+									background: #7ed957;
+									text-align: center;
+									bottom: 10px;
+									border-radius: 12px;
+									border: 1px solid #fff;
 								}
 								.sub-section {
 									width: 230px;
@@ -91,7 +111,6 @@
 									flex-direction: column;
 									align-items: center;
 									cursor: pointer;
-									padding: 0 5px 0 5px;
 									li {
 										height: 33px;
 										margin-bottom: 6px;
@@ -99,11 +118,12 @@
 									}
 									.focus {
 										height: 50px;
-										background: #000000;
+										background: #717171;
 										border-radius: 10px;
+										border: 2px solid #7ed957;
 										p {
 											font-size: 14px;
-											color: #ffffff;
+											color: #7ed957;
 										}
 									}
 									.flex-box {
@@ -126,11 +146,11 @@
 								}
 								.sub-title {
 									margin-left: 12px;
-									color: #181a20;
+									color: #fff;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
-									font-weight: 600;
+									font-weight: 700;
 									line-height: 55px;
 								}
 							}
@@ -138,10 +158,11 @@
 					}
 					.main-config {
 						position: relative;
-						width: 936px;
-						margin-top: 52px;
+						width: 1100px;
 						align-items: center;
 						gap: 109px;
+						margin-left: 80px;
+						border-radius: 12px;
 						.list-config {
 							display: flex;
 							width: 100%;

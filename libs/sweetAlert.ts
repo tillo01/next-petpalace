@@ -1,6 +1,7 @@
 import Swal from 'sweetalert2';
 import 'animate.css';
 import { Messages } from './config';
+import 'animate.css';
 
 export const sweetErrorHandling = async (err: any) => {
 	await Swal.fire({
@@ -31,18 +32,59 @@ export const sweetContactAlert = async (msg: string, duration: number = 10000) =
 	}).then();
 };
 
+// export const sweetConfirmAlert = (msg: string) => {
+// 	return new Promise(async (resolve, reject) => {
+// 		await Swal.fire({
+// 			icon: 'question',
+// 			text: msg,
+// 			showClass: {
+// 				popup: 'animate__bounceIn',
+// 			},
+// 			showCancelButton: true,
+// 			showConfirmButton: true,
+// 			confirmButtonColor: '#7ed957',
+// 			cancelButtonColor: '#bdbdbd',
+// 		}).then((response) => {
+// 			if (response?.isConfirmed) resolve(true);
+// 			else resolve(false);
+// 		});
+// 	});
+// };
+// Include animations for better pop-up effects
+
 export const sweetConfirmAlert = (msg: string) => {
 	return new Promise(async (resolve, reject) => {
 		await Swal.fire({
-			icon: 'question',
-			text: msg,
-			showClass: {
-				popup: 'animate__bounceIn',
-			},
+			title: 'Are you sure?',
+			html: `
+        <div style="text-align: center;">
+          <p style="font-size: 16px; color: #555;">${msg}</p>
+        </div>
+      `,
+			icon: 'warning',
+			background: '#fdf9f3',
+			backdrop: `
+        rgba(0, 0, 0, 0.5)
+        url("https://media.giphy.com/media/l0MYB8Ory7Hqefo9a/giphy.gif") // Add animated background
+        left top
+        no-repeat
+      `,
+			confirmButtonText: ' Yes',
+			cancelButtonText: ' No',
+			confirmButtonColor: '#D95757',
+			cancelButtonColor: '#999',
 			showCancelButton: true,
-			showConfirmButton: true,
-			confirmButtonColor: '#e92C28',
-			cancelButtonColor: '#bdbdbd',
+			showClass: {
+				popup: 'animate__animated animate__fadeInDown',
+			},
+			hideClass: {
+				popup: 'animate__animated animate__fadeOutUp',
+			},
+			customClass: {
+				popup: 'custom-popup',
+				confirmButton: 'custom-confirm-button',
+				cancelButton: 'custom-cancel-button',
+			},
 		}).then((response) => {
 			if (response?.isConfirmed) resolve(true);
 			else resolve(false);

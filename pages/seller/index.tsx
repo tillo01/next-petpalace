@@ -47,9 +47,9 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	const [likeTArgetMember] = useMutation(LIKE_TARGET_MEMBER);
 
 	const {
-		loading: getAgentLoading,
-		data: getAgentData,
-		error: getAgentError,
+		loading: getSellerLoading,
+		data: getSellerData,
+		error: getSellerError,
 		refetch: getSellersRefetch,
 	} = useQuery(GET_SELLERS, {
 		fetchPolicy: 'cache-and-network',

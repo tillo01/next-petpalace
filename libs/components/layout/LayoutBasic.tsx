@@ -35,27 +35,27 @@ const withLayoutBasic = (Component: any) => {
 					break;
 				case '/seller':
 					title = 'Sellers';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/dog.webp';
 					break;
 				case '/seller/detail':
 					title = 'Agent Page';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/otherPage.webp';
 					break;
 				case '/mypage':
 					title = 'my page';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/myPage.webp';
 					break;
 				case '/community':
 					title = 'Community';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/communityPage.webp';
 					break;
 				case '/community/detail':
 					title = 'Community Detail';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/communityPage.webp';
 					break;
 				case '/cs':
@@ -71,7 +71,7 @@ const withLayoutBasic = (Component: any) => {
 					break;
 				case '/member':
 					title = 'Member Page';
-					desc = 'Home / For Adoption';
+					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/header1.svg';
 					break;
 				default:

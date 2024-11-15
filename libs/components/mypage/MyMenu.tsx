@@ -31,7 +31,7 @@ const MyMenu = () => {
 		return <div>MY MENU</div>;
 	} else {
 		return (
-			<Stack width={'100%'} padding={'30px 24px'}>
+			<Stack width={'100%'} padding={'30px 24px'} flexDirection="row" justifyContent="space-around">
 				<Stack className={'profile'}>
 					<Box component={'div'} className={'profile-img'}>
 						<img
@@ -57,7 +57,7 @@ const MyMenu = () => {
 				<Stack className={'sections'}>
 					<Stack className={'section'} style={{ height: user.memberType === 'SELLER' ? '228px' : '153px' }}>
 						<Typography className="title" variant={'h5'}>
-							MANAGE LISTINGS
+							MAIN
 						</Typography>
 						<List className={'sub-section'}>
 							{user.memberType === 'SELLER' && (
@@ -80,7 +80,7 @@ const MyMenu = () => {
 													Add Pet
 												</Typography>
 												<IconButton aria-label="delete" sx={{ ml: '40px' }}>
-													<PortraitIcon style={{ color: 'red' }} />
+													{/* <PortraitIcon style={{ color: '#7ed957' }} /> */}
 												</IconButton>
 											</div>
 										</Link>
@@ -103,7 +103,7 @@ const MyMenu = () => {
 													My Pets
 												</Typography>
 												<IconButton aria-label="delete" sx={{ ml: '36px' }}>
-													<PortraitIcon style={{ color: 'red' }} />
+													{/* <PortraitIcon style={{ color: '#7ed957' }} /> */}
 												</IconButton>
 											</div>
 										</Link>
@@ -131,27 +131,7 @@ const MyMenu = () => {
 									</div>
 								</Link>
 							</ListItem>
-							<ListItem className={pathname === 'recentlyVisited' ? 'focus' : ''}>
-								<Link
-									href={{
-										pathname: '/mypage',
-										query: { category: 'recentlyVisited' },
-									}}
-									scroll={false}
-								>
-									<div className={'flex-box'}>
-										{category === 'recentlyVisited' ? (
-											<img className={'com-icon'} src={'/img/icons/searchWhite.svg'} alt={'com-icon'} />
-										) : (
-											<img className={'com-icon'} src={'/img/icons/search.svg'} alt={'com-icon'} />
-										)}
 
-										<Typography className={'sub-title'} variant={'subtitle1'} component={'p'}>
-											Recently Visited
-										</Typography>
-									</div>
-								</Link>
-							</ListItem>
 							<ListItem className={pathname === 'followers' ? 'focus' : ''}>
 								<Link
 									href={{
@@ -199,60 +179,12 @@ const MyMenu = () => {
 									</div>
 								</Link>
 							</ListItem>
-							<ListItem className={pathname === 'followings' ? 'focus' : ''}>
-								<Link
-									href={{
-										pathname: '/mypage',
-										query: { category: 'followings' },
-									}}
-									scroll={false}
-								>
-									<div className={'flex-box'}>
-										<svg
-											className={'com-icon'}
-											fill={category === 'followings' ? 'white' : 'black'}
-											height="16px"
-											width="16px"
-											version="1.1"
-											id="Layer_1"
-											xmlns="http://www.w3.org/2000/svg"
-											viewBox="0 0 328 328"
-										>
-											<g id="XMLID_334_">
-												<path
-													id="XMLID_337_"
-													d="M177.75,64.001C177.75,29.4,149.601,1.25,115,1.25c-34.602,0-62.75,28.15-62.75,62.751
-		S80.398,126.75,115,126.75C149.601,126.75,177.75,98.602,177.75,64.001z"
-												/>
-												<path
-													id="XMLID_338_"
-													d="M228.606,181.144c-5.858-5.857-15.355-5.858-21.214-0.001c-5.857,5.857-5.857,15.355,0,21.214
-		l19.393,19.396l-19.393,19.391c-5.857,5.857-5.857,15.355,0,21.214c2.93,2.929,6.768,4.394,10.607,4.394
-		c3.838,0,7.678-1.465,10.605-4.393l30-29.998c2.813-2.814,4.395-6.629,4.395-10.607c0-3.978-1.58-7.793-4.394-10.607
-		L228.606,181.144z"
-												/>
-												<path
-													id="XMLID_340_"
-													d="M223,116.75c-34.488,0-65.145,16.716-84.298,42.47c-7.763-1.628-15.694-2.47-23.702-2.47
-		c-63.412,0-115,51.589-115,115c0,8.284,6.715,15,15,15h125.596c19.246,24.348,49.03,40,82.404,40c57.896,0,105-47.103,105-105
-		C328,163.854,280.896,116.75,223,116.75z M223,296.75c-41.356,0-75-33.645-75-75s33.644-75,75-75c41.354,0,75,33.645,75,75
-		S264.354,296.75,223,296.75z"
-												/>
-											</g>
-										</svg>
-
-										<Typography className={'sub-title'} variant={'subtitle1'} component={'p'}>
-											My Followings
-										</Typography>
-									</div>
-								</Link>
-							</ListItem>
 						</List>
 					</Stack>
-					<Stack className={'section'} sx={{ marginTop: '10px' }}>
+					<Stack className={'section'}>
 						<div>
 							<Typography className="title" variant={'h5'}>
-								Community
+								SUBSIDIARY
 							</Typography>
 							<List className={'sub-section'}>
 								<ListItem className={pathname === 'myArticles' ? 'focus' : ''}>
@@ -296,10 +228,79 @@ const MyMenu = () => {
 										</div>
 									</Link>
 								</ListItem>
+								<ListItem className={pathname === 'recentlyVisited' ? 'focus' : ''}>
+									<Link
+										href={{
+											pathname: '/mypage',
+											query: { category: 'recentlyVisited' },
+										}}
+										scroll={false}
+									>
+										<div className={'flex-box'}>
+											{category === 'recentlyVisited' ? (
+												<img className={'com-icon'} src={'/img/icons/searchWhite.svg'} alt={'com-icon'} />
+											) : (
+												<img className={'com-icon'} src={'/img/icons/search.svg'} alt={'com-icon'} />
+											)}
+
+											<Typography className={'sub-title'} variant={'subtitle1'} component={'p'}>
+												Recently Visited
+											</Typography>
+										</div>
+									</Link>
+								</ListItem>
+								<ListItem className={pathname === 'followings' ? 'focus' : ''}>
+									<Link
+										href={{
+											pathname: '/mypage',
+											query: { category: 'followings' },
+										}}
+										scroll={false}
+									>
+										<div className={'flex-box'}>
+											<svg
+												className={'com-icon'}
+												fill={category === 'followings' ? 'white' : 'black'}
+												height="16px"
+												width="16px"
+												version="1.1"
+												id="Layer_1"
+												xmlns="http://www.w3.org/2000/svg"
+												viewBox="0 0 328 328"
+											>
+												<g id="XMLID_334_">
+													<path
+														id="XMLID_337_"
+														d="M177.75,64.001C177.75,29.4,149.601,1.25,115,1.25c-34.602,0-62.75,28.15-62.75,62.751
+		S80.398,126.75,115,126.75C149.601,126.75,177.75,98.602,177.75,64.001z"
+													/>
+													<path
+														id="XMLID_338_"
+														d="M228.606,181.144c-5.858-5.857-15.355-5.858-21.214-0.001c-5.857,5.857-5.857,15.355,0,21.214
+		l19.393,19.396l-19.393,19.391c-5.857,5.857-5.857,15.355,0,21.214c2.93,2.929,6.768,4.394,10.607,4.394
+		c3.838,0,7.678-1.465,10.605-4.393l30-29.998c2.813-2.814,4.395-6.629,4.395-10.607c0-3.978-1.58-7.793-4.394-10.607
+		L228.606,181.144z"
+													/>
+													<path
+														id="XMLID_340_"
+														d="M223,116.75c-34.488,0-65.145,16.716-84.298,42.47c-7.763-1.628-15.694-2.47-23.702-2.47
+		c-63.412,0-115,51.589-115,115c0,8.284,6.715,15,15,15h125.596c19.246,24.348,49.03,40,82.404,40c57.896,0,105-47.103,105-105
+		C328,163.854,280.896,116.75,223,116.75z M223,296.75c-41.356,0-75-33.645-75-75s33.644-75,75-75c41.354,0,75,33.645,75,75
+		S264.354,296.75,223,296.75z"
+													/>
+												</g>
+											</svg>
+
+											<Typography className={'sub-title'} variant={'subtitle1'} component={'p'}>
+												My Followings
+											</Typography>
+										</div>
+									</Link>
+								</ListItem>
 							</List>
 						</div>
 					</Stack>
-					<Stack className={'section'} sx={{ marginTop: '30px' }}>
+					<Stack className={'section'}>
 						<Typography className="title" variant={'h5'}>
 							MANAGE ACCOUNT
 						</Typography>

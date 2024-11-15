@@ -215,16 +215,11 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 				throw new Error('Provide data to update your comment!');
 
 			if (commentStatus) {
-				if (await sweetConfirmAlert('Do you want to delete the comment?')) {
-					await updateComment({
-						variables: {
-							input: updateData,
-						},
-					});
-					await sweetMixinSuccessAlert('Successfully deleted!');
-				} else {
-					return;
-				}
+				await updateComment({
+					variables: {
+						input: updateData,
+					},
+				});
 			} else {
 				console.log('$$$$$$$$$$');
 
@@ -233,7 +228,6 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 						input: updateData,
 					},
 				});
-				await sweetMixinSuccessAlert('Successfully updated!');
 			}
 			console.log('++', updateData);
 

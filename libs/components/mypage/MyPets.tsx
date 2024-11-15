@@ -26,10 +26,10 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 
 	const [updatePet] = useMutation(UPDATE_PET);
 	const {
-		loading: getAgentPets,
-		data: getAgentPetsData,
-		error: getAgentPetsError,
-		refetch: getAgentPropertieRefetch,
+		loading: getSellerPets,
+		data: getSellerPetsData,
+		error: getSellerPetsError,
+		refetch: getSellerPropertieRefetch,
 	} = useQuery(GET_SELLER_PETS, {
 		fetchPolicy: 'network-only',
 		variables: {
@@ -37,7 +37,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 		},
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentPets(data?.getAgentPets?.list);
+			setAgentPets(data?.getSellerPets?.list);
 			setTotal(data?.setAgentPets?.metaCounter[0]?.total ?? 0);
 		},
 	});
@@ -63,7 +63,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 					},
 				});
 
-				await getAgentPropertieRefetch({ input: searchFilter });
+				await getSellerPropertieRefetch({ input: searchFilter });
 			}
 		} catch (err) {
 			await sweetErrorHandling(err);
@@ -81,7 +81,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 						},
 					},
 				});
-				await getAgentPropertieRefetch({ input: searchFilter });
+				await getSellerPropertieRefetch({ input: searchFilter });
 			}
 		} catch (err: any) {
 			await sweetErrorHandling(err);
