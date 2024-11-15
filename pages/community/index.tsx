@@ -83,13 +83,13 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 		setSearchCommunity({ ...searchCommunity, page: value });
 	};
 
-	const likeArticleHandler = async (e: any, user: any, id: string) => {
+	const likeArticleHandler = async (e: any, user: any, _id: string) => {
 		try {
 			e.stopPropagation();
-			if (!id) return;
+			if (!_id) return;
 			if (!user._id) throw new Error(Messages.error2);
 
-			await likeTargetBoardArticle({ variables: { input: id } });
+			await likeTargetBoardArticle({ variables: { input: _id } });
 
 			await boardArticlesRefetch({ input: searchCommunity });
 
@@ -108,16 +108,39 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 				<div className="container">
 					<TabContext value={searchCommunity.search.articleCategory}>
 						<Stack className="main-box">
+							<Stack className="title-box">
+								<Stack className="left">
+									<Typography className="title">{searchCommunity.search.articleCategory} ARTICLES</Typography>
+									<Typography className="sub-title">
+										Write your thoughts and get comment , Feel free to express yout opinions here.
+									</Typography>
+								</Stack>
+								<Button
+									onClick={() =>
+										router.push({
+											pathname: '/mypage',
+											query: {
+												category: 'writeArticle',
+											},
+										})
+									}
+									className="right"
+								>
+									Write
+								</Button>
+							</Stack>
 							<Stack className="left-config">
 								<Stack className={'image-info'}>
-									<img src={'/img/logo/logoText.svg'} />
+									<img src={'/img/logo/Logo.bg.png'} />
 									<Stack className={'community-name'}>
-										<Typography className={'name'}>Nestar Community</Typography>
+										<Typography className={'name'}>
+											Pet-Palace <br /> Thoughts
+										</Typography>
 									</Stack>
 								</Stack>
 
 								<TabList
-									orientation="vertical"
+									orientation="horizontal"
 									aria-label="lab API tabs example"
 									TabIndicatorProps={{
 										style: { display: 'none' },
@@ -126,12 +149,12 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 								>
 									<Tab
 										value={'FREE'}
-										label={'Free Board'}
+										label={'Articles'}
 										className={`tab-button ${searchCommunity.search.articleCategory == 'FREE' ? 'active' : ''}`}
 									/>
 									<Tab
 										value={'RECOMMEND'}
-										label={'Recommendation'}
+										label={'Tips'}
 										className={`tab-button ${searchCommunity.search.articleCategory == 'RECOMMEND' ? 'active' : ''}`}
 									/>
 									<Tab
@@ -141,35 +164,13 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 									/>
 									<Tab
 										value={'HUMOR'}
-										label={'Humor'}
+										label={'Cute humors'}
 										className={`tab-button ${searchCommunity.search.articleCategory == 'HUMOR' ? 'active' : ''}`}
 									/>
 								</TabList>
 							</Stack>
 							<Stack className="right-config">
 								<Stack className="panel-config">
-									<Stack className="title-box">
-										<Stack className="left">
-											<Typography className="title">{searchCommunity.search.articleCategory} BOARD</Typography>
-											<Typography className="sub-title">
-												Express your opinions freely here without content restrictions
-											</Typography>
-										</Stack>
-										<Button
-											onClick={() =>
-												router.push({
-													pathname: '/mypage',
-													query: {
-														category: 'writeArticle',
-													},
-												})
-											}
-											className="right"
-										>
-											Write
-										</Button>
-									</Stack>
-
 									<TabPanel value="FREE">
 										<Stack className="list-box">
 											{totalCount ? (

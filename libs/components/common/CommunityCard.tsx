@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
-import { Stack, Typography } from '@mui/material';
+import { Avatar, Stack, Typography } from '@mui/material';
 import { BoardArticle } from '../../types/board-article/board-article';
 import Moment from 'react-moment';
 import { REACT_APP_API_URL } from '../../config';
@@ -12,6 +12,7 @@ import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { T } from '../../types/common';
+import { sweetErrorHandling } from '../../sweetAlert';
 
 interface CommunityCardProps {
 	boardArticle: BoardArticle;
@@ -38,6 +39,14 @@ const CommunityCard = (props: CommunityCardProps) => {
 			undefined,
 			{ shallow: true },
 		);
+	};
+	const redirectToMemberPageHandler = async (memberId: string) => {
+		try {
+			if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
+			else await router.push(`/member?memberId=${memberId}`);
+		} catch (error) {
+			await sweetErrorHandling(error);
+		}
 	};
 
 	const goMemberPage = (id: string) => {
@@ -66,7 +75,23 @@ const CommunityCard = (props: CommunityCardProps) => {
 								goMemberPage(boardArticle?.memberData?._id as string);
 							}}
 						>
-							{boardArticle?.memberData?.memberNick}
+							<div className="seller-nick">
+								<p>
+									<Avatar
+										className="little-member"
+										onClick={() => redirectToMemberPageHandler(boardArticle?.memberData?._id as string)}
+										src={
+											boardArticle?.memberData?.memberImage
+												? `${process.env.REACT_APP_API_URL}/${boardArticle?.memberData.memberImage}`
+												: '/img/profile/defaultUser.svg'
+										}
+										sx={{ width: 48, height: 48, marginRight: 2 }}
+									/>
+								</p>
+
+								<p>{boardArticle?.memberData?.memberNick ?? 'Seller'}</p>
+							</div>
+							{/* {boardArticle?.memberData?.memberNick} */}
 						</Typography>
 						<Typography className="title">{boardArticle?.articleTitle}</Typography>
 					</Stack>
@@ -86,7 +111,7 @@ const CommunityCard = (props: CommunityCardProps) => {
 					</Stack>
 				</Stack>
 				<Stack className="date-box">
-					<Moment className="month" format={'MMMM'}>
+					<Moment className="month" format={'MMM'}>
 						{boardArticle?.createdAt}
 					</Moment>
 					<Typography className="day">

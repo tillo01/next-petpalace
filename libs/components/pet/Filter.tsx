@@ -506,7 +506,7 @@ const Filter = (props: FilterType) => {
 		return (
 			<Stack className={'filter-main'}>
 				<Stack className={'find-your-home'} mb={'40px'}>
-					<Typography className={'title-main'}>Find Your Home</Typography>
+					<Typography className={'title-main'}>Look for your pet</Typography>
 					<Stack className={'input-box'}>
 						<OutlinedInput
 							value={searchText}
