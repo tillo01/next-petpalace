@@ -5,7 +5,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { PetCard } from './PetCard';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { Pet } from '../../types/pet/pet';
-import { AgentPetsInquiry } from '../../types/pet/pet.input';
+import { SellerPetsInquiry } from '../../types/pet/pet.input';
 import { T } from '../../types/common';
 import { PetStatus } from '../../enums/pet.enum';
 import { userVar } from '../../../apollo/store';
@@ -16,8 +16,8 @@ import { sweetConfirmAlert, sweetErrorHandling } from '../../sweetAlert';
 
 const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
-	const [searchFilter, setSearchFilter] = useState<AgentPetsInquiry>(initialInput);
-	const [sellerPets, setAgentPets] = useState<Pet[]>([]);
+	const [searchFilter, setSearchFilter] = useState<SellerPetsInquiry>(initialInput);
+	const [sellerPets, setSellerPets] = useState<Pet[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const user = useReactiveVar(userVar);
 	const router = useRouter();
@@ -25,6 +25,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 	/** APOLLO REQUESTS **/
 
 	const [updatePet] = useMutation(UPDATE_PET);
+
 	const {
 		loading: getSellerPets,
 		data: getSellerPetsData,
@@ -37,8 +38,8 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 		},
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentPets(data?.getSellerPets?.list);
-			setTotal(data?.setAgentPets?.metaCounter[0]?.total ?? 0);
+			setSellerPets(data?.getSellerPets?.list);
+			setTotal(data?.getSellerPets?.metaCounter[0]?.total);
 		},
 	});
 
@@ -134,7 +135,14 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 							</div>
 						) : (
 							sellerPets.map((pet: Pet) => {
-								return <PetCard pet={pet} deletePetHandler={deletePetHandler} updatePetHandler={updatePetHandler} />;
+								return (
+									<PetCard
+										pet={pet}
+										key={pet?._id}
+										deletePetHandler={deletePetHandler}
+										updatePetHandler={updatePetHandler}
+									/>
+								);
 							})
 						)}
 
@@ -165,10 +173,9 @@ MyPets.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 5,
-		sort: 'createdAt',
-		search: {
-			petStatus: 'ACTIVE',
-		},
+		sort: 'petRank',
+		direction: 'DESC',
+		search: {},
 	},
 };
 

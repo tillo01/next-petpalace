@@ -89,9 +89,10 @@
 								align-items: center;
 								cursor: pointer;
 								border-radius: 12px;
-								border: 1px solid #181a20;
+								border: 1px solid #7ed957;
+								background: #717171;
 								p {
-									color: #181a20;
+									color: #7ed957;
 									font-family: $font;
 									font-size: 13px;
 									font-style: normal;
@@ -132,7 +133,7 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #ddd;
+							border: 1px solid #7ed957;
 							::placeholder {
 								color: #717171;
 								font-family: $font;
@@ -159,7 +160,7 @@
 						outline: none;
 						padding: 0px 15px;
 						border-radius: 8px;
-						border: 1px solid #ddd;
+						border: 1px solid #7ed957;
 						::placeholder {
 							color: #717171;
 							font-family: $font;
@@ -202,9 +203,9 @@
 						align-self: flex-end;
 						margin-top: 30px;
 						border-radius: 12px;
-						background-color: #000000;
+						background-color: #717171;
 						p {
-							color: #fff;
+							color: #7ed957;
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;

@@ -43,7 +43,7 @@ interface APISearch {
 	petStatus?: PetStatus;
 }
 
-export interface AgentPetsInquiry {
+export interface SellerPetsInquiry {
 	page: number;
 	limit: number;
 	sort?: string;

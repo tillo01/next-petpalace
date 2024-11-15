@@ -58,6 +58,22 @@ const PetCard = (props: PetCardType) => {
 					<Box component={'div'} className={'price-box'}>
 						<Typography>${formatterStr(pet?.petPrice)}</Typography>
 					</Box>
+					<div className="seller-nick">
+						<p>
+							<Avatar
+								className="little-member"
+								onClick={() => redirectToMemberPageHandler(pet?.memberData?._id as string)}
+								src={
+									pet?.memberData?.memberImage
+										? `${process.env.REACT_APP_API_URL}/${pet?.memberData.memberImage}`
+										: '/img/profile/defaultUser.svg'
+								}
+								sx={{ width: 48, height: 48, marginRight: 2 }}
+							/>
+						</p>
+
+						<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
+					</div>
 				</Stack>
 				<Stack className="bottom">
 					<Stack className="name-address">
@@ -88,7 +104,7 @@ const PetCard = (props: PetCardType) => {
 						</Stack>
 						<Stack className="option">
 							<img src="/img/icons/age.png" alt="" />
-							<Typography>{pet.petWeight} m2</Typography>
+							<Typography>{pet.petWeight}kg</Typography>
 						</Stack>
 					</Stack>
 					<Stack className="divider"></Stack>
@@ -120,22 +136,6 @@ const PetCard = (props: PetCardType) => {
 							</Stack>
 						)}
 					</Stack>
-					<div className="seller-nick">
-						<p>
-							<Avatar
-								className="little-member"
-								onClick={() => redirectToMemberPageHandler(pet?.memberData?._id as string)}
-								src={
-									pet?.memberData?.memberImage
-										? `${process.env.REACT_APP_API_URL}/${pet?.memberData.memberImage}`
-										: '/img/profile/defaultUser.svg'
-								}
-								sx={{ width: 48, height: 48, marginRight: 2 }}
-							/>
-						</p>
-
-						<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
-					</div>
 				</Stack>
 			</Stack>
 		);

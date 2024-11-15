@@ -63,7 +63,7 @@ export const PetCard = (props: PetCardProps) => {
 					<Typography className="name">{pet.petTitle}</Typography>
 					<Typography className="address">{pet.petAddress}</Typography>
 					<Typography className="price">
-						<strong>${formatterStr(pet?.petPrice)}</strong>/ mo
+						<strong>${formatterStr(pet?.petPrice)}</strong>
 					</Typography>
 				</Stack>
 				<Stack className="date-box">
@@ -121,10 +121,10 @@ export const PetCard = (props: PetCardProps) => {
 				{!memberPage && pet.petStatus === PetStatus.ACTIVE && (
 					<Stack className="action-box">
 						<IconButton className="icon-button" onClick={() => pushEditPet(pet._id)}>
-							<ModeIcon className="buttons" />
+							<ModeIcon style={{ color: '#7ed957' }} className="buttons" />
 						</IconButton>
 						<IconButton className="icon-button" onClick={() => deletePetHandler(pet._id)}>
-							<DeleteIcon className="buttons" />
+							<DeleteIcon style={{ color: 'red' }} className="buttons" />
 						</IconButton>
 					</Stack>
 				)}

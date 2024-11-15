@@ -10,7 +10,7 @@ import { GET_PETS } from '../../../apollo/user/query';
 import { useQuery } from '@apollo/client';
 import { PetCard } from '../mypage/PetCard';
 
-const MyPets: NextPage = ({ initialInput, ...props }: any) => {
+const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const { memberId } = router.query;
@@ -104,7 +104,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 	}
 };
 
-MyPets.defaultProps = {
+MemberPets.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 5,
@@ -115,4 +115,4 @@ MyPets.defaultProps = {
 	},
 };
 
-export default MyPets;
+export default MemberPets;

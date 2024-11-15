@@ -315,9 +315,9 @@ const MyMenu = () => {
 								>
 									<div className={'flex-box'}>
 										{category === 'myProfile' ? (
-											<img className={'com-icon'} src={'/img/icons/userWhite.svg'} alt={'com-icon'} />
+											<img className={'com-icon'} src={'/img/icons/User1.png'} alt={'com-icon'} />
 										) : (
-											<img className={'com-icon'} src={'/img/icons/user.svg'} alt={'com-icon'} />
+											<img className={'com-icon'} src={'/img/icons/User.png'} alt={'com-icon'} />
 										)}
 										<Typography className={'sub-title'} variant={'subtitle1'} component={'p'}>
 											My Profile

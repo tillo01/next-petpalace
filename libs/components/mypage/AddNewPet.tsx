@@ -321,7 +321,12 @@ const AddPet = ({ initialValues, ...props }: any) => {
 
 							<Stack className="config-row">
 								<Stack className="price-year-after-price">
-									<Typography className="title">Heights</Typography>
+									<Typography className="title">
+										Height{''}
+										<small style={{ color: 'red', fontSize: '9px', paddingLeft: '5px' }}>
+											If it does not match, choose the nearest height
+										</small>
+									</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petAges || 'select'}
@@ -333,7 +338,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{[1, 2, 3, 4, 5].map((height: number) => (
+										{[5, 10, 15, 20, 25, 30, 35, 40, 45, 50].map((height: number) => (
 											<option value={`${height}`}>{height}</option>
 										))}
 									</select>
@@ -341,7 +346,12 @@ const AddPet = ({ initialValues, ...props }: any) => {
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Age</Typography>
+									<Typography className="title">
+										Age{' '}
+										<small style={{ color: 'red', fontSize: '9px' }}>
+											If it does not match, please choose the nearest age.
+										</small>
+									</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petHeight || 'select'}
@@ -353,7 +363,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 										<option disabled={true} selected={true} value={'select'}>
 											Select
 										</option>
-										{[1, 2, 3, 4, 5].map((age: number) => (
+										{[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map((age: number) => (
 											<option value={`${age}`}>{age}</option>
 										))}
 									</select>
@@ -361,7 +371,12 @@ const AddPet = ({ initialValues, ...props }: any) => {
 									<img src={'/img/icons/Vector.svg'} className={'arrow-down'} />
 								</Stack>
 								<Stack className="price-year-after-price">
-									<Typography className="title">Weight</Typography>
+									<Typography className="title">
+										Weight{' '}
+										<small style={{ color: 'red', fontSize: '9px', paddingLeft: '5px' }}>
+											If it does not match, choose the nearest weight
+										</small>
+									</Typography>
 									<select
 										className={'select-description'}
 										value={insertPetData.petWeight || 'select'}

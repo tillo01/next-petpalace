@@ -20,7 +20,7 @@ import { LIKE_TARGET_MEMBER, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mu
 import { Messages } from '../../libs/config';
 import { T } from '../../libs/types/common';
 import AddPet from '../../libs/components/mypage/AddNewPet';
-import MyPets from '../../libs/components/member/MemberPets';
+import MyPets from '../../libs/components/mypage/MyPets';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
