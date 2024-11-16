@@ -56,8 +56,8 @@ const WriteFAQ: NextPage = () => {
 						</Box>
 					</Paper>
 					<Stack flexDirection={'column'} alignItems={'center'} className="right-box">
-						<Typography className="main-title">Write FAQ</Typography>
-						<Typography className="sub-title">Write about Frequently Asked Questions</Typography>
+						<Typography className="main-title">Write FAQ/NOTICE</Typography>
+						<Typography className="sub-title">Write about Frequently Asked Questions and NOTICE </Typography>
 					</Stack>
 				</Stack>
 				<FAQTeditor />

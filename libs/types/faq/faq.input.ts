@@ -14,11 +14,9 @@ export interface FAQsInput {
 }
 
 export interface FAQSearch {
-	memberId?: string;
 	categoryList?: NoticeCategory;
 	noticeType?: NoticeType;
 	noticeStatus?: NoticeStatus;
-	perPageList?: Number[];
 	text?: string;
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import {
@@ -13,29 +13,50 @@ import {
 	Fade,
 	MenuItem,
 	Box,
-	Checkbox,
-	Toolbar,
+	IconButton,
+	Tooltip,
+	Accordion,
+	AccordionSummary,
+	AccordionDetails,
 } from '@mui/material';
 import Avatar from '@mui/material/Avatar';
-import { IconButton, Tooltip } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { Stack } from '@mui/material';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import { NotePencil } from 'phosphor-react';
-
-type Order = 'asc' | 'desc';
-
-/** Bu adminpage notice-bottom center **/
+import { T } from '../../../types/common';
+import { FAQ } from '../../../types/faq/faq';
+import { userVar } from '../../../../apollo/store';
+import { useReactiveVar } from '@apollo/client';
+import { NoticeStatus } from '../../../enums/notice.enum';
+import OpenInBrowserRoundedIcon from '@mui/icons-material/OpenInBrowserRounded';
+import Moment from 'react-moment';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { REACT_APP_API_URL } from '../../../config';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 interface Data {
 	category: string;
 	title: string;
-	id: string;
 	writer: string;
 	date: string;
+	status: string;
+	id?: string;
 	view: number;
-	action: string;
 }
+
+/** Bu adminpage faq-bottom center **/
+
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
+	if (b[orderBy] < a[orderBy]) {
+		return -1;
+	}
+	if (b[orderBy] > a[orderBy]) {
+		return 1;
+	}
+	return 0;
+}
+
+type Order = 'asc' | 'desc';
+
 interface HeadCell {
 	disablePadding: boolean;
 	id: keyof Data;
@@ -45,46 +66,48 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: 'category',
-		numeric: true,
-		disablePadding: false,
-		label: 'Category',
-	},
-	{
 		id: 'title',
 		numeric: true,
 		disablePadding: false,
-		label: 'TITLE',
+		label: 'CATEGORY',
 	},
 	{
-		id: 'id',
+		id: 'category',
 		numeric: true,
 		disablePadding: false,
-		label: 'ID',
+		label: 'FAQ_CONTENT',
 	},
+
 	{
 		id: 'writer',
+		numeric: true,
+		disablePadding: false,
+		label: 'CATEGORY',
+	},
+
+	{
+		id: 'view',
 		numeric: true,
 		disablePadding: false,
 		label: 'WRITER',
 	},
 	{
-		id: 'date',
+		id: 'view',
 		numeric: true,
+		disablePadding: false,
+		label: 'VIEWS',
+	},
+	{
+		id: 'date',
+		numeric: false,
 		disablePadding: false,
 		label: 'DATE',
 	},
 	{
-		id: 'view',
-		numeric: true,
-		disablePadding: false,
-		label: 'VIEW',
-	},
-	{
-		id: 'action',
+		id: 'status',
 		numeric: false,
 		disablePadding: false,
-		label: 'ACTION',
+		label: 'STATUS',
 	},
 ];
 
@@ -97,149 +120,151 @@ interface EnhancedTableProps {
 	rowCount: number;
 }
 
-interface EnhancedTableToolbarProps {
-	numSelected: number;
-	onRequestSort: (event: React.MouseEvent<unknown>, pet: keyof Data) => void;
-	onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-	order: Order;
-	orderBy: string;
-	rowCount: number;
+function EnhancedTableHead(props: EnhancedTableProps) {
+	const { onSelectAllClick } = props;
+	const user = useReactiveVar(userVar);
+	return (
+		<TableHead>
+			<TableRow>
+				{headCells.map((headCell) => (
+					<TableCell
+						key={headCell.id}
+						align={headCell.numeric ? 'left' : 'center'}
+						padding={headCell.disablePadding ? 'none' : 'normal'}
+					>
+						{headCell.label}
+					</TableCell>
+				))}
+			</TableRow>
+		</TableHead>
+	);
 }
 
-const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
-	const [select, setSelect] = useState('');
-	const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-
-	return (
-		<>
-			{numSelected > 0 ? (
-				<>
-					<Toolbar>
-						<Box component={'div'}>
-							<Box component={'div'} className="flex_box">
-								<Checkbox
-									color="primary"
-									indeterminate={numSelected > 0 && numSelected < rowCount}
-									checked={rowCount > 0 && numSelected === rowCount}
-									onChange={onSelectAllClick}
-									inputProps={{
-										'aria-label': 'select all',
-									}}
-								/>
-								<Typography sx={{ flex: '1 1 100%' }} color="inherit" variant="h6" component="div">
-									{numSelected} selected
-								</Typography>
-							</Box>
-							<Button variant={'text'} size={'large'}>
-								Delete
-							</Button>
-						</Box>
-					</Toolbar>
-				</>
-			) : (
-				<TableHead>
-					<TableRow>
-						<TableCell padding="checkbox">
-							<Checkbox
-								color="primary"
-								indeterminate={numSelected > 0 && numSelected < rowCount}
-								checked={rowCount > 0 && numSelected === rowCount}
-								onChange={onSelectAllClick}
-								inputProps={{
-									'aria-label': 'select all',
-								}}
-							/>
-						</TableCell>
-						{headCells.map((headCell) => (
-							<TableCell
-								key={headCell.id}
-								align={headCell.numeric ? 'left' : 'right'}
-								padding={headCell.disablePadding ? 'none' : 'normal'}
-							>
-								{headCell.label}
-							</TableCell>
-						))}
-					</TableRow>
-				</TableHead>
-			)}
-			{numSelected > 0 ? null : null}
-		</>
-	);
-};
-
-interface NoticeListType {
+interface NoticeiclesPanelListType {
 	dense?: boolean;
 	membersData?: any;
+	questions: FAQ[];
 	searchMembers?: any;
 	anchorEl?: any;
 	handleMenuIconClick?: any;
 	handleMenuIconClose?: any;
 	generateMentorTypeHandle?: any;
+	removeFaqQuestionHandler: any;
+	updateQuestionsHandler: any;
 }
 
-export const NoticeList = (props: NoticeListType) => {
+export const NoticeArticlesPanelList = (props: NoticeiclesPanelListType) => {
 	const {
 		dense,
 		membersData,
 		searchMembers,
+		questions,
 		anchorEl,
 		handleMenuIconClick,
 		handleMenuIconClose,
 		generateMentorTypeHandle,
+		removeFaqQuestionHandler,
+		updateQuestionsHandler,
 	} = props;
 	const router = useRouter();
+	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
 	/** HANDLERS **/
+	const filetrQuestions = questions.filter((question) => question.noticeCategory === 'NOTICE');
 
 	return (
 		<Stack>
 			<TableContainer>
 				<Table sx={{ minWidth: 750 }} aria-labelledby="tableTitle" size={dense ? 'small' : 'medium'}>
 					{/*@ts-ignore*/}
-					<EnhancedTableToolbar />
+					<EnhancedTableHead />
 					<TableBody>
-						{[1, 2, 3, 4, 5].map((ele: any, index: number) => {
-							const member_image = '/img/profile/defaultUser.svg';
+						{questions.length === 0 && (
+							<TableRow>
+								<TableCell align="center" colSpan={8}>
+									<span className={'no-data'}>data not found!</span>
+								</TableCell>
+							</TableRow>
+						)}
 
-							return (
-								<TableRow hover key={'member._id'} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
-									<TableCell padding="checkbox">
-										<Checkbox color="primary" />
+						{filetrQuestions.length !== 0 &&
+							filetrQuestions.map((question: FAQ, index: number) => (
+								<TableRow hover key={question?._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+									<TableCell align="left">{question.noticeCategory}</TableCell>
+									<TableCell align="left">
+										<Box component={'div'}>
+											<Accordion>
+												<AccordionSummary expandIcon={<ExpandMoreIcon />}>{question.noticeTitle}</AccordionSummary>
+												<AccordionDetails>
+													<div dangerouslySetInnerHTML={{ __html: question.noticeContent }} />
+												</AccordionDetails>
+											</Accordion>
+										</Box>
 									</TableCell>
-									<TableCell align="left">mb id</TableCell>
-									<TableCell align="left">member.mb_full_name</TableCell>
-									<TableCell align="left">member.mb_phone</TableCell>
+									<TableCell align="left">{question.noticeType}</TableCell>
 									<TableCell align="left" className={'name'}>
-										<Stack direction={'row'}>
-											<Link href={`/_admin/users/detail?mb_id=$'{member._id'}`}>
-												<div>
-													<Avatar alt="Remy Sharp" src={member_image} sx={{ ml: '2px', mr: '10px' }} />
-												</div>
-											</Link>
-											<Link href={`/_admin/users/detail?mb_id=${'member._id'}`}>
-												<div>member.mb_nick</div>
-											</Link>
-										</Stack>
+										<Link href={`/member?memberId=${question.memberId}`}>
+											<Avatar
+												alt="Remy Sharp"
+												src={
+													user?.memberImage
+														? `${REACT_APP_API_URL}/${user?.memberImage}`
+														: `/img/profile/defaultUser.svg`
+												}
+											/>
+											{user?.memberNick}
+										</Link>
 									</TableCell>
-									<TableCell align="left">member.mb_phone</TableCell>
-									<TableCell align="left">member.mb_phone</TableCell>
-									<TableCell align="right">
-										<Tooltip title={'delete'}>
-											<IconButton>
-												<DeleteRoundedIcon />
-											</IconButton>
-										</Tooltip>
-										<Tooltip title="edit">
-											<IconButton onClick={() => router.push(`/_admin/cs/notice_create?id=notice._id`)}>
-												<NotePencil size={24} weight="fill" />
-											</IconButton>
-										</Tooltip>
+									<TableCell align="center">{question?.noticeViews} </TableCell>
+									<TableCell align="left">
+										<Moment format={'DD.MM.YY HH:mm'}>{question?.createdAt}</Moment>
+									</TableCell>
+									<TableCell align="center">
+										{question.noticeStatus === NoticeStatus.DELETE ? (
+											<Button
+												variant="outlined"
+												sx={{ p: '3px', border: 'none', ':hover': { border: '1px solid #000000' } }}
+												onClick={() => removeFaqQuestionHandler(question._id)}
+											>
+												<DeleteIcon fontSize="small" />
+											</Button>
+										) : (
+											<>
+												<Button onClick={(e: any) => handleMenuIconClick(e, index)} className={'badge success'}>
+													{question.noticeStatus}
+												</Button>
+
+												<Menu
+													className={'menu-modal'}
+													MenuListProps={{
+														'aria-labelledby': 'fade-button',
+													}}
+													anchorEl={anchorEl[index]}
+													open={Boolean(anchorEl[index])}
+													onClose={handleMenuIconClose}
+													TransitionComponent={Fade}
+													sx={{ p: 1 }}
+												>
+													{Object.values(NoticeStatus)
+														.filter((ele) => ele !== question.noticeStatus)
+														.map((status: string) => (
+															<MenuItem
+																onClick={() => updateQuestionsHandler({ _id: question._id, noticeStatus: status })}
+																key={status}
+															>
+																<Typography variant={'subtitle1'} component={'span'}>
+																	{status}
+																</Typography>
+															</MenuItem>
+														))}
+												</Menu>
+											</>
+										)}
 									</TableCell>
 								</TableRow>
-							);
-						})}
+							))}
 					</TableBody>
 				</Table>
 			</TableContainer>

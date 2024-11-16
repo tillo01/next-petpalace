@@ -33,7 +33,7 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 	const [questions, setQuestions] = useState<FAQ[]>([]);
 	const [questionsTotal, setQuestionsTotal] = useState<number>(0);
 	const [value, setValue] = useState(
-		questionsInquiry?.search.noticeStatus ? questionsInquiry?.search?.noticeStatus : 'ALL',
+		questionsInquiry?.search?.noticeStatus ? questionsInquiry?.search?.noticeStatus : 'ALL',
 	);
 	const [searchText, setSearchText] = useState('');
 	const [searchType, setSearchType] = useState('ALL');
@@ -93,21 +93,20 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 		setAnchorEl([]);
 	};
 
-	const faqtTabChangeHandler = async (event: any, newValue: string) => {
+	const tabChangeHandler = async (event: any, newValue: string) => {
 		setValue(newValue);
-		setSearchText('');
 
 		setQuestionsInquiry({ ...questionsInquiry, page: 1, sort: 'createdAt' });
 
 		switch (newValue) {
+			case 'ACTIVE':
+				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
+				break;
 			case 'HOLD':
 				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
 				break;
 			case 'DELETE':
 				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.DELETE } });
-				break;
-			case 'ACTIVE':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
 				break;
 			default:
 				delete questionsInquiry?.search?.noticeStatus;
@@ -212,32 +211,32 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 						<Box component={'div'}>
 							<List className={'tab-menu'}>
 								<ListItem
-									onClick={(e: any) => faqtTabChangeHandler(e, 'ALL')}
+									onClick={(e: any) => tabChangeHandler(e, 'ALL')}
 									value="ALL"
 									className={value === 'ALL' ? 'li on' : 'li'}
 								>
 									All
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => faqtTabChangeHandler(e, 'ACTIVE')}
+									onClick={(e: any) => tabChangeHandler(e, 'ACTIVE')}
 									value="ACTIVE"
 									className={value === 'ACTIVE' ? 'li on' : 'li'}
 								>
 									Active
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => faqtTabChangeHandler(e, 'HOLD')}
+									onClick={(e: any) => tabChangeHandler(e, 'HOLD')}
 									value="HOLD"
 									className={value === 'HOLD' ? 'li on' : 'li'}
 								>
 									Hold
 								</ListItem>
 								<ListItem
-									onClick={(e: any) => faqtTabChangeHandler(e, 'DELETE')}
+									onClick={(e: any) => tabChangeHandler(e, 'DELETE')}
 									value="DELETE"
 									className={value === 'DELETE' ? 'li on' : 'li'}
 								>
-									Deleted
+									Delete
 								</ListItem>
 							</List>
 							<Divider />

@@ -40,6 +40,7 @@ interface Data {
 	date: string;
 	status: string;
 	id?: string;
+	view: number;
 }
 
 /** Bu adminpage faq-bottom center **/
@@ -65,40 +66,40 @@ interface HeadCell {
 
 const headCells: readonly HeadCell[] = [
 	{
-		id: 'category',
+		id: 'title',
 		numeric: true,
 		disablePadding: false,
 		label: 'CATEGORY',
 	},
 	{
-		id: 'title',
+		id: 'category',
 		numeric: true,
 		disablePadding: false,
-		label: 'TITLE',
-	},
-	{
-		id: 'title',
-		numeric: true,
-		disablePadding: false,
-		label: 'NOTICE TYPE',
+		label: 'FAQ_CONTENT',
 	},
 
 	{
 		id: 'writer',
 		numeric: true,
 		disablePadding: false,
-		label: 'WRITER',
+		label: 'CATEGORY',
 	},
 
 	{
-		id: 'date',
+		id: 'view',
 		numeric: true,
 		disablePadding: false,
-		label: 'NOTICE VIEWS',
+		label: 'WRITER',
+	},
+	{
+		id: 'view',
+		numeric: true,
+		disablePadding: false,
+		label: 'VIEWS',
 	},
 	{
 		id: 'date',
-		numeric: true,
+		numeric: false,
 		disablePadding: false,
 		label: 'DATE',
 	},
@@ -171,6 +172,7 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 	/** APOLLO REQUESTS **/
 	/** LIFECYCLES **/
 	/** HANDLERS **/
+	const filetrQuestions = questions.filter((question) => question.noticeCategory === 'FAQ');
 
 	return (
 		<Stack>
@@ -187,9 +189,9 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 							</TableRow>
 						)}
 
-						{questions.length !== 0 &&
-							questions.map((question: FAQ, index: number) => (
-								<TableRow hover key={question._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
+						{filetrQuestions.length !== 0 &&
+							filetrQuestions.map((question: FAQ, index: number) => (
+								<TableRow hover key={question?._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }}>
 									<TableCell align="left">{question.noticeCategory}</TableCell>
 									<TableCell align="left">
 										<Box component={'div'}>
@@ -203,7 +205,7 @@ export const FaqArticlesPanelList = (props: FaqArticlesPanelListType) => {
 									</TableCell>
 									<TableCell align="left">{question.noticeType}</TableCell>
 									<TableCell align="left" className={'name'}>
-										<Link href={`/member?memberId=${question.noticeCategory}`}>
+										<Link href={`/member?memberId=${question.memberId}`}>
 											<Avatar
 												alt="Remy Sharp"
 												src={

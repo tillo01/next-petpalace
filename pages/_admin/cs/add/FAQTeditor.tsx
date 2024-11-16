@@ -71,11 +71,12 @@ const FAQTeditor = () => {
 				},
 			});
 
-			await sweetTopSuccessAlert('FAQ is created successfully', 700);
+			await sweetTopSuccessAlert(`${noticeCategory === 'FAQ' ? 'FAQ' : 'NOTICE'} is created successfully`, 700);
+
 			await router.push({
-				pathname: '/_admin/cs/faq',
+				pathname: noticeCategory === 'FAQ' ? '/_admin/cs/faq' : '/_admin/cs/notice',
 				query: {
-					category: '/cs?tab=faq',
+					category: noticeCategory === 'FAQ' ? '/_admin/cs/faq' : ' /_admin/cs/notice',
 				},
 			});
 		} catch (err: any) {
