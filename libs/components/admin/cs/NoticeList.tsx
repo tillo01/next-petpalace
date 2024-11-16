@@ -75,7 +75,7 @@ const headCells: readonly HeadCell[] = [
 		id: 'category',
 		numeric: true,
 		disablePadding: false,
-		label: 'FAQ_CONTENT',
+		label: 'NOTICE_CONTENT',
 	},
 
 	{

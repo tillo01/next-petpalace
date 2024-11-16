@@ -21,7 +21,7 @@ const WriteFAQ: NextPage = () => {
 			<div id="write-article-page">
 				<Stack className="main-title-box">
 					<Stack style={{ width: '70px', height: '70px', marginLeft: '65px' }} className={'logo-box'}>
-						<img src={'/img/logo/logoText.svg'} alt={'logo'} />
+						<img src={'/img/logo/Logo.bg.png'} alt={'logo'} />
 					</Stack>
 					<Paper
 						elevation={1}

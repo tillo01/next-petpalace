@@ -201,7 +201,13 @@ const AdminNotice: NextPage = ({ initialInquiry, ...props }: any) => {
 		<Box component={'div'} className={'content'}>
 			<Box component={'div'} className={'title flex_space'}>
 				<Typography variant={'h2'}>FAQ Management</Typography>
-				<Button className="btn_add" variant={'contained'} size={'medium'} onClick={() => router.push(`/_admin/cs/add`)}>
+				<Button
+					className="btn_add"
+					variant={'contained'}
+					size={'medium'}
+					color="success"
+					onClick={() => router.push(`/_admin/cs/add`)}
+				>
 					<AddRoundedIcon sx={{ mr: '8px' }} />
 					ADD
 				</Button>
