@@ -72,7 +72,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/member':
 					title = 'Member Page';
 					desc = 'Pets / For Adoption';
-					bgImage = '/img/banner/header1.svg';
+					bgImage = '/img/banner/follower.jpg';
 					break;
 				default:
 					break;

@@ -9,7 +9,7 @@ import { userVar } from '../../../apollo/store';
 interface TopAgentProps {
 	seller: Member;
 }
-const TopAgentCard = (props: TopAgentProps) => {
+const TopSellerCard = (props: TopAgentProps) => {
 	const { seller } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
@@ -65,4 +65,4 @@ const TopAgentCard = (props: TopAgentProps) => {
 	}
 };
 
-export default TopAgentCard;
+export default TopSellerCard;

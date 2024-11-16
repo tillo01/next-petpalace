@@ -22,7 +22,7 @@
 				}
 			}
 			.pets-list-box {
-				margin-top: 85px;
+				margin-top: 60px;
 				.list-box {
 					.listing-title-box {
 						width: 100%;
@@ -31,9 +31,14 @@
 						gap: 110px;
 						padding: 18px 15px 18px 33px;
 						border-radius: 12px;
-						background: #f6f6f6;
+						background: linear-gradient(
+							135deg,
+							rgba(255, 255, 255, 0.5),
+							rgba(192, 192, 192, 0.8),
+							rgba(255, 255, 255, 0.5)
+						);
 						.title-text {
-							color: #181a20;
+							color: #7ed957;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -73,7 +78,7 @@
 							cursor: pointer;
 							.name {
 								margin-bottom: 8px;
-								color: #181a20;
+								color: #7ed957;
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;

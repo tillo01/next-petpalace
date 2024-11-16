@@ -101,67 +101,65 @@ export const UPDATE_PET_BY_ADMIN = gql`
 `;
 
 export const REMOVE_PET_BY_ADMIN = gql`
-	mutation RemovePetByAdmin($input:String!) {
-    removePetByAdmin(petId: $input) {
-        _id
-        petType
-        petStatus
-        petLocation
-        petAddress
-        petTitle
-        petPrice
-        petWeight
-        petHeight
-        petAges
-        petViews
-        petLikes
-        petComments
-        petRank
-        petImages
-        petDesc
-        petSell
-        petAdoption
-        memberId
-        soldAt
-        deletedAt
-        bornAt
-        createdAt
-        updatedAt
-        memberData {
-            _id
-            memberType
-            memberStatus
-            memberAuthType
-            memberPhone
-            memberNick
-            memberFullName
-            memberImage
-            memberAddress
-            memberDesc
-            memberPets
-            memberArticles
-            memberFollowers
-            memberFollowings
-            memberPoints
-            memberLikes
-            memberViews
-            memberComments
-            memberRank
-            memberWarnings
-            memberBlocks
-            deletedAt
-            createdAt
-            updatedAt
-            accessToken
-        }
-        meLiked {
-            memberId
-            likeRefId
-            myFavorite
-        }
-    }
-}
-
+	mutation RemovePetByAdmin($input: String!) {
+		removePetByAdmin(petId: $input) {
+			_id
+			petType
+			petStatus
+			petLocation
+			petAddress
+			petTitle
+			petPrice
+			petWeight
+			petHeight
+			petAges
+			petViews
+			petLikes
+			petComments
+			petRank
+			petImages
+			petDesc
+			petSell
+			petAdoption
+			memberId
+			soldAt
+			deletedAt
+			bornAt
+			createdAt
+			updatedAt
+			memberData {
+				_id
+				memberType
+				memberStatus
+				memberAuthType
+				memberPhone
+				memberNick
+				memberFullName
+				memberImage
+				memberAddress
+				memberDesc
+				memberPets
+				memberArticles
+				memberFollowers
+				memberFollowings
+				memberPoints
+				memberLikes
+				memberViews
+				memberComments
+				memberRank
+				memberWarnings
+				memberBlocks
+				deletedAt
+				createdAt
+				updatedAt
+				accessToken
+			}
+			meLiked {
+				memberId
+				likeRefId
+				myFavorite
+			}
+		}
 	}
 `;
 

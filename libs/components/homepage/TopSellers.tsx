@@ -5,7 +5,7 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import TopAgentCard from './TopSellerstCard';
+import TopSellerCard from './TopSellerstCard';
 import { Member } from '../../types/member/member';
 import { SellersInquiry } from '../../types/member/member.input';
 import { GET_SELLERS } from '../../../apollo/user/query';
@@ -56,7 +56,7 @@ const TopSellers = (props: TopSellersProps) => {
 							{topSellers.map((seller: Member) => {
 								return (
 									<SwiperSlide className={'top-sellers-slide'} key={seller?._id}>
-										<TopAgentCard seller={seller} key={seller?.memberNick} />
+										<TopSellerCard seller={seller} key={seller?.memberNick} />
 									</SwiperSlide>
 								);
 							})}
@@ -99,7 +99,7 @@ const TopSellers = (props: TopSellersProps) => {
 								{topSellers.map((seller: Member) => {
 									return (
 										<SwiperSlide className={'top-sellers-slide'} key={seller?._id}>
-											<TopAgentCard seller={seller} key={seller?.memberNick} />
+											<TopSellerCard seller={seller} key={seller?.memberNick} />
 										</SwiperSlide>
 									);
 								})}
