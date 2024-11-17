@@ -14,7 +14,7 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { FaqArticlesPanelList } from '../../../libs/components/admin/cs/FaqList';
 import { useRouter } from 'next/router';
-import { GETALL_FAQ_QUESTIONSBYADMIN } from '../../../apollo/user/query';
+
 import { useMutation, useQuery } from '@apollo/client';
 import { FAQInquiry } from '../../../libs/types/faq/faq.input';
 import { FAQ } from '../../../libs/types/faq/faq';
@@ -23,6 +23,7 @@ import { REMOVE_FAQ_QUESTIONBYADMIN, UPDATE_FAQ_QUESTIONSBYADMIN } from '../../.
 import { NoticeCategory, NoticeStatus, NoticeType } from '../../../libs/enums/notice.enum';
 import { FAQUpdate } from '../../../libs/types/faq/faq.update';
 import { sweetConfirmAlert, sweetErrorHandling, sweetTopSuccessAlert } from '../../../libs/sweetAlert';
+import { GETALL_FAQ_QUESTIONSBYADMIN } from '../../../apollo/admin/query';
 
 /** Bu adminpage faq-top center **/
 
@@ -248,30 +249,6 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 							</List>
 							<Divider />
 							<Stack className={'search-area'} sx={{ m: '24px' }}>
-								<Select sx={{ width: '160px', mr: '20px' }} value={searchType}>
-									<MenuItem value={'ALL'} onClick={() => searchTypeHandler('ALL')}>
-										ALL
-									</MenuItem>
-									<MenuItem value={'PET'} onClick={() => searchTypeHandler('PET')}>
-										PET
-									</MenuItem>
-									<MenuItem value={'FORBUYERS'} onClick={() => searchTypeHandler('FORBUYERS')}>
-										FORBUYERS
-									</MenuItem>
-									<MenuItem value={'PAYMENT'} onClick={() => searchTypeHandler('PAYMENT')}>
-										PAYMENT
-									</MenuItem>
-									<MenuItem value={'FORSELLERS'} onClick={() => searchTypeHandler('FORSELLERS')}>
-										FORSELLERS
-									</MenuItem>
-									<MenuItem value={'COMMUNITY'} onClick={() => searchTypeHandler('COMMUNITY')}>
-										COMMUNITY
-									</MenuItem>
-									<MenuItem value={'OTHER'} onClick={() => searchTypeHandler('OTHER')}>
-										OTHER
-									</MenuItem>
-								</Select>
-
 								<OutlinedInput
 									value={searchText}
 									onChange={(e: any) => textHandler(e.target.value)}
@@ -305,20 +282,39 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 										</>
 									}
 								/>
+								<Select sx={{ width: '160px', mr: '20px' }} value={searchType}>
+									<MenuItem value={'ALL'} onClick={() => searchTypeHandler('ALL')}>
+										ALL
+									</MenuItem>
+									<MenuItem value={'PET'} onClick={() => searchTypeHandler('PET')}>
+										PET
+									</MenuItem>
+									<MenuItem value={'FORBUYERS'} onClick={() => searchTypeHandler('FORBUYERS')}>
+										FORBUYERS
+									</MenuItem>
+									<MenuItem value={'PAYMENT'} onClick={() => searchTypeHandler('PAYMENT')}>
+										PAYMENT
+									</MenuItem>
+									<MenuItem value={'FORSELLERS'} onClick={() => searchTypeHandler('FORSELLERS')}>
+										FORSELLERS
+									</MenuItem>
+									<MenuItem value={'COMMUNITY'} onClick={() => searchTypeHandler('COMMUNITY')}>
+										COMMUNITY
+									</MenuItem>
+									<MenuItem value={'OTHER'} onClick={() => searchTypeHandler('OTHER')}>
+										OTHER
+									</MenuItem>
+								</Select>
 							</Stack>
 							<Divider />
 						</Box>
 						<FaqArticlesPanelList
-							// dense={dense}
-							// membersData={membersData}
-							// searchMembers={searchMembers}
 							anchorEl={anchorEl}
 							handleMenuIconClick={menuIconClickHandler}
 							handleMenuIconClose={menuIconCloseHandler}
 							removeFaqQuestionHandler={removeFaqQuestionHandler}
 							updateQuestionsHandler={updateQuestionsHandler}
 							questions={questions}
-							// generateMentorTypeHandle={generateMentorTypeHandle}
 						/>
 
 						<TablePagination

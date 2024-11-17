@@ -197,9 +197,7 @@ const Top = () => {
 								</Link>
 							)}
 							<Link href={'/cs'}>
-								<div>
-									<SupportAgentIcon style={{ color: '#7ed957', fontSize: '30px' }} />
-								</div>
+								<SupportAgentIcon style={{ color: '#7ed957', fontSize: '30px' }} />
 							</Link>
 						</Box>
 						<Box component={'div'} className={'user-box'}>

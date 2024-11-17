@@ -58,9 +58,9 @@ const Faq: NextPage = ({ initialInquiry, ...props }: any) => {
 	/** APOLLO REQUESTS **/
 
 	const {
-		loading: getAllFaqQuestionsByAdminLoading,
-		data: getAllFaqQuestionsByAdminData,
-		error: getAllFaqQuestionsByAdminError,
+		loading: getAllFaqQuestionsLoading,
+		data: getAllFaqQuestionsData,
+		error: getAllFaqQuestionsError,
 		refetch: getAllFaqQuestionsRefetch,
 	} = useQuery(GETALL_FAQ_QUESTIONS, {
 		fetchPolicy: 'network-only',
@@ -141,7 +141,7 @@ const Faq: NextPage = ({ initialInquiry, ...props }: any) => {
 		return (
 			<Stack className={'faq-content'}>
 				<Box className="categories" component="div">
-					{['PET', 'PAYMENT', 'OTHER', 'FORBUYERS', 'FORSELLERS', 'COMMUNITY'].map((tab) => (
+					{['ALL', 'PET', 'PAYMENT', 'OTHER', 'FORBUYERS', 'FORSELLERS', 'COMMUNITY'].map((tab) => (
 						<div key={tab} className={value === tab ? 'active' : ''} onClick={(e: any) => tabChangeHandler(e, tab)}>
 							{tab}
 						</div>
@@ -167,8 +167,7 @@ const Faq: NextPage = ({ initialInquiry, ...props }: any) => {
 										A
 									</Typography>
 									<Typography>
-										{/* Show userQuestion content if it matches the expanded one */}
-										{question.noticeContent}
+										<span dangerouslySetInnerHTML={{ __html: question.noticeContent }} />
 									</Typography>
 								</Stack>
 							</AccordionDetails>
