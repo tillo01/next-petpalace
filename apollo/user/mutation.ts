@@ -473,3 +473,21 @@ export const REMOVE_FAQ_QUESTIONBYADMIN = gql`
 		}
 	}
 `;
+
+export const GET_FAQ_QUESTION = gql`
+	mutation GetFaqQuestion($input: String!) {
+		getFaqQuestion(answerId: $input) {
+			_id
+			noticeCategory
+			noticeStatus
+			noticeType
+			noticeTitle
+			noticeViews
+			noticeContent
+			memberId
+			createdAt
+			deletedAt
+			updatedAt
+		}
+	}
+`;

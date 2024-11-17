@@ -724,24 +724,6 @@ export const GETALL_FAQ_QUESTIONSBYADMIN = gql`
 	}
 `;
 
-export const GET_FAQ_QUESTION = gql`
-	query GetFaqQuestion($input: String!) {
-		getFaqQuestion(answerId: $input) {
-			_id
-			noticeCategory
-			noticeStatus
-			noticeType
-			noticeTitle
-			noticeViews
-			noticeContent
-			memberId
-			createdAt
-			deletedAt
-			updatedAt
-		}
-	}
-`;
-
 export const GETALL_FAQ_QUESTIONS = gql`
 	query GetAllFaqQuestions($input: FAQInquiry!) {
 		getAllFaqQuestions(input: $input) {

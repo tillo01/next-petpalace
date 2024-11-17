@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { Box, Stack } from '@mui/material';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
-import Notice from '../../libs/components/cs/Notice';
+// import Notice from '../../libs/components/cs/Notice';
 import Faq from '../../libs/components/cs/Faq';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 /** Bu userpagedagi cs center **/
@@ -30,7 +30,7 @@ const CS: NextPage = () => {
 			{ scroll: false },
 		);
 	};
-	const tab = router.query.tab ?? 'notice';
+	const tab = router.query.tab ?? 'faq';
 
 	if (device === 'mobile') {
 		return <h1>CS PAGE MOBILE</h1>;
@@ -44,14 +44,14 @@ const CS: NextPage = () => {
 							<p>I will answer your questions</p>
 						</Box>
 						<Box component={'div'} className={'btns'}>
-							<div
-								className={tab == 'notice' ? 'active' : ''}
+							{/* <div
+								className={tab === 'notice' ? 'active' : ''}
 								onClick={() => {
 									changeTabHandler('notice');
 								}}
 							>
 								Notice
-							</div>
+							</div> */}
 							<div
 								className={tab == 'faq' ? 'active' : ''}
 								onClick={() => {
@@ -64,7 +64,7 @@ const CS: NextPage = () => {
 					</Box>
 
 					<Box component={'div'} className={'cs-content'}>
-						{tab === 'notice' && <Notice />}
+						{/* {tab === 'notice' && <Notice />} */}
 
 						{tab === 'faq' && <Faq />}
 					</Box>
