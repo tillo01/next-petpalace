@@ -140,11 +140,8 @@ const SellerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 			await likeTargetPet({ variables: { input: id } });
 
 			await getPetsRefetch({ input: searchFilter });
-
-			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 

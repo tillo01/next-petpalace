@@ -58,12 +58,8 @@ const MyPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Subscriage!', 800);
-
 			await refetch({ input: query });
-		} catch (err: any) {
-			sweetErrorHandling(err).then();
-		}
+		} catch (err: any) {}
 	};
 
 	const unsubscribeHandler = async (id: string, refetch: any, query: any) => {
@@ -78,12 +74,8 @@ const MyPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Unsubscriage!', 800);
-
 			await refetch({ input: query });
-		} catch (err: any) {
-			sweetErrorHandling(err).then();
-		}
+		} catch (err: any) {}
 	};
 
 	const likeMemberHandler = async (id: string, refetch: any, query: any) => {
@@ -102,12 +94,10 @@ const MyPage: NextPage = () => {
 					},
 				},
 			});
-			await sweetTopSmallSuccessAlert('Success!', 800);
 
 			await refetch({ input: query });
 		} catch (err: any) {
 			console.log('ERROR, likeMemberHandler:', err.message);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 	const redirectToMemberPageHandler = async (memberId: string) => {
@@ -117,9 +107,7 @@ const MyPage: NextPage = () => {
 			} else {
 				await router.push(`/member?memberId=${memberId}`);
 			}
-		} catch (error) {
-			await sweetErrorHandling(error);
-		}
+		} catch (error) {}
 	};
 
 	if (device === 'mobile') {

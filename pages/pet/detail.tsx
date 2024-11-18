@@ -163,12 +163,10 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 			await likeTargetPet({ variables: { input: id } });
 			await getPetRefetch({ input: petId });
 			await getPetsRefetch({
-				_id: petId,
+				id: petId,
 			});
-			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 
@@ -185,9 +183,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 			});
 			setInsertCommentData({ ...insertCommentData, commentContent: '' });
 			await getCommentsRefetch({ input: commentInquiry });
-		} catch (err) {
-			await sweetErrorHandling(err);
-		}
+		} catch (err) {}
 	};
 
 	if (getPetLoading) {

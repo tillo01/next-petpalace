@@ -161,11 +161,8 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 				},
 			});
 			await boardArticleRefetch({ input: articleId });
-
-			await sweetTopSmallSuccessAlert('Success!', 800);
 		} catch (err: any) {
 			console.log('ERROR, LikeBoArticleHandler:', err.message);
-			await sweetMixinErrorAlert(err.message);
 		} finally {
 			setLikeLoading(false);
 		}
@@ -191,11 +188,8 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 
 			await getCommentsRefetch({ input: searchFilter });
 			await boardArticleRefetch({ input: articleId });
-			sweetTopSmallSuccessAlert('Commented', 800);
 			setComment('');
-		} catch (error: any) {
-			await sweetMixinErrorAlert(error.message);
-		}
+		} catch (error: any) {}
 	};
 
 	const updateButtonHandler = async (commentId: string, commentStatus?: CommentStatus.DELETE) => {

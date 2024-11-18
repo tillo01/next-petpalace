@@ -92,11 +92,8 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 			await likeTargetBoardArticle({ variables: { input: _id } });
 
 			await boardArticlesRefetch({ input: searchCommunity });
-
-			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 

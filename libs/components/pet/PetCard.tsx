@@ -59,7 +59,7 @@ const PetCard = (props: PetCardType) => {
 						<Typography>${formatterStr(pet?.petPrice)}</Typography>
 					</Box>
 					<div className="seller-nick">
-						<p>
+						<p style={{ cursor: 'pointer' }}>
 							<Avatar
 								className="little-member"
 								onClick={() => redirectToMemberPageHandler(pet?.memberData?._id as string)}

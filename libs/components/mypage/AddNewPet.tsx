@@ -158,7 +158,7 @@ const AddPet = ({ initialValues, ...props }: any) => {
 					input: insertPetData,
 				},
 			});
-			await sweetMixinSuccessAlert('This pet has been updated successfully');
+
 			await router.push({
 				pathname: 'mypage',
 				query: {

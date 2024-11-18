@@ -47,11 +47,8 @@ const MyFavorites: NextPage = () => {
 			await likeTargetPet({ variables: { input: id } });
 
 			await getFavoritesRefetch({ input: searchFavorites });
-
-			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 

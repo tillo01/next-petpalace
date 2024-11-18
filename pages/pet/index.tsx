@@ -45,10 +45,8 @@ const PetList: NextPage = ({ initialInput, ...props }: any) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
-
 			await likeTargetPet({ variables: { input: id } });
-
-			await getPetsRefetch({ input: initialInput });
+			await getPetsRefetch({ variables: { input: id } });
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
 		}

@@ -130,12 +130,9 @@ const SellerList: NextPage = ({ initialInput, ...props }: any) => {
 					input: id,
 				},
 			});
-			await sweetTopSmallSuccessAlert('success', 800);
-
 			await getSellersRefetch({ input: searchFilter });
 		} catch (err: any) {
 			console.log('Error on likeMember', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 

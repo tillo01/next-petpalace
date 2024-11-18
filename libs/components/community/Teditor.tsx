@@ -103,7 +103,6 @@ const TuiEditor = () => {
 				},
 			});
 
-			await sweetTopSuccessAlert('Article is created successfully', 700);
 			await router.push({
 				pathname: '/mypage',
 				query: {
