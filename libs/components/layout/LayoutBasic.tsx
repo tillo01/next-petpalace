@@ -65,8 +65,8 @@ const withLayoutBasic = (Component: any) => {
 					break;
 				case '/account/join':
 					title = 'Login/Signup';
-					desc = 'Authentication Process';
-					bgImage = '/img/banner/header2.svg';
+					desc = 'Process of login/signup';
+					bgImage = '/img/banner/dog.webp';
 					setAuthHeader(true);
 					break;
 				case '/member':

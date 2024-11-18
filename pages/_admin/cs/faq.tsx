@@ -98,24 +98,34 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 		setValue(newValue);
 		setSearchText('');
 
-		setQuestionsInquiry({ ...questionsInquiry, page: 1, sort: 'createdAt' });
+		// Reset page and sort while preserving the existing search object
+		const updatedSearch = { ...questionsInquiry.search };
 
 		switch (newValue) {
 			case 'ACTIVE':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.ACTIVE } });
+				updatedSearch.noticeStatus = NoticeStatus.ACTIVE;
 				break;
 			case 'HOLD':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.HOLD } });
+				updatedSearch.noticeStatus = NoticeStatus.HOLD;
 				break;
 			case 'DELETE':
-				setQuestionsInquiry({ ...questionsInquiry, search: { noticeStatus: NoticeStatus.DELETE } });
+				updatedSearch.noticeStatus = NoticeStatus.DELETE;
 				break;
 			default:
-				delete questionsInquiry?.search?.noticeStatus;
-				setQuestionsInquiry({ ...questionsInquiry });
+				// Remove noticeStatus from search
+				delete updatedSearch.noticeStatus;
 				break;
 		}
+
+		// Update the state with the modified search
+		setQuestionsInquiry({
+			...questionsInquiry,
+			page: 1,
+			sort: 'createdAt',
+			search: updatedSearch,
+		});
 	};
+
 	const updateQuestionsHandler = async (updateData: FAQUpdate) => {
 		try {
 			console.log('+updateData', updateData);
@@ -143,25 +153,47 @@ const FaqArticles: NextPage = ({ initialInquiry, ...props }: any) => {
 		}
 	}, []);
 
+	// const searchTypeHandler = async (newValue: string) => {
+	// 	try {
+	// 		setSearchType(newValue);
+	// 		if (newValue !== 'ALL') {
+	// 			setQuestionsInquiry({
+	// 				...questionsInquiry,
+	// 				page: 1,
+	// 				sort: 'createdAt',
+	// 				search: {
+	// 					...questionsInquiry.search,
+	// 					noticeType: newValue as NoticeType,
+	// 				},
+	// 			});
+	// 		} else {
+	// 			delete questionsInquiry?.search.noticeType;
+	// 			setQuestionsInquiry({ ...questionsInquiry });
+	// 		}
+	// 	} catch (err) {
+	// 		console.log('Erron on searchTypeHandler', err);
+	// 	}
+	// };
 	const searchTypeHandler = async (newValue: string) => {
 		try {
 			setSearchType(newValue);
+
+			const updatedSearch = { ...questionsInquiry.search };
+
 			if (newValue !== 'ALL') {
-				setQuestionsInquiry({
-					...questionsInquiry,
-					page: 1,
-					sort: 'createdAt',
-					search: {
-						...questionsInquiry.search,
-						noticeType: newValue as NoticeType,
-					},
-				});
+				updatedSearch.noticeType = newValue as NoticeType;
 			} else {
-				delete questionsInquiry?.search.noticeType;
-				setQuestionsInquiry({ ...questionsInquiry });
+				delete updatedSearch.noticeType;
 			}
+
+			setQuestionsInquiry({
+				...questionsInquiry,
+				page: 1,
+				sort: 'createdAt',
+				search: updatedSearch,
+			});
 		} catch (err) {
-			console.log('Erron on searchTypeHandler', err);
+			console.log('Error in searchTypeHandler', err);
 		}
 	};
 

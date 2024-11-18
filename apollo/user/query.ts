@@ -701,29 +701,6 @@ export const GET_NOTIFICATIONS = gql`
 	}
 `;
 
-export const GETALL_FAQ_QUESTIONSBYADMIN = gql`
-	query GetAllFaqQuestionsByAdmin($input: FAQInquiry!) {
-		getAllFaqQuestionsByAdmin(input: $input) {
-			list {
-				_id
-				noticeCategory
-				noticeStatus
-				noticeType
-				noticeViews
-				noticeTitle
-				noticeContent
-				memberId
-				createdAt
-				deletedAt
-				updatedAt
-			}
-			faqmetaCounter {
-				total
-			}
-		}
-	}
-`;
-
 export const GETALL_FAQ_QUESTIONS = gql`
 	query GetAllFaqQuestions($input: FAQInquiry!) {
 		getAllFaqQuestions(input: $input) {
