@@ -72,7 +72,7 @@ const PetCard = (props: PetCardType) => {
 							/>
 						</p>
 
-						<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
+						<p>{pet?.memberData?.memberNick ?? 'Seller'}</p>
 					</div>
 				</Stack>
 				<Stack className="bottom">

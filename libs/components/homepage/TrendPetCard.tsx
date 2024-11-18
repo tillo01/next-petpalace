@@ -22,8 +22,8 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
-	const [sellerId, setAgentId] = useState<string | null>(null);
-	const [seller, setAgent] = useState<Member | null>(null);
+	const [sellerId, setSellerId] = useState<string | null>(null);
+	const [seller, setSeller] = useState<Member | null>(null);
 
 	/** HANDLERS **/
 	const pushDetailHandler = async (petId: string) => {
@@ -133,11 +133,11 @@ const TrendPetCard = (props: TrendPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{pet.petWeight} weight</span>
+							<span>{pet.petWeight} kg</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{pet.petHeight} height</span>
+							<span>{pet.petHeight} cm</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />

@@ -107,15 +107,15 @@ const PopularPetCard = (props: PopularPetCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{pet?.petHeight} weight</span>
+							<span>{pet?.petHeight} kg</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{pet?.petAges} height</span>
+							<span>{pet?.petAges} cm</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
-							<span>{pet?.petWeight} ages</span>
+							<span>{pet?.petWeight} age</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />

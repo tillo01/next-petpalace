@@ -56,11 +56,11 @@ const TopPetCard = (props: TopPetCardProps) => {
 						</div>
 						<div>
 							<img src="/img/icons/height.svg" alt="" />
-							<span>{pet?.petAges} heights</span>
+							<span>{pet?.petAges} cm</span>
 						</div>
 						<div>
 							<img src="/img/icons/expand.svg" alt="" />
-							<span>{pet?.petWeight} m2</span>
+							<span>{pet?.petWeight} kg</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -119,11 +119,11 @@ const TopPetCard = (props: TopPetCardProps) => {
 						<div>
 							<img src="/img/icons/height.png" alt="" />
 
-							<span>{pet?.petAges} heights</span>
+							<span>{pet?.petAges} cm</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
-							<span>{pet?.petWeight} m2</span>
+							<span>{pet?.petWeight} kg</span>
 						</div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
@@ -161,7 +161,7 @@ const TopPetCard = (props: TopPetCardProps) => {
 							/>
 						</p>
 
-						<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
+						<p>{pet?.memberData?.memberNick ?? 'Seller'}</p>
 					</div>
 				</Box>
 			</Stack>

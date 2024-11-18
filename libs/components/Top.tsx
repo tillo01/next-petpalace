@@ -18,10 +18,10 @@ import { userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
 import NotifIcon from './NotifIcon';
-import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import ClearCacheButton from './apollo';
 import HeaderFilter from './homepage/HeaderFilter';
 import Advanced from './Advanced';
+import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 
 const Top = () => {
 	const device = useDeviceDetect();

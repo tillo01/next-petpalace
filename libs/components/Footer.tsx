@@ -56,16 +56,16 @@ const Footer = () => {
 							</div>
 							<div>
 								<strong>Discover</strong>
-								<span>Seoul</span>
-								<span>Gyeongido</span>
-								<span>Busan</span>
-								<span>Jejudo</span>
+								<span>Tokyo</span>
+								<span>Osaka</span>
+								<span>Fukoka</span>
+								<span>Nagoya</span>
 							</div>
 						</Box>
 					</Stack>
 				</Stack>
 				<Stack className={'second'}>
-					<span>© Nestar - All rights reserved. Nestar {moment().year()}</span>
+					<span>© PepPalace - All rights reserved. PetPalace {moment().year()}</span>
 				</Stack>
 			</Stack>
 		);
@@ -119,11 +119,11 @@ const Footer = () => {
 								<span>FAQs</span>
 							</div>
 							<div>
-								<strong>Discover</strong>
-								<span>Busan</span>
-								<span>Gyeongido</span>
-								<span>Busan</span>
-								<span>Jejudo</span>
+								<strong>Tokyo</strong>
+								<span>Osaka</span>
+								<span>Fukoka</span>
+								<span>Nagoya</span>
+								<span>Kobe</span>
 							</div>
 						</Box>
 					</Stack>

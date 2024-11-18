@@ -43,16 +43,16 @@ const CS: NextPage = () => {
 							<p>I will answer your questions</p>
 						</Box>
 						<Box component={'div'} className={'btns'}>
-							<div
-								className={tab === 'notice' ? 'active' : ''}
+							{/* <div
+								className={tab == 'notice' ? 'active' : ''}
 								onClick={() => {
 									changeTabHandler('notice');
 								}}
 							>
 								Notice
-							</div>
+							</div> */}
 							<div
-								className={tab === 'faq' ? 'active' : ''}
+								className={tab == 'faq' ? 'active' : ''}
 								onClick={() => {
 									changeTabHandler('faq');
 								}}
@@ -63,7 +63,7 @@ const CS: NextPage = () => {
 					</Box>
 
 					<Box component={'div'} className={'cs-content'}>
-						{tab === 'notice' && <Notice />}
+						{/* {tab === 'notice' && <Notice />} */}
 
 						{tab === 'faq' && <Faq />}
 					</Box>

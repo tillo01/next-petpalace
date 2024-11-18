@@ -262,10 +262,10 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 									</Stack>
 									<Stack className={'bottom-box'}>
 										<Stack className="option">
-											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} weight</Typography>
+											<img src="/img/icons/weight.png" alt="" /> <Typography>{pet?.petHeight} kg</Typography>
 										</Stack>
 										<Stack className="option">
-											<img src="/img/icons/height.png" alt="" /> <Typography>{pet?.petAges} height</Typography>
+											<img src="/img/icons/height.png" alt="" /> <Typography>{pet?.petAges} cm</Typography>
 										</Stack>
 
 										<Stack className="option">
@@ -519,13 +519,18 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 							<Stack className={'address-config'}>
 								<Typography className={'title'}>Address</Typography>
 								<Stack className={'map-box'}>
-									<iframe
-										src="https://www.google.com/maps/emage?pb=!1m18...&style=[JSON_STYLE]"
-										width="100%"
-										height="100%"
-										// @ts-ignore
-										allowfullscreen
-									></iframe>
+									<Stack className="map-box">
+										<Stack className="map-box">
+											<iframe
+												src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5359573.46661142!2d135.7680296922489!3d35.689487519205254!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b7f3fda19b9%3A0x9fa0435a322fd7d6!2sJapan!5e0!3m2!1sen!2sus!4v1616626262481!5m2!1sen!2sus"
+												width="100%"
+												height="100%"
+												style={{ border: 0 }}
+												allowFullScreen
+												loading="lazy"
+											></iframe>
+										</Stack>
+									</Stack>
 								</Stack>
 							</Stack>
 						</Stack>

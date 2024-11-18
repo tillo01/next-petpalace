@@ -6,10 +6,10 @@ import { Member } from '../../types/member/member';
 import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 
-interface TopAgentProps {
+interface TopSellerProps {
 	seller: Member;
 }
-const TopSellerCard = (props: TopAgentProps) => {
+const TopSellerCard = (props: TopSellerProps) => {
 	const { seller } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();

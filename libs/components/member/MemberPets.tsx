@@ -15,7 +15,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	const router = useRouter();
 	const { memberId } = router.query;
 	const [searchFilter, setSearchFilter] = useState<PetsInquiry>({ ...initialInput });
-	const [sellerPets, setAgentPets] = useState<Pet[]>([]);
+	const [sellerPets, setSellerPets] = useState<Pet[]>([]);
 	const [total, setTotal] = useState<number>(0);
 
 	/** APOLLO REQUESTS **/
@@ -31,7 +31,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 		skip: !searchFilter?.search?.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: any) => {
-			setAgentPets(data?.getPets?.list);
+			setSellerPets(data?.getPets?.list);
 			setTotal(data?.getPets?.metaCounter[0]?.total ?? 0);
 		},
 	});

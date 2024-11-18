@@ -28,17 +28,17 @@ export const getStaticProps = async ({ locale }: any) => ({
 	},
 });
 
-const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) => {
+const SellerDetail: NextPage = ({ initialInput, initialComment, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
-	const [sellerId, setAgentId] = useState<string | null>(null);
-	const [seller, setAgent] = useState<Member | null>(null);
+	const [sellerId, setSellerId] = useState<string | null>(null);
+	const [seller, setSeller] = useState<Member | null>(null);
 	const [searchFilter, setSearchFilter] = useState<PetsInquiry>(initialInput);
-	const [sellerPets, setAgentPets] = useState<Pet[]>([]);
+	const [sellerPets, setSellerPets] = useState<Pet[]>([]);
 	const [petTotal, setPetTotal] = useState<number>(0);
 	const [commentInquiry, setCommentInquiry] = useState<CommentsInquiry>(initialComment);
-	const [sellerComments, setAgentComments] = useState<Comment[]>([]);
+	const [sellerComments, setSellerComments] = useState<Comment[]>([]);
 	const [commentTotal, setCommentTotal] = useState<number>(0);
 	const [insertCommentData, setInsertCommentData] = useState<CommentInput>({
 		commentGroup: CommentGroup.MEMBER,
@@ -61,7 +61,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		skip: !sellerId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgent(data?.getMember);
+			setSeller(data?.getMember);
 			setSearchFilter({
 				...searchFilter,
 				search: {
@@ -92,7 +92,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		skip: !searchFilter.search.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentPets(data?.getPets?.list);
+			setSellerPets(data?.getPets?.list);
 			setPetTotal(data?.getPets?.metaCounter[0]?.total ?? 0);
 		},
 	});
@@ -108,7 +108,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		skip: !commentInquiry.search.commentRefId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentComments(data?.getComments?.list);
+			setSellerComments(data?.getComments?.list);
 			setCommentTotal(data?.getComments?.metaCounter[0]?.total ?? 0);
 		},
 	});
@@ -150,7 +150,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		if (router.query.sellerId) setAgentId(router.query.sellerId as string);
+		if (router.query.sellerId) setSellerId(router.query.sellerId as string);
 	}, [router]);
 
 	useEffect(() => {
@@ -311,7 +311,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 	}
 };
 
-AgentDetail.defaultProps = {
+SellerDetail.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 9,
@@ -330,4 +330,4 @@ AgentDetail.defaultProps = {
 	},
 };
 
-export default withLayoutBasic(AgentDetail);
+export default withLayoutBasic(SellerDetail);

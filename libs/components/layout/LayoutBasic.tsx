@@ -39,7 +39,7 @@ const withLayoutBasic = (Component: any) => {
 					bgImage = '/img/banner/dog.webp';
 					break;
 				case '/seller/detail':
-					title = 'Agent Page';
+					title = 'Seller Page';
 					desc = 'Pets / For Adoption';
 					bgImage = '/img/banner/otherPage.webp';
 					break;
@@ -93,8 +93,8 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>PetPalce</title>
+						<meta name={'title'} content={`PetPalce`} />
 					</Head>
 					<Stack id="mobile-wrap">
 						<Stack id={'top'}>
@@ -115,8 +115,8 @@ const withLayoutBasic = (Component: any) => {
 			return (
 				<>
 					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
+						<title>PetPalce</title>
+						<meta name={'title'} content={`PetPalce`} />
 					</Head>
 					<Stack id="pc-wrap">
 						<Stack id={'top'}>

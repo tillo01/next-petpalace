@@ -81,7 +81,7 @@ const Faq: NextPage = ({ initialInquiry, ...props }: any) => {
 			page: 1,
 			search: { ...questionsInquiry.search },
 		});
-	}, [questionsInquiry]);
+	}, []);
 
 	/** HANDLERS **/
 	const tabChangeHandler = async (event: any, newValue: string) => {

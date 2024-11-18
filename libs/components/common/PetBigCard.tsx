@@ -38,7 +38,7 @@ const PetBigCard = (props: PetBigCardProps) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>APARTMEND BIG CARD</div>;
+		return <div>PET BIG CARD</div>;
 	} else {
 		return (
 			<Stack className="pet-big-card-box" onClick={() => goPetDetatilPage(pet?._id)}>
@@ -64,11 +64,11 @@ const PetBigCard = (props: PetBigCardProps) => {
 					<div className={'options'}>
 						<div>
 							<img src="/img/icons/weight.png" alt="" />
-							<span>{pet?.petHeight} weight</span>
+							<span>{pet?.petHeight} kg</span>
 						</div>
 						<div>
 							<img src="/img/icons/height.png" alt="" />
-							<span>{pet?.petAges} height</span>
+							<span>{pet?.petAges} cm</span>
 						</div>
 						<div>
 							<img src="/img/icons/age.png" alt="" />
@@ -116,7 +116,7 @@ const PetBigCard = (props: PetBigCardProps) => {
 							/>
 						</p>
 
-						<p>{pet?.memberData?.memberNick ?? 'Agent'}</p>
+						<p>{pet?.memberData?.memberNick ?? 'Sller'}</p>
 					</div>
 				</Box>
 			</Stack>

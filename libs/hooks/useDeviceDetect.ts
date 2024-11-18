@@ -4,8 +4,8 @@ const useDeviceDetect = (): string => {
 	const [device, setDevice] = useState('desktop');
 
 	useEffect(() => {
-		const userAgent = navigator.userAgent;
-		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent);
+		const userSeller = navigator.userSeller;
+		const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userSeller);
 		setDevice(isMobile ? 'mobile' : 'desktop');
 	}, [device]);
 

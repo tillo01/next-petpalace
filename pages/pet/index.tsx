@@ -49,11 +49,8 @@ const PetList: NextPage = ({ initialInput, ...props }: any) => {
 			await likeTargetPet({ variables: { input: id } });
 
 			await getPetsRefetch({ input: initialInput });
-
-			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
-			sweetMixinErrorAlert(err.message).then();
 		}
 	};
 
