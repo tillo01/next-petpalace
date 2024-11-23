@@ -19,6 +19,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	const [total, setTotal] = useState<number>(0);
 
 	/** APOLLO REQUESTS **/
+	console.log(searchFilter);
 
 	const {
 		loading: getPetsLoading,
@@ -31,6 +32,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 		skip: !searchFilter?.search?.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: any) => {
+			console.log('$$->data', data);
 			setSellerPets(data?.getPets?.list);
 			setTotal(data?.getPets?.metaCounter[0]?.total ?? 0);
 		},
@@ -52,7 +54,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	};
 
 	if (device === 'mobile') {
-		return <div>NESTAR PETS MOBILE</div>;
+		return <div>PETPALACE PETS MOBILE</div>;
 	} else {
 		return (
 			<div id="member-pets-page">

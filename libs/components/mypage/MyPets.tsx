@@ -94,7 +94,7 @@ const MyPets: NextPage = ({ initialInput, ...props }: any) => {
 	}
 
 	if (device === 'mobile') {
-		return <div>NESTAR PETS MOBILE</div>;
+		return <div>PETPALACE PETS MOBILE</div>;
 	} else {
 		return (
 			<div id="my-pet-page">

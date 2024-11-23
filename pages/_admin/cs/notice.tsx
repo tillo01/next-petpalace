@@ -14,7 +14,6 @@ import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import { FaqArticlesPanelList } from '../../../libs/components/admin/cs/FaqList';
 import { useRouter } from 'next/router';
-import { GETALL_FAQ_QUESTIONSBYADMIN } from '../../../apollo/user/query';
 import { useMutation, useQuery } from '@apollo/client';
 import { FAQInquiry } from '../../../libs/types/faq/faq.input';
 import { FAQ } from '../../../libs/types/faq/faq';
@@ -24,6 +23,7 @@ import { NoticeCategory, NoticeStatus, NoticeType } from '../../../libs/enums/no
 import { FAQUpdate } from '../../../libs/types/faq/faq.update';
 import { sweetConfirmAlert, sweetErrorHandling, sweetTopSuccessAlert } from '../../../libs/sweetAlert';
 import { NoticeArticlesPanelList } from '../../../libs/components/admin/cs/NoticeList';
+import { GETALL_FAQ_QUESTIONSBYADMIN } from '../../../apollo/admin/query';
 
 /** Bu adminpage faq-top center **/
 
