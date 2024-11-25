@@ -4,7 +4,9 @@ services:
     restart: always
     image: node:20.10.0
     ports:
-      - '4000:3000'
+      - 4000:3000
+    environment:
+      - PORT=3000=value
     volumes:
       - .:/usr/src/next-palace
     working_dir: /usr/src/next-palace
