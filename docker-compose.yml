@@ -15,5 +15,5 @@ services:
     command: bash -c "yarn && yarn run build && yarn run start"
 
 networks:
-  monorepo-network:
+  client-network:
     driver: bridge
