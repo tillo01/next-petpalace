@@ -2,6 +2,7 @@ import React, { useMemo, useRef, useState } from 'react';
 import { Box, Button, FormControl, MenuItem, Stack, Typography, Select, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import dynamic from 'next/dynamic';
 import { useMutation } from '@apollo/client';
 import { CREATE_FAQ_QUESTIONS } from '../../../../apollo/user/mutation';
 import { getJwtToken } from '../../../../libs/auth';
