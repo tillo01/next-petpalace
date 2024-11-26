@@ -1,11 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Stack, Box, Modal, Divider, Button, OutlinedInput } from '@mui/material';
+import { Box, Modal, Divider, Button, OutlinedInput, Select, Stack } from '@mui/material';
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
+import MenuItem, { MenuItemProps } from '@mui/material/MenuItem';
 import { petWeight, petYears } from '../config';
 import { PetLocation, PetType } from '../enums/pet.enum';
 import { PetsInquiry } from '../types/pet/pet.input';
