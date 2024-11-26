@@ -1,14 +1,11 @@
 import React, { useMemo, useRef, useState } from 'react';
 import { Box, Button, FormControl, MenuItem, Stack, Typography, Select, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
-import axios from 'axios';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { useMutation } from '@apollo/client';
-import { CREATE_BOARD_ARTICLE, CREATE_FAQ_QUESTIONS } from '../../../../apollo/user/mutation';
+import { CREATE_FAQ_QUESTIONS } from '../../../../apollo/user/mutation';
 import { getJwtToken } from '../../../../libs/auth';
 import { Editor } from '@toast-ui/react-editor';
-import { BoardArticleCategory } from '../../../../libs/enums/board-article.enum';
-import { REACT_APP_API_URL } from '../../../../libs/config';
 import { T } from '../../../../libs/types/common';
 import { Message } from '../../../../libs/enums/common.enum';
 import { sweetErrorHandling, sweetTopSuccessAlert } from '../../../../libs/sweetAlert';

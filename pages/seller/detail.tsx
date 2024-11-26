@@ -152,13 +152,13 @@ const SellerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 
 	useEffect(() => {
 		if (searchFilter.search.memberId) {
-			getPetsRefetch({ variables: { input: searchFilter } }).then();
+			getPetsRefetch().then();
 		}
 	}, [searchFilter]);
 
 	useEffect(() => {
 		if (commentInquiry.search.commentRefId) {
-			getCommentsRefetch({ variables: { input: commentInquiry } }).then();
+			getCommentsRefetch().then();
 		}
 	}, [commentInquiry]);
 
