@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import { Avatar, Box, Button, Paper, Stack, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
@@ -14,6 +14,12 @@ const WriteFAQ: NextPage = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
 	const router = useRouter();
+
+	const [isEditorLoaded, setIsEditorLoaded] = useState(false);
+
+	useEffect(() => {
+		setIsEditorLoaded(true);
+	}, []);
 
 	if (device === 'mobile') {
 		return <>ARTICLE PAGE MOBILE</>;
@@ -61,7 +67,7 @@ const WriteFAQ: NextPage = () => {
 						<Typography className="sub-title">Write about Frequently Asked Questions and NOTICE </Typography>
 					</Stack>
 				</Stack>
-				<FAQTeditor />
+				<div>{isEditorLoaded ? <FAQTeditor /> : <div>Loading...</div>}</div>
 			</div>
 		);
 };
