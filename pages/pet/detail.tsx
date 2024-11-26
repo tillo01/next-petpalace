@@ -162,9 +162,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 
 			await likeTargetPet({ variables: { input: id } });
 			await getPetRefetch({ input: petId });
-			await getPetsRefetch({
-				id: petId,
-			});
+			await getPetsRefetch();
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
 		}
