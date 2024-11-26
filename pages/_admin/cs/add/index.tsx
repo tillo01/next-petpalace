@@ -4,6 +4,7 @@ import { Avatar, Box, Button, Paper, Stack, Typography } from '@mui/material';
 import dynamic from 'next/dynamic';
 import useDeviceDetect from '../../../../libs/hooks/useDeviceDetect';
 import { userVar } from '../../../../apollo/store';
+import '@toast-ui/editor/dist/toastui-editor.css';
 const FAQTeditor = dynamic(() => import('./FAQTeditor'), { ssr: false });
 
 import { useReactiveVar } from '@apollo/client';
