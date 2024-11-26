@@ -1,4 +1,4 @@
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Box, Button, FormControl, MenuItem, Stack, Typography, Select, TextField } from '@mui/material';
 import { useRouter } from 'next/router';
 import '@toast-ui/editor/dist/toastui-editor.css';
@@ -19,6 +19,14 @@ const FAQTeditor = () => {
 	const [noticeCategory, setNoticeCategory] = useState<NoticeCategory>(NoticeCategory.NOTICE);
 	const [noticeStatus, setNoticeStatus] = useState<NoticeStatus>(NoticeStatus.HOLD);
 	const [noticeType, setNoticeType] = useState<NoticeType>(NoticeType.PET);
+	const [EditorComponent, setEditorComponent] = useState<React.ComponentType | null>(null);
+
+	useEffect(() => {
+		const initTerminal = async () => {
+			const { Editor } = await import('@toast-ui/react-editor');
+		};
+		initTerminal();
+	}, []);
 
 	/** APOLLO REQUESTS **/
 	const [createFaqQuestions] = useMutation(CREATE_FAQ_QUESTIONS);

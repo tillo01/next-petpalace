@@ -1,4 +1,5 @@
 import { useApolloClient } from '@apollo/client';
+import React from 'react';
 
 function ClearCacheButton() {
 	const client = useApolloClient();
