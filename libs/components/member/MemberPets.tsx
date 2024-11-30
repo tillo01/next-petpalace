@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NextPage } from 'next';
-import { Pagination, Stack, Typography } from '@mui/material';
+import { CircularProgress, Pagination, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Pet } from '../../types/pet/pet';
 import { PetsInquiry } from '../../types/pet/pet.input';
@@ -27,7 +27,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 		error: getPetsError,
 		refetch: getPetsRefetch,
 	} = useQuery(GET_PETS, {
-		fetchPolicy: 'network-only',
+		fetchPolicy: 'cache-and-network',
 		variables: { input: searchFilter },
 		skip: !searchFilter?.search?.memberId || false,
 		notifyOnNetworkStatusChange: true,
@@ -52,6 +52,19 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	const paginationHandler = (e: T, value: number) => {
 		setSearchFilter({ ...searchFilter, page: value });
 	};
+
+	if (getPetsLoading) {
+		return (
+			<>
+				{' '}
+				<Stack
+					sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '1080px' }}
+				>
+					<CircularProgress size={'4rem'}></CircularProgress>
+				</Stack>
+			</>
+		);
+	}
 
 	if (device === 'mobile') {
 		return <div>PETPALACE PETS MOBILE</div>;
@@ -79,6 +92,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 								<p>No Pet found!</p>
 							</div>
 						)}
+
 						{sellerPets?.map((pet: Pet) => {
 							return <PetCard pet={pet} memberPage={true} key={pet?._id} />;
 						})}
