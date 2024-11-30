@@ -53,18 +53,18 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 		setSearchFilter({ ...searchFilter, page: value });
 	};
 
-	if (getPetsLoading) {
-		return (
-			<>
-				{' '}
-				<Stack
-					sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '1080px' }}
-				>
-					<CircularProgress size={'4rem'}></CircularProgress>
-				</Stack>
-			</>
-		);
-	}
+	// if (getPetsLoading) {
+	// 	return (
+	// 		<>
+	// 			{' '}
+	// 			<Stack
+	// 				sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '1080px' }}
+	// 			>
+	// 				<CircularProgress size={'4rem'}></CircularProgress>
+	// 			</Stack>
+	// 		</>
+	// 	);
+	// }
 
 	if (device === 'mobile') {
 		return <div>PETPALACE PETS MOBILE</div>;
