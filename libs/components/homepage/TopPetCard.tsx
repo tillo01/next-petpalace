@@ -27,8 +27,9 @@ const TopPetCard = (props: TopPetCardProps) => {
 		console.log('ID', petId);
 		await router.push({ pathname: '/pet/detail', query: { id: petId } });
 	};
-	const redirectToMemberPageHandler = async (memberId: string) => {
+	const redirectToMemberPageHandler = async (memberId?: string) => {
 		try {
+			if (!memberId) throw new Error('memberId is undefined');
 			if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
 			else await router.push(`/member?memberId=${memberId}`);
 		} catch (error) {
@@ -151,7 +152,7 @@ const TopPetCard = (props: TopPetCardProps) => {
 						<p>
 							<Avatar
 								className="little-member"
-								onClick={() => redirectToMemberPageHandler(pet?.memberData?._id as string)}
+								onClick={() => redirectToMemberPageHandler(pet.memberData?._id as string)}
 								src={
 									pet?.memberData?.memberImage
 										? `${process.env.REACT_APP_API_URL}/${pet?.memberData.memberImage}`

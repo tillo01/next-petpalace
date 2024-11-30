@@ -29,7 +29,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	} = useQuery(GET_PETS, {
 		fetchPolicy: 'network-only',
 		variables: { input: searchFilter },
-		skip: !searchFilter?.search?.memberId,
+		skip: !searchFilter?.search?.memberId || false,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: any) => {
 			console.log('$$->data', data);

@@ -8,7 +8,7 @@ export default function Document() {
 				<link rel="icon" type="image/png" href="/img/logo/petPalace.png" />
 
 				{/* SEO */}
-				<meta name="keyword" content={'petpalace, petpalace.jp'} />
+				<meta name="keyword" content={'petpalace, petpalace.uz'} />
 				<meta
 					name={'description'}
 					content={
