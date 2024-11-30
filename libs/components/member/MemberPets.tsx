@@ -29,7 +29,7 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 	} = useQuery(GET_PETS, {
 		fetchPolicy: 'cache-and-network',
 		variables: { input: searchFilter },
-		skip: !searchFilter?.search?.memberId || false,
+		skip: !searchFilter?.search?.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: any) => {
 			console.log('$$->data', data);
@@ -53,18 +53,18 @@ const MemberPets: NextPage = ({ initialInput, ...props }: any) => {
 		setSearchFilter({ ...searchFilter, page: value });
 	};
 
-	// if (getPetsLoading) {
-	// 	return (
-	// 		<>
-	// 			{' '}
-	// 			<Stack
-	// 				sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '1080px' }}
-	// 			>
-	// 				<CircularProgress size={'4rem'}></CircularProgress>
-	// 			</Stack>
-	// 		</>
-	// 	);
-	// }
+	if (getPetsLoading) {
+		return (
+			<>
+				{' '}
+				<Stack
+					sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '1080px' }}
+				>
+					<CircularProgress size={'4rem'}></CircularProgress>
+				</Stack>
+			</>
+		);
+	}
 
 	if (device === 'mobile') {
 		return <div>PETPALACE PETS MOBILE</div>;
