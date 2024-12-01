@@ -15,6 +15,7 @@ import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from
 import { Message } from '../../enums/common.enum';
 import { Messages } from '../../config';
 import TrendPetCard from './TrendPetCard';
+import { error } from 'console';
 
 interface TrendPetsProps {
 	initialInput: PetsInquiry;
@@ -46,6 +47,7 @@ const TrendPets = (props: TrendPetsProps) => {
 	const likePetHandler = async (user: T, id: string) => {
 		try {
 			if (!id) return;
+
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
 
 			await likeTargetPet({ variables: { input: id } });
@@ -53,6 +55,7 @@ const TrendPets = (props: TrendPetsProps) => {
 			await getPetsRefetch({ input: initialInput });
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
+			sweetMixinErrorAlert(err.error2).then();
 		}
 	};
 

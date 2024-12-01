@@ -54,6 +54,7 @@ const TopPets = (props: TopPetsProps) => {
 			await getPetsRefetch({ input: initialInput });
 		} catch (err: any) {
 			console.log('Erron on likePetHandler', err);
+			sweetMixinErrorAlert(err.error2).then();
 		}
 	};
 

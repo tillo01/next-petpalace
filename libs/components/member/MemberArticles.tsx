@@ -64,7 +64,7 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('ERROR, likeArticleHandler', err.message);
-			await sweetMixinErrorAlert(err.message).then();
+			await sweetMixinErrorAlert(err.error2).then();
 		}
 	};
 

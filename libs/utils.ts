@@ -14,7 +14,7 @@ export const likeTargetPetHandler = async (likeTargetPet: any, id: string) => {
 		});
 	} catch (err: any) {
 		console.log('ERROR, likeTargetPetHandler:', err.message);
-		sweetMixinErrorAlert(err.message).then();
+		sweetMixinErrorAlert(err.error2).then();
 	}
 };
 
@@ -27,7 +27,7 @@ export const likeTargetBoardArticleHandler = async (likeTargetBoardArticle: any,
 		});
 	} catch (err: any) {
 		console.log('ERROR, likeTargetBoardArticleHandler:', err.message);
-		sweetMixinErrorAlert(err.message).then();
+		sweetMixinErrorAlert(err.error2).then();
 	}
 };
 
@@ -40,6 +40,6 @@ export const likeTargetMemberHandler = async (likeTargetMember: any, id: string)
 		});
 	} catch (err: any) {
 		console.log('ERROR, likeTargetMemberHandler:', err.message);
-		sweetMixinErrorAlert(err.message).then();
+		sweetMixinErrorAlert(err.error2).then();
 	}
 };
