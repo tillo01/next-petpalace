@@ -100,7 +100,7 @@ const MemberPage: NextPage = () => {
 			if (!id) return;
 
 			if (!user?._id) throw new Error(Messages.error2);
-			await sweetErrorAlert('Please login first !');
+			await sweetErrorAlert('Please login first to go further !');
 
 			await likeTargetMember({
 				variables: {
