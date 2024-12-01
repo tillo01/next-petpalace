@@ -30,7 +30,12 @@ import { GET_COMMENTS, GET_PETS, GET_PET } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { CREATE_COMMENT, LIKE_TARGET_PET } from '../../apollo/user/mutation';
-import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
+import {
+	sweetErrorAlert,
+	sweetErrorHandling,
+	sweetMixinErrorAlert,
+	sweetTopSmallSuccessAlert,
+} from '../../libs/sweetAlert';
 import { TextAlignCenter } from 'phosphor-react';
 import PetBigCard from '../../libs/components/common/PetBigCard';
 
@@ -159,7 +164,7 @@ const PetDetail: NextPage = ({ initialComment, ...props }: any) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
-
+			await sweetErrorAlert('Please login first !');
 			await likeTargetPet({ variables: { input: id } });
 			await getPetRefetch({ input: petId });
 			await getPetsRefetch();

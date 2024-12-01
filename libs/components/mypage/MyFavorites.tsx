@@ -9,7 +9,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { LIKE_TARGET_PET } from '../../../apollo/user/mutation';
 import { GET_FAVORITES } from '../../../apollo/user/query';
 import { Messages } from '../../config';
-import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
+import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 
 const MyFavorites: NextPage = () => {
 	const device = useDeviceDetect();
@@ -43,6 +43,7 @@ const MyFavorites: NextPage = () => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetPet({ variables: { input: id } });
 

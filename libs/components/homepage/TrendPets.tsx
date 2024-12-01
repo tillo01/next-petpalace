@@ -11,7 +11,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_PETS } from '../../../apollo/user/query';
 import { T } from '../../types/common';
 import { LIKE_TARGET_PET } from '../../../apollo/user/mutation';
-import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
+import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 import { Message } from '../../enums/common.enum';
 import { Messages } from '../../config';
 import TrendPetCard from './TrendPetCard';
@@ -47,6 +47,7 @@ const TrendPets = (props: TrendPetsProps) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetPet({ variables: { input: id } });
 

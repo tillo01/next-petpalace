@@ -26,6 +26,7 @@ import { GET_BOARD_ARTICLE, GET_COMMENTS } from '../../apollo/user/query';
 import { Messages } from '../../libs/config';
 import {
 	sweetConfirmAlert,
+	sweetErrorAlert,
 	sweetMixinErrorAlert,
 	sweetMixinSuccessAlert,
 	sweetTopSmallSuccessAlert,
@@ -152,6 +153,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 			if (!id) return;
 
 			if (!user._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			setLikeLoading(true);
 

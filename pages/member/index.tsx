@@ -9,7 +9,12 @@ import { useRouter } from 'next/router';
 import MemberFollowers from '../../libs/components/member/MemberFollowers';
 import MemberArticles from '../../libs/components/member/MemberArticles';
 import { useMutation, useReactiveVar } from '@apollo/client';
-import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
+import {
+	sweetErrorAlert,
+	sweetErrorHandling,
+	sweetMixinErrorAlert,
+	sweetTopSmallSuccessAlert,
+} from '../../libs/sweetAlert';
 import MemberFollowings from '../../libs/components/member/MemberFollowings';
 import { userVar } from '../../apollo/store';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -95,6 +100,7 @@ const MemberPage: NextPage = () => {
 			if (!id) return;
 
 			if (!user?._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetMember({
 				variables: {

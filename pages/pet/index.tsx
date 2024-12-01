@@ -14,7 +14,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_PETS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { LIKE_TARGET_PET } from '../../apollo/user/mutation';
-import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
+import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 import { PetCard } from '../../libs/components/mypage/PetCard';
 import PetBigCard from '../../libs/components/common/PetBigCard';
 
@@ -45,6 +45,7 @@ const PetList: NextPage = ({ initialInput, ...props }: any) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
+			await sweetErrorAlert('Please login first !');
 			await likeTargetPet({ variables: { input: id } });
 			await getPetsRefetch();
 		} catch (err: any) {

@@ -15,7 +15,7 @@ import { useMutation, useQuery } from '@apollo/client';
 import { GET_BOARD_ARTICLE, GET_BOARD_ARTICLES } from '../../apollo/user/query';
 import { LIKE_TARGET_BOARD_ARTICLE } from '../../apollo/user/mutation';
 import { Messages } from '../../libs/config';
-import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
+import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -88,6 +88,7 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 			e.stopPropagation();
 			if (!_id) return;
 			if (!user._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetBoardArticle({ variables: { input: _id } });
 

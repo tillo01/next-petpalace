@@ -9,7 +9,7 @@ import { BoardArticle } from '../../types/board-article/board-article';
 import { BoardArticlesInquiry } from '../../types/board-article/board-article.input';
 import { GET_BOARD_ARTICLES } from '../../../apollo/user/query';
 import { useMutation, useQuery } from '@apollo/client';
-import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
+import { sweetErrorAlert, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../sweetAlert';
 import { LIKE_TARGET_BOARD_ARTICLE } from '../../../apollo/user/mutation';
 import { Messages } from '../../config';
 
@@ -54,6 +54,7 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 			e.stopPropagation();
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetBoardArticle({
 				variables: {

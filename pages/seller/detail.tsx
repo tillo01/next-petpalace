@@ -9,7 +9,12 @@ import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { useRouter } from 'next/router';
 import { Pet } from '../../libs/types/pet/pet';
 import { Member } from '../../libs/types/member/member';
-import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
+import {
+	sweetErrorAlert,
+	sweetErrorHandling,
+	sweetMixinErrorAlert,
+	sweetTopSmallSuccessAlert,
+} from '../../libs/sweetAlert';
 import { userVar } from '../../apollo/store';
 import { PetsInquiry } from '../../libs/types/pet/pet.input';
 import { CommentInput, CommentsInquiry } from '../../libs/types/comment/comment.input';
@@ -136,6 +141,7 @@ const SellerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
+			await sweetErrorAlert('Please login first !');
 
 			await likeTargetPet({ variables: { input: id } });
 
