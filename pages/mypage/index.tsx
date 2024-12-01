@@ -90,7 +90,6 @@ const MyPage: NextPage = () => {
 
 			if (!user?._id) throw new Error(Messages.error2);
 			console.log('+++', user._id);
-			await sweetErrorAlert('Please login first !');
 
 			await likeTargetMember({
 				variables: {

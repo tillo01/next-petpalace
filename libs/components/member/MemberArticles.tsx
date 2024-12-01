@@ -54,7 +54,6 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 			e.stopPropagation();
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
-			await sweetErrorAlert('Please login first !');
 
 			await likeTargetBoardArticle({
 				variables: {

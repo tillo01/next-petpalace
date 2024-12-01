@@ -141,7 +141,6 @@ const SellerDetail: NextPage = ({ initialInput, initialComment, ...props }: any)
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Messages.error2);
-			await sweetErrorAlert('Please login first !');
 
 			await likeTargetPet({ variables: { input: id } });
 

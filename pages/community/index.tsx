@@ -88,7 +88,6 @@ const Community: NextPage = ({ initialInput, ...props }: T) => {
 			e.stopPropagation();
 			if (!_id) return;
 			if (!user._id) throw new Error(Messages.error2);
-			await sweetErrorAlert('Please login first !');
 
 			await likeTargetBoardArticle({ variables: { input: _id } });
 

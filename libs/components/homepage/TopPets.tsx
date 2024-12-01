@@ -48,7 +48,6 @@ const TopPets = (props: TopPetsProps) => {
 		try {
 			if (!id) return;
 			if (!user._id) throw new Error(Message.NOT_AUTHENTICATED);
-			await sweetErrorAlert('Please login first !');
 
 			await likeTargetPet({ variables: { input: id } });
 
