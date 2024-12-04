@@ -8,7 +8,7 @@ import HeadsetMicIcon from '@mui/icons-material/HeadsetMic';
 const Service = () => {
 	return (
 		<Stack className={'container'}>
-			<Box sx={{ padding: '20px', border: '1px solid #e0e0e0', borderRadius: '8px' }}>
+			<Box sx={{ padding: '30px', marginTop: '20px', border: '1px solid #e0e0e0', borderRadius: '8px' }}>
 				<Grid container spacing={3} justifyContent="space-around">
 					{/* Feature 1 */}
 					<Grid item xs={12} sm={6} md={3}>

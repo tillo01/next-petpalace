@@ -914,14 +914,15 @@
 			background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(192, 192, 192, 0.8), rgba(255, 255, 255, 0.5));
 
 			.container {
-				flex-direction: row;
+				flex-direction: column;
 				align-items: center;
 				.community-main {
 					width: 100%;
 					margin-top: 60px;
 					display: flex;
-					flex-direction: column;
-					justify-content: space-between;
+					flex-direction: row;
+					justify-content: space-evenly;
+					justify-content: flex-start;
 					.center-line {
 						height: 90%;
 						align-self: end;
@@ -1015,10 +1016,10 @@
 						width: 590px;
 						height: auto;
 						display: flex;
-						flex-direction: column;
+						flex-direction: row;
 						.horizontal-card {
 							display: flex;
-							flex-direction: row;
+							flex-direction: column;
 							cursor: pointer;
 							margin-bottom: 34px;
 							img {
