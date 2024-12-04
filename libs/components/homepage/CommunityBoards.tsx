@@ -58,7 +58,6 @@ const CommunityBoards = () => {
 						<Typography variant={'h1'} style={{ color: '#7ed957' }}>
 							Recommended Articles
 						</Typography>
-						<p>Read</p>
 					</Stack>
 					<Stack className="community-main">
 						<Stack className={'community-left'}>

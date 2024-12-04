@@ -107,7 +107,7 @@ const MemberPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Success!', 800);
+	
 
 			await refetch({ input: query });
 		} catch (err: any) {
